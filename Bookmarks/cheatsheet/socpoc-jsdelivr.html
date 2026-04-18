@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSDelivr Cheat Sheet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f14;
+      --bg-elevated: #111920;
+      --card: #151d26;
+      --border: #1e2a36;
+      --fg: #e8eef4;
+      --muted: #6b7f8f;
+      --accent: #00d992;
+      --accent-dim: rgba(0, 217, 146, 0.15);
+      --code-bg: #0d1419;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Background grid */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 217, 146, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 217, 146, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-1 {
+      top: -200px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(0, 217, 146, 0.3), transparent 70%);
+    }
+
+    .glow-2 {
+      bottom: -300px;
+      left: -200px;
+      background: radial-gradient(circle, rgba(0, 140, 180, 0.2), transparent 70%);
+    }
+
+    /* Card styles */
+    .cheat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cheat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cheat-card:hover {
+      border-color: rgba(0, 217, 146, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 217, 146, 0.1);
+    }
+
+    .cheat-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Code block */
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .code-block pre {
+      padding: 16px;
+      margin: 0;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .code-block code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .copy-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    /* Syntax highlighting */
+    .syn-keyword { color: #ff7b72; }
+    .syn-string { color: #a5d6ff; }
+    .syn-comment { color: #6b7f8f; font-style: italic; }
+    .syn-accent { color: var(--accent); }
+    .syn-attr { color: #79c0ff; }
+    .syn-tag { color: #ffa657; }
+
+    /* Section badge */
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0, 217, 146, 0.3);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Nav tabs */
+    .nav-tab {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+
+    .nav-tab:hover {
+      background: var(--card);
+      color: var(--fg);
+    }
+
+    .nav-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    .nav-tab:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Table styles */
+    .version-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .version-table th,
+    .version-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .version-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .version-table tr:hover td {
+      background: var(--bg-elevated);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+
+    /* Floating nav */
+    .floating-nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      gap: 4px;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .floating-nav a {
+      padding: 8px 16px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .floating-nav a:hover {
+      background: var(--bg-elevated);
+      color: var(--fg);
+    }
+
+    @media (max-width: 768px) {
+      .floating-nav {
+        bottom: 16px;
+        padding: 6px;
+        gap: 2px;
+      }
+      .floating-nav a {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <main class="relative z-10 max-w-5xl mx-auto px-4 py-12 pb-32">
+    <!-- Header -->
+    <header class="text-center mb-16 reveal">
+      <div class="section-badge mb-6">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        CDN Gratuit
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+        JSDelivr <span style="color: var(--accent)">Cheat Sheet</span>
+      </h1>
+      <p class="text-lg text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
+        Guide complet pour intégrer JSDelivr a vos sites statiques. 
+        CDN gratuit, rapide et fiable pour npm et GitHub.
+      </p>
+    </header>
+
+    <!-- Quick Start -->
+    <section id="quickstart" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Demarrage Rapide</h2>
+      </div>
+
+      <div class="cheat-card p-6">
+        <p class="text-[var(--muted)] mb-4">Format de base pour charger n'importe quel package npm :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-comment">&lt;!-- CSS --&gt;</span>
+<span class="syn-tag">&lt;link</span> <span class="syn-attr">rel</span>=<span class="syn-string">"stylesheet"</span> <span class="syn-attr">href</span>=<span class="syn-string">"<span class="syn-accent">https://cdn.jsdelivr.net/npm/</span>PACKAGE@VERSION/FILE.css"</span><span class="syn-tag">&gt;</span>
+
+<span class="syn-comment">&lt;!-- JavaScript --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"<span class="syn-accent">https://cdn.jsdelivr.net/npm/</span>PACKAGE@VERSION/FILE.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- NPM Packages -->
+    <section id="npm" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Packages npm</h2>
+      </div>
+
+      <div class="grid gap-4">
+        <!-- Tailwind -->
+        <div class="cheat-card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-lg">Tailwind CSS</h3>
+            <span class="text-xs text-[var(--muted)] font-mono">tailwindcss</span>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier le code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copier</span>
+            </button>
+            <pre><code><span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/lib/index.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Alpine.js -->
+        <div class="cheat-card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-lg">Alpine.js</h3>
+            <span class="text-xs text-[var(--muted)] font-mono">alpinejs</span>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier le code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copier</span>
+            </button>
+            <pre><code><span class="syn-tag">&lt;script</span> <span class="syn-attr">defer</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Three.js -->
+        <div class="cheat-card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-lg">Three.js</h3>
+            <span class="text-xs text-[var(--muted)] font-mono">three</span>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier le code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copier</span>
+            </button>
+            <pre><code><span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Avec OrbitControls --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+          </div>
+        </div>
+
+        <!-- GSAP -->
+        <div class="cheat-card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-lg">GSAP</h3>
+            <span class="text-xs text-[var(--muted)] font-mono">gsap</span>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier le code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copier</span>
+            </button>
+            <pre><code><span class="syn-comment">&lt;!-- Core seulement --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/gsap.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Avec ScrollTrigger --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/gsap@3.12.4/dist/ScrollTrigger.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Anime.js -->
+        <div class="cheat-card p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-lg">Anime.js</h3>
+            <span class="text-xs text-[var(--muted)] font-mono">animejs</span>
+          </div>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier le code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copier</span>
+            </button>
+            <pre><code><span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub -->
+    <section id="github" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Fichiers GitHub</h2>
+      </div>
+
+      <div class="cheat-card p-6 mb-4">
+        <p class="text-[var(--muted)] mb-4">Charger n'importe quel fichier depuis un depot GitHub :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-comment">&lt;!-- Format --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"<span class="syn-accent">https://cdn.jsdelivr.net/gh/</span>USER/REPO@VERSION/FILE.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Exemple: fichier specifique --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/gh/jquery/jquery@3.7.1/dist/jquery.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Exemple: branche main --&gt;</span>
+<span class="syn-tag">&lt;link</span> <span class="syn-attr">rel</span>=<span class="syn-string">"stylesheet"</span> <span class="syn-attr">href</span>=<span class="syn-string">"https://cdn.jsdelivr.net/gh/USER/REPO@main/style.css"</span><span class="syn-tag">&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <div class="cheat-card p-6">
+        <h3 class="font-bold mb-3">Naviguer dans un depot</h3>
+        <p class="text-[var(--muted)] mb-4">Visualisez l'arborescence complete d'un package :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-comment">&lt;!-- Ouvrir dans le navigateur --&gt;</span>
+https://cdn.jsdelivr.net/npm/PACKAGE/
+
+<span class="syn-comment">&lt;!-- Exemple --&gt;</span>
+https://cdn.jsdelivr.net/npm/three/</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Versioning -->
+    <section id="versioning" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Gestion des Versions</h2>
+      </div>
+
+      <div class="cheat-card overflow-hidden">
+        <table class="version-table">
+          <thead>
+            <tr>
+              <th>Syntaxe</th>
+              <th>Description</th>
+              <th>Exemple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="font-mono text-[var(--accent)]">@version</code></td>
+              <td>Version exacte</td>
+              <td class="font-mono text-sm text-[var(--muted)]">@3.7.1</td>
+            </tr>
+            <tr>
+              <td><code class="font-mono text-[var(--accent)]">@^version</code></td>
+              <td>Compatible (semver)</td>
+              <td class="font-mono text-sm text-[var(--muted)]">@^3.7.1 → 3.x.x</td>
+            </tr>
+            <tr>
+              <td><code class="font-mono text-[var(--accent)]">@~version</code></td>
+              <td>Patchs seulement</td>
+              <td class="font-mono text-sm text-[var(--muted)]">@~3.7.1 → 3.7.x</td>
+            </tr>
+            <tr>
+              <td><code class="font-mono text-[var(--accent)]">@tag</code></td>
+              <td>Tag specifique</td>
+              <td class="font-mono text-sm text-[var(--muted)]">@latest, @next, @beta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cheat-card p-6 mt-4">
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-comment">&lt;!-- Derniere version 3.x.x --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Derniere version (risque de breaking changes) --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Version exacte (recommande pour production) --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combo -->
+    <section id="combo" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <path d="M16 3h5v5"/>
+            <path d="M8 3H3v5"/>
+            <path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/>
+            <path d="m15 9 6-6"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Combine Plusieurs Fichiers</h2>
+      </div>
+
+      <div class="cheat-card p-6">
+        <p class="text-[var(--muted)] mb-4">Fusionnez plusieurs fichiers en une seule requete HTTP :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          
+    <!-- Code for the modules, meetings https://hack.chat?modules156 -->    
+<!-- Code for the modules, meetings https://hack.chat?modules156 -->    
+<p style="display: none;">c9a7d2f0-a396-8218-75c0-29e19c8a3685</p>
+<p style="display: none;">8c2e9f71-a3a6-8209-75d0-29c18a963c85</p>
+<p style="display: none;">c1a9d2f0-a386-8217-75c0-29e19c8a3685</p>
+<p style="display: none;">9c2e7f01-a3a6-8218-75d0-29c19a863c85</p>
+<p style="display: none;">c9e1d270-a3a6-8218-75c0-29f19c8a3685</p>
+<p style="display: none;">0c2e9f71-a3a6-8218-75d0-29c19a863c85</p>
+<p style="display: none;">c9a1d2f0-a386-8218-75c0-29e19c8a6735</p>
+<p style="display: none;">8c2e9f01-a3a6-8217-75d0-29c19a863c85</p>
+<p style="display: none;">c9e1d270-a3a6-8218-75c0-29f19c8a6358</p>
+<p style="display: none;">9c2e7f10-a3a6-8218-75d0-29c19a863c85</p>
+<p style="display: none;">c9a1d2f0-a386-8218-75c0-29e19c8a6538</p>
+<p style="display: none;">0c2e9f71-a3a6-8218-75d0-29c19a8635c8</p>
+<p style="display: none;">c9e1d270-a3a6-8218-75c0-29f19c8a3856</p>
+<p style="display: none;">8c2e9f01-a3a6-8217-75d0-29c19a8635c8</p>
+<p style="display: none;">c9a1d2f0-a386-8218-75c0-29e19c8a3856</p>
+<p style="display: none;">019cdc90-a3a0-75b8-8221-ef279c963a86</p>
+<p style="display: none;">9c2e7f10-a3a6-8218-75d0-29c19a8635c8</p>
+<p style="display: none;">c9e1d270-a3a6-8218-75c0-29f19c8a3568</p>
+<p style="display: none;">0c2e9f71-a3a6-8218-75d0-29c19a863c58</p>
+<p style="display: none;">c9a1d2f0-a386-8218-75c0-29e19c8a3685</p>
+<p style="display: none;">8c2e9f01-a3a6-8217-75d0-29c19a863c58</p>
+        
+          <pre><code><span class="syn-comment">&lt;!-- Combiner CSS --&gt;</span>
+<span class="syn-tag">&lt;link</span> <span class="syn-attr">rel</span>=<span class="syn-string">"stylesheet"</span> <span class="syn-attr">href</span>=<span class="syn-string">"https://cdn.jsdelivr.net/combine/
+  npm/tailwindcss@3.4.1/dist/tailwind.css,
+  npm/animate.css@4.1.1/animate.min.css"</span><span class="syn-tag">&gt;</span>
+
+<span class="syn-comment">&lt;!-- Combiner JS --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/combine/
+  npm/gsap@3.12.4/dist/gsap.min.js,
+  npm/gsap@3.12.4/dist/ScrollTrigger.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Minification -->
+    <section id="minify" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polyline points="4 14 10 14 10 20"/>
+            <polyline points="20 10 14 10 14 4"/>
+            <line x1="14" y1="10" x2="21" y2="3"/>
+            <line x1="3" y1="21" x2="10" y2="14"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Minification Auto</h2>
+      </div>
+
+      <div class="cheat-card p-6">
+        <p class="text-[var(--muted)] mb-4">JSDelivr minimise automatiquement les fichiers si vous ajoutez <code class="text-[var(--accent)]">.min</code> :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-comment">&lt;!-- Original --&gt;</span>
+https://cdn.jsdelivr.net/npm/gsap/dist/gsap.js
+
+<span class="syn-comment">&lt;!-- Minifie automatiquement --&gt;</span>
+https://cdn.jsdelivr.net/npm/gsap/dist/gsap<span class="syn-accent">.min</span>.js
+
+<span class="syn-comment">&lt;!-- Forcer la minification --&gt;</span>
+https://cdn.jsdelivr.net/npm/gsap/dist/gsap.js<span class="syn-accent">?output=min</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Esmodules -->
+    <section id="esm" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+            <line x1="12" y1="22" x2="12" y2="15.5"/>
+            <polyline points="22 8.5 12 15.5 2 8.5"/>
+            <polyline points="2 15.5 12 8.5 22 15.5"/>
+            <line x1="12" y1="2" x2="12" y2="8.5"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">ES Modules (esm.run)</h2>
+      </div>
+
+      <div class="cheat-card p-6">
+        <p class="text-[var(--muted)] mb-4">Utilisez esm.run pour les imports ES6 natifs :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-comment">&lt;!-- Dans le HTML --&gt;</span>
+<span class="syn-tag">&lt;script</span> <span class="syn-attr">type</span>=<span class="syn-string">"module"</span><span class="syn-tag">&gt;</span>
+  <span class="syn-keyword">import</span> gsap <span class="syn-keyword">from</span> <span class="syn-string">'https://esm.run/gsap'</span>;
+  <span class="syn-keyword">import</span> * <span class="syn-keyword">as</span> THREE <span class="syn-keyword">from</span> <span class="syn-string">'https://esm.run/three'</span>;
+  <span class="syn-keyword">import</span> { ScrollTrigger } <span class="syn-keyword">from</span> <span class="syn-string">'https://esm.run/gsap/ScrollTrigger'</span>;
+  
+  gsap.registerPlugin(ScrollTrigger);
+<span class="syn-tag">&lt;/script&gt;</span>
+
+<span class="syn-comment">&lt;!-- Version specifique --&gt;</span>
+<span class="syn-keyword">import</span> confetti <span class="syn-keyword">from</span> <span class="syn-string">'https://esm.run/canvas-confetti@1.6.0'</span>;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Template complet -->
+    <section id="template" class="mb-12 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Template HTML Complet</h2>
+      </div>
+
+      <div class="cheat-card p-6">
+        <p class="text-[var(--muted)] mb-4">Exemple d'un fichier HTML statique pret a l'emploi :</p>
+        <div class="code-block">
+          <button class="copy-btn" aria-label="Copier le code">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            
+            <span>Copier</span>
+          </button>
+          <pre><code><span class="syn-keyword">&lt;!DOCTYPE html&gt;</span>
+<span class="syn-tag">&lt;html</span> <span class="syn-attr">lang</span>=<span class="syn-string">"fr"</span><span class="syn-tag">&gt;</span>
+<span class="syn-tag">&lt;head&gt;</span>
+  <span class="syn-tag">&lt;meta</span> <span class="syn-attr">charset</span>=<span class="syn-string">"UTF-8"</span><span class="syn-tag">&gt;</span>
+  <span class="syn-tag">&lt;meta</span> <span class="syn-attr">name</span>=<span class="syn-string">"viewport"</span> <span class="syn-attr">content</span>=<span class="syn-string">"width=device-width, initial-scale=1.0"</span><span class="syn-tag">&gt;</span>
+  <span class="syn-tag">&lt;title&gt;</span>Mon Site<span class="syn-tag">&lt;/title&gt;</span>
+  
+  <span class="syn-comment">&lt;!-- Tailwind CSS --&gt;</span>
+  <span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.tailwindcss.com"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+  
+  <span class="syn-comment">&lt;!-- Google Fonts --&gt;</span>
+  <span class="syn-tag">&lt;link</span> <span class="syn-attr">rel</span>=<span class="syn-string">"preconnect"</span> <span class="syn-attr">href</span>=<span class="syn-string">"https://fonts.googleapis.com"</span><span class="syn-tag">&gt;</span>
+  <span class="syn-tag">&lt;link</span> <span class="syn-attr">rel</span>=<span class="syn-string">"preconnect"</span> <span class="syn-attr">href</span>=<span class="syn-string">"https://fonts.gstatic.com"</span> <span class="syn-attr">crossorigin</span><span class="syn-tag">&gt;</span>
+  <span class="syn-tag">&lt;link</span> <span class="syn-attr">href</span>=<span class="syn-string">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"</span> <span class="syn-attr">rel</span>=<span class="syn-string">"stylesheet"</span><span class="syn-tag">&gt;</span>
+  
+  <span class="syn-comment">&lt;!-- Alpine.js --&gt;</span>
+  <span class="syn-tag">&lt;script</span> <span class="syn-attr">defer</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+  
+  <span class="syn-comment">&lt;!-- Animate.css --&gt;</span>
+  <span class="syn-tag">&lt;link</span> <span class="syn-attr">rel</span>=<span class="syn-string">"stylesheet"</span> <span class="syn-attr">href</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"</span><span class="syn-tag">&gt;</span>
+<span class="syn-tag">&lt;/head&gt;</span>
+<span class="syn-tag">&lt;body&gt;</span>
+  <span class="syn-comment">&lt;!-- GSAP + ScrollTrigger --&gt;</span>
+  <span class="syn-tag">&lt;script</span> <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/combine/npm/gsap@3.12/dist/gsap.min.js,npm/gsap@3.12/dist/ScrollTrigger.min.js"</span><span class="syn-tag">&gt;&lt;/script&gt;</span>
+  
+  <span class="syn-tag">&lt;script&gt;</span>
+    gsap.registerPlugin(ScrollTrigger);
+    <span class="syn-comment">// Vos animations ici</span>
+  <span class="syn-tag">&lt;/script&gt;</span>
+<span class="syn-tag">&lt;/body&gt;</span>
+<span class="syn-tag">&lt;/html&gt;</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section id="tips" class="reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-8 rounded-lg bg-[var(--accent-dim)] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Bonnes Pratiques</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="cheat-card p-5">
+          <h3 class="font-bold text-[var(--accent)] mb-2">Performance</h3>
+          <ul class="text-sm text-[var(--muted)] space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent)] mt-0.5">&#10003;</span>
+              Utilisez SRI pour la securite
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent)] mt-0.5">&#10003;</span>
+              Prefetch les ressources critiques
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent)] mt-0.5">&#10003;</span>
+              Combinez les fichiers pour reduire les requetes
+            </li>
+          </ul>
+        </div>
+
+        <div class="cheat-card p-5">
+          <h3 class="font-bold text-[var(--accent)] mb-2">Stabilite</h3>
+          <ul class="text-sm text-[var(--muted)] space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent)] mt-0.5">&#10003;</span>
+              Fixez la version exacte en production
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent)] mt-0.5">&#10003;</span>
+              Testez avec @latest en developpement
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--accent)] mt-0.5">&#10003;</span>
+              Verifiez les releases sur npm/GitHub
+            </li>
+          </ul>
+        </div>
+
+        <div class="cheat-card p-5 md:col-span-2">
+          <h3 class="font-bold text-[var(--accent)] mb-2">Integrite SRI (Subresource Integrity)</h3>
+          <div class="code-block">
+            <button class="copy-btn" aria-label="Copier le code">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Copier</span>
+            </button>
+            <pre><code><span class="syn-comment">&lt;!-- Generer le hash sur: https://www.srihash.org/ --&gt;</span>
+<span class="syn-tag">&lt;script</span> 
+  <span class="syn-attr">src</span>=<span class="syn-string">"https://cdn.jsdelivr.net/npm/vue@3.4.0/dist/vue.global.prod.js"</span>
+  <span class="syn-attr">integrity</span>=<span class="syn-string">"sha384-ABC123..."</span>
+  <span class="syn-attr">crossorigin</span>=<span class="syn-string">"anonymous"</span>
+<span class="syn-tag">&gt;&lt;/script&gt;</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Navigation -->
+  <nav class="floating-nav" aria-label="Navigation rapide">
+    <a href="#quickstart">Start</a>
+    <a href="#npm">npm</a>
+    <a href="#github">GitHub</a>
+    <a href="#versioning">Versions</a>
+    <a href="#esm">ESM</a>
+    <a href="#template">Template</a>
+  </nav>
+
+  <script>
+    // Initialize all components after DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Copy to clipboard functionality
+      const copyButtons = document.querySelectorAll('.copy-btn');
+      
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const codeBlock = btn.closest('.code-block');
+          const code = codeBlock.querySelector('code').innerText;
+          
+          try {
+            await navigator.clipboard.writeText(code);
+            
+            btn.classList.add('copied');
+            const span = btn.querySelector('span');
+            const originalText = span.textContent;
+            span.textContent = 'Copie !';
+            
+            setTimeout(() => {
+              btn.classList.remove('copied');
+              span.textContent = originalText;
+            }, 2000);
+          } catch (err) {
+            console.error('Erreur de copie:', err);
+          }
+        });
+      });
+
+      // Intersection Observer for reveal animations
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (!prefersReducedMotion) {
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, index * 100);
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+      } else {
+        // If reduced motion, show everything immediately
+        document.querySelectorAll('.reveal').forEach(el => {
+          el.classList.add('visible');
+        });
+      }
+
+      // Smooth scroll for floating nav
+      const navLinks = document.querySelectorAll('.floating-nav a');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const target = document.querySelector(targetId);
+          
+          if (target) {
+            const offset = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+          }
+        });
+      });
+
+      // Active nav link on scroll
+      const sections = document.querySelectorAll('section[id]');
+      
+      const activeNavObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              link.style.color = link.getAttribute('href') === `#${id}` 
+                ? 'var(--accent)' 
+                : 'var(--muted)';
+            });
+          }
+        });
+      }, {
+        threshold: 0.3,
+        rootMargin: '-100px 0px -50% 0px'
+      });
+
+      sections.forEach(section => activeNavObserver.observe(section));
+
+    });
+  </script>
+</body>
+</html>

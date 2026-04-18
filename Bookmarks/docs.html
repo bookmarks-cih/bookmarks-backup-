@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Docs - Bookmarks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Curated collection of document resources: Academic, Hacking, Music Sheets, and Tech.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#f0f7ff',
+          100: '#e0effe',
+          200: '#bae0fd',
+          300: '#7cc4fb',
+          400: '#36a5f6',
+          500: '#0c84f3',
+          600: '#0066d9',
+          700: '#0152b2',
+          800: '#05468c',
+          900: '#0a3c72',
+        },
+        surface: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        }
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  :root {
+    --brand: #0c84f3;
+    --brand-dark: #0066d9;
+    --accent: #0c84f3;
+    --surface-bg: #f8fafc;
+    --surface-card: #ffffff;
+    --surface-muted: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-light: #e2e8f0;
+    --border-subtle: #f1f5f9;
+  }
+
+  [data-theme="dark"] {
+    --brand: #36a5f6;
+    --brand-dark: #0c84f3;
+    --accent: #36a5f6;
+    --surface-bg: #0f172a;
+    --surface-card: #1e293b;
+    --surface-muted: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-light: #334155;
+    --border-subtle: #1e293b;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .bg-mesh {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: 
+      radial-gradient(at 40% 20%, rgba(12, 132, 243, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(12, 132, 243, 0.05) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(0, 102, 217, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, rgba(12, 132, 243, 0.03) 0px, transparent 50%);
+  }
+
+  .card-flat {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-flat:hover {
+    border-color: rgba(12, 132, 243, 0.3);
+    box-shadow: 0 4px 24px rgba(12, 132, 243, 0.08);
+  }
+
+  .gradient-brand {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--brand) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(12, 132, 243, 0.25);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(12, 132, 243, 0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .highlight {
+    color: var(--brand);
+    font-weight: 500;
+  }
+
+  .contact-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand);
+    transition: width 0.3s ease;
+  }
+
+  .contact-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 4px 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link.active {
+    color: var(--brand);
+  }
+
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  .logo-mark {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .logo-mark:hover {
+    transform: rotate(-5deg) scale(1.05);
+  }
+
+  .logo-mark svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(12, 132, 243, 0.08);
+    border: 1px solid rgba(12, 132, 243, 0.15);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--brand);
+  }
+
+  .icon-box {
+    width: 48px;
+    height: 48px;
+    background: var(--surface-muted);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Header */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 16px 0;
+    margin-bottom: 32px;
+    background: linear-gradient(to bottom, var(--surface-bg) 70%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+
+  .logo-text span {
+    color: var(--brand);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* Clock */
+  .clock {
+    text-align: right;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .clock-time {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .clock-date {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+    font-weight: 400;
+  }
+
+  /* Theme Toggle */
+  .theme-toggle {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--brand);
+  }
+
+  .theme-toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .theme-toggle-knob svg {
+    width: 11px;
+    height: 11px;
+    color: white;
+  }
+
+  [data-theme="dark"] .theme-toggle-knob {
+    transform: translateX(24px);
+  }
+
+  /* Main Container */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background: rgba(12, 132, 243, 0.08);
+    border: 1px solid rgba(12, 132, 243, 0.15);
+    border-radius: 50px;
+  }
+
+  .hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* Docs specific styles */
+  .search-section {
+    margin-bottom: 32px;
+  }
+
+  .search-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 16px 20px 16px 50px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(12, 132, 243, 0.08);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+  }
+
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .filter-tag {
+    padding: 8px 16px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-tag:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .filter-tag.active {
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .doc-card {
+    display: block;
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .doc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .doc-card:hover {
+    border-color: rgba(12, 132, 243, 0.3);
+    box-shadow: 0 8px 32px rgba(12, 132, 243, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .doc-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .card-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.25s ease;
+  }
+
+  .doc-card:hover .card-title {
+    color: var(--accent);
+  }
+
+  .card-arrow {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-secondary);
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .doc-card:hover .card-arrow {
+    stroke: var(--accent);
+    transform: translate(3px, -3px);
+  }
+
+  .card-desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 16px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .card-category {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+  }
+  
+  [data-theme="dark"] .card-category {
+     background: rgba(255, 255, 255, 0.05);
+  }
+
+  .card-category::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .card-domain {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+
+  .resource-count {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--border-light);
+    padding: 40px 0;
+    margin-top: 60px;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-logo {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .footer-logo svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .footer-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .footer-link {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .footer-link:hover {
+    color: var(--brand);
+    background: rgba(12, 132, 243, 0.08);
+  }
+
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .footer-version {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    background: var(--surface-card);
+    border-radius: 6px;
+    border: 1px solid var(--border-light);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 16px;
+    }
+    
+    .header {
+      padding: 14px 0;
+      margin-bottom: 24px;
+    }
+    
+    .logo-text {
+      font-size: 1.2rem;
+    }
+    
+    .clock {
+      display: none;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .docs-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .footer-inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+    
+    .footer-right {
+      align-items: center;
+    }
+    
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  .hero {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .doc-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Focus Styles */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+
+<div class="container">
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-section">
+        <div class="logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="logo-text">Book<span>marks</span></div>
+      </a>
+      
+      <div class="header-actions">
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="hub.html" class="nav-link">Hub</a>
+          <a href="docs.html" class="nav-link active">Docs</a>
+          <a href="privacy.html" class="nav-link">Privacy</a>
+        </nav>
+        
+        <div class="clock">
+          <div class="clock-time" id="clock-time">--:--</div>
+          <div class="clock-date" id="clock-date">...</div>
+        </div>
+        
+        <div class="theme-toggle" id="theme-toggle" role="button" tabindex="0" aria-label="Toggle theme">
+          <div class="theme-toggle-knob">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="hero-label">Documentation Hub</span>
+    <h1>Resource Library</h1>
+    <p class="hero-subtitle">
+      Curated collection of document resources covering Academic research, Security documentation, Music sheets, and Technical guides.
+    </p>
+  </section>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <div class="search-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" class="search-input" id="search-input" placeholder="Search documentation..." aria-label="Search">
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="filter-section">
+    <div class="filter-container" id="filter-container"></div>
+  </section>
+
+  <!-- Resource Count -->
+  <div class="resource-count">
+    <span id="resource-count">Loading...</span> resources found
+  </div>
+
+  <!-- Docs Grid -->
+  <main class="docs-grid" id="docs-grid"></main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <span class="footer-name">Bookmarks</span>
+      </div>
+      
+      <nav class="footer-links">
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="about.html" class="footer-link">About</a>
+        <a href="hub.html" class="footer-link">Hub</a>
+        <a href="docs.html" class="footer-link">Docs</a>
+        <a href="privacy.html" class="footer-link">Privacy</a>
+        <a href="https://ko-fi.com/bookmarks" class="footer-link">Support</a>
+      </nav>
+      
+      <div class="footer-right">
+        <div class="footer-status">
+          <span class="status-dot"></span>
+          <span>All systems operational</span>
+        </div>
+        <span class="footer-version">v3.2</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Data
+const docsData = [
+  { name: "arXiv", link: "https://arxiv.org", desc: "Open access to 2,000,000+ scientific papers across physics, mathematics, computer science, and more.", cat: "Academic" },
+  { name: "Google Scholar", link: "https://scholar.google.com", desc: "Broadly searchable database of scholarly literature across many disciplines and sources.", cat: "Academic" },
+  { name: "PubMed Central", link: "https://www.ncbi.nlm.nih.gov/pmc", desc: "Free full-text archive of biomedical and life sciences journal literature at the U.S. NIH.", cat: "Academic" },
+  { name: "Library of Congress", link: "https://www.loc.gov", desc: "Largest library in the world, with millions of books, recordings, photographs, newspapers, maps.", cat: "Academic" },
+  { name: "Project Gutenberg", link: "https://www.gutenberg.org", desc: "Over 70,000 free eBooks with focus on older works for which U.S. copyright has expired.", cat: "Academic" },
+  { name: "Internet Archive", link: "https://archive.org", desc: "Non-profit library of millions of free books, movies, software, music, and more.", cat: "Academic" },
+  { name: "JSTOR", link: "https://www.jstor.org", desc: "Digital library of academic journals, books, and primary sources across 75 disciplines.", cat: "Academic" },
+  { name: "ScienceDirect", link: "https://www.sciencedirect.com", desc: "Leading platform for peer-reviewed scientific, technical, and medical research.", cat: "Academic" },
+  { name: "ResearchGate", link: "https://www.researchgate.net", desc: "Professional network for scientists and researchers to share papers and collaborate.", cat: "Academic" },
+  { name: "Academia.edu", link: "https://www.academia.edu", desc: "Platform for academics to share research papers and monitor analytics around their impact.", cat: "Academic" },
+  { name: "MIT OpenCourseWare", link: "https://ocw.mit.edu", desc: "Free access to MIT course materials from 2,400+ courses across all departments.", cat: "Academic" },
+  { name: "Coursera", link: "https://www.coursera.org", desc: "Online courses and degrees from top universities and companies worldwide.", cat: "Academic" },
+  { name: "edX", link: "https://www.edx.org", desc: "Online learning platform offering university-level courses in various disciplines.", cat: "Academic" },
+  { name: "Khan Academy", link: "https://www.khanacademy.org", desc: "Non-profit educational organization providing free lessons for students worldwide.", cat: "Academic" },
+  { name: "Stanford Encyclopedia of Philosophy", link: "https://plato.stanford.edu", desc: "Comprehensive reference work of philosophical terms and concepts.", cat: "Academic" },
+  { name: "Perseus Digital Library", link: "https://www.perseus.tufts.edu", desc: "Digital library of resources for the study of the humanities.", cat: "Academic" },
+  { name: "Digital Public Library of America", link: "https://dp.la", desc: "All-purpose digital library offering access to millions of items from libraries, archives, and museums.", cat: "Academic" },
+  { name: "World Digital Library", link: "https://www.wdl.org", desc: "International digital library featuring cultural heritage materials from around the world.", cat: "Academic" },
+  { name: "Europeana", link: "https://www.europeana.eu", desc: "European digital library with access to millions of books, artworks, and audiovisual materials.", cat: "Academic" },
+  { name: "HathiTrust Digital Library", link: "https://www.hathitrust.org", desc: "Large-scale collaborative repository of digital content from research libraries.", cat: "Academic" },
+  { name: "Directory of Open Access Journals", link: "https://doaj.org", desc: "Community-curated online directory that indexes and provides access to high quality, open access journals.", cat: "Academic" },
+  { name: "OpenDOAR", link: "https://v2.sherpa.ac.uk/opendoar", desc: "Authoritative directory of academic open access repositories.", cat: "Academic" },
+  { name: "BASE", link: "https://www.base-search.net", desc: "One of the world's most voluminous search engines for academic web resources.", cat: "Academic" },
+  { name: "Semantic Scholar", link: "https://www.semanticscholar.org", desc: "AI-powered research tool for scientific literature, providing context and connections.", cat: "Academic" },
+  { name: "Connected Papers", link: "https://www.connectedpapers.com", desc: "Visual tool to help researchers find and explore papers relevant to their field of work.", cat: "Academic" },
+  { name: "Exploit-DB", link: "https://www.exploit-db.com", desc: "Comprehensive database of public exploits and corresponding vulnerable software.", cat: "Hacking" },
+  { name: "Metasploit Framework", link: "https://www.metasploit.com", desc: "Advanced open-source platform for developing, testing, and executing exploits.", cat: "Hacking" },
+  { name: "OWASP Top 10", link: "https://owasp.org/www-project-top-ten", desc: "Standard awareness document representing a broad consensus about the most critical security risks.", cat: "Hacking" },
+  { name: "NIST Cybersecurity Framework", link: "https://www.nist.gov/cyberframework", desc: "Policy framework of computer security guidance for private sector organizations.", cat: "Hacking" },
+  { name: "CVE Details", link: "https://www.cvedetails.com", desc: "Common Vulnerabilities and Exposures database with detailed information and statistics.", cat: "Hacking" },
+  { name: "Packet Storm", link: "https://packetstormsecurity.com", desc: "Information security services, current news, files, and forums.", cat: "Hacking" },
+  { name: "SecurityFocus", link: "https://www.securityfocus.com", desc: "Comprehensive security information and vulnerability database.", cat: "Hacking" },
+  { name: "The Hacker News", link: "https://thehackernews.com", desc: "Popular news platform for cybersecurity and hacking news.", cat: "Hacking" },
+  { name: "Krebs on Security", link: "https://krebsonsecurity.com", desc: "Investigative journalism blog focusing on cybersecurity and cybercrime.", cat: "Hacking" },
+  { name: "Schneier on Security", link: "https://www.schneier.com", desc: "Security blog by renowned security expert Bruce Schneier.", cat: "Hacking" },
+  { name: "Dark Reading", link: "https://www.darkreading.com", desc: "Cybersecurity news and analysis for security professionals.", cat: "Hacking" },
+  { name: "ThreatPost", link: "https://threatpost.com", desc: "Independent news site providing cybersecurity news and analysis.", cat: "Hacking" },
+  { name: "Zero Day Initiative", link: "https://www.zerodayinitiative.com", desc: "Vulnerability disclosure and bug bounty program.", cat: "Hacking" },
+  { name: "Bugtraq", link: "https://seclists.org/bugtraq", desc: "Full disclosure mailing list for security vulnerabilities.", cat: "Hacking" },
+  { name: "Full Disclosure", link: "https://seclists.org/fulldisclosure", desc: "Mailing list for disclosure of security vulnerabilities.", cat: "Hacking" },
+  { name: "VulDB", link: "https://vuldb.com", desc: "Vulnerability database with detailed information and risk assessment.", cat: "Hacking" },
+  { name: "SecurityTrails", link: "https://securitytrails.com", desc: "Security intelligence platform for threat hunting and attack surface management.", cat: "Hacking" },
+  { name: "Risk Based Security", link: "https://www.riskbasedsecurity.com", desc: "Vulnerability intelligence and cyber risk management solutions.", cat: "Hacking" },
+  { name: "CISA Alerts", link: "https://www.cisa.gov/news-events/cybersecurity-advisories", desc: "Cybersecurity advisories and alerts from CISA.", cat: "Hacking" },
+  { name: "ENISA Advisories", link: "https://www.enisa.europa.eu", desc: "European Union Agency for Cybersecurity publications and advisories.", cat: "Hacking" },
+  { name: "MITRE ATT&CK", link: "https://attack.mitre.org", desc: "Framework and knowledge base of adversary tactics and techniques.", cat: "Hacking" },
+  { name: "CWE List", link: "https://cwe.mitre.org", desc: "Common Weakness Enumeration - community-developed list of software weakness types.", cat: "Hacking" },
+  { name: "The Black Vault", link: "https://www.theblackvault.com", desc: "Largest private archive of declassified government documents (UFOs, etc).", cat: "Intel" },
+  { name: "National Security Archive", link: "https://nsarchive.gwu.edu", desc: "Independent non-governmental research institute at George Washington University.", cat: "Intel" },
+  { name: "Shodan", link: "https://www.shodan.io", desc: "Search engine for Internet-connected devices and network intelligence.", cat: "Intel" },
+  { name: "Censys", link: "https://search.censys.io", desc: "Search engine for discovering devices, networks, and infrastructure.", cat: "Intel" },
+  { name: "Public Intelligence", link: "https://publicintelligence.net", desc: "An international, collaborative research project archives government docs.", cat: "Intel" },
+  { name: "Papers With Code", link: "https://paperswithcode.com", desc: "The latest in machine learning with code implementations.", cat: "AI" },
+  { name: "Hugging Face Papers", link: "https://huggingface.co/papers", desc: "Daily curated list of trending machine learning papers.", cat: "AI" },
+  { name: "Distill", link: "https://distill.pub", desc: "Clear explanations of machine learning research papers.", cat: "AI" },
+  { name: "OpenAI Research", link: "https://openai.com/research", desc: "Publications and research from OpenAI.", cat: "AI" },
+  { name: "Monoskop", link: "https://monoskop.org", desc: "A wiki for collaborative research on art, media, and cultural theory.", cat: "Culture" },
+  { name: "UbuWeb", link: "https://ubu.com", desc: "A large web-based educational resource for avant-garde material.", cat: "Culture" },
+  { name: "Memory of the World", link: "https://www.memoryoftheworld.org", desc: "A library exploring the past and future of the book.", cat: "Culture" },
+  { name: "Patentscope", link: "https://patentscope.wipo.int", desc: "WIPO database for searching international patent applications.", cat: "Legal" },
+  { name: "Espacenet", link: "https://worldwide.espacenet.com", desc: "European Patent Office's free online patent search engine.", cat: "Legal" },
+  { name: "SEC EDGAR", link: "https://www.sec.gov/cgi-bin/browse-edgar", desc: "Database of company filings submitted to the US SEC.", cat: "Legal" },
+  { name: "Journal of Electronic Publishing", link: "https://quod.lib.umich.edu/j/jep", desc: "Exploring issues in electronic publishing and digital documents.", cat: "Academic" },
+  { name: "Data.gov", link: "https://data.gov", desc: "U.S. Government's open data repository.", cat: "Data" },
+  { name: "Our World in Data", link: "https://ourworldindata.org", desc: "Research and data to make progress against the world's largest problems.", cat: "Data" },
+  { name: "Gapminder", link: "https://www.gapminder.org", desc: "Fighting devastating misconceptions about global development.", cat: "Data" },
+  { name: "United Nations Treaty Collection", link: "https://treaties.un.org", desc: "Collection of treaties and international agreements.", cat: "Legal" },
+  { name: "Vault.fbi.gov", link: "https://vault.fbi.gov", desc: "The FBI's electronic reading room of declassified records.", cat: "Intel" },
+  { name: "Marine Traffic", link: "https://www.marinetraffic.com", desc: "Real-time information about ships and their documents/voyages.", cat: "Intel" },
+  { name: "Wayback Machine CDX", link: "https://web.archive.org/cdx/search/cdx", desc: "API for querying the Wayback Machine's index history.", cat: "Archive" }
+];
+
+// --- LOGIC SCRIPT ---
+(function() {
+  'use strict';
+
+  const App = {
+    config: {
+      gridSelector: '#docs-grid',
+      filterSelector: '#filter-container',
+      countSelector: '#resource-count',
+      searchSelector: '#search-input'
+    },
+    state: {
+      rawData: [],
+      currentFilter: 'all',
+      searchQuery: ''
+    },
+
+    escapeHtml: function(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    },
+
+    getDomain: function(url) {
+      try {
+        return new URL(url).hostname.replace('www.', '');
+      } catch (e) {
+        return 'link';
+      }
+    },
+
+    createCard: function(item, index) {
+      const safeName = this.escapeHtml(item.name);
+      const safeDesc = this.escapeHtml(item.desc);
+      const safeCat = this.escapeHtml(item.cat);
+      const safeLink = this.escapeHtml(item.link);
+      const domain = this.getDomain(item.link);
+      const delay = Math.min(index * 0.03, 0.6);
+
+      return `
+        <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="doc-card" style="animation-delay: ${delay}s">
+          <div class="card-header">
+            <h3 class="card-title">${safeName}</h3>
+            <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7,7 17,7 17,17"/>
+            </svg>
+          </div>
+          <p class="card-desc">${safeDesc}</p>
+          <div class="card-footer">
+            <span class="card-category">${safeCat}</span>
+            <span class="card-domain">${domain}</span>
+          </div>
+        </a>
+      `;
+    },
+
+    renderFilters: function(categories) {
+      const container = document.querySelector(this.config.filterSelector);
+      if (!container) return;
+      container.innerHTML = categories.map(cat => {
+        const isActive = cat === this.state.currentFilter;
+        const label = cat === 'all' ? 'All' : cat;
+        return `<button class="filter-tag ${isActive ? 'active' : ''}" data-cat="${cat}">${label}</button>`;
+      }).join('');
+    },
+
+    renderGrid: function() {
+      const grid = document.querySelector(this.config.gridSelector);
+      const counter = document.querySelector(this.config.countSelector);
+      if (!grid) return;
+
+      const sorted = this.sortData([...this.state.rawData]);
+      const filtered = this.filterData(sorted, this.state.currentFilter, this.state.searchQuery);
+
+      if (counter) counter.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p class="empty-state">No documents found matching your criteria.</p>';
+        return;
+      }
+      grid.innerHTML = filtered.map((item, i) => this.createCard(item, i)).join('');
+    },
+
+    handleFilterClick: function(e) {
+      const btn = e.target.closest('.filter-tag');
+      if (!btn) return;
+      const category = btn.dataset.cat;
+      this.state.currentFilter = category;
+      document.querySelectorAll('.filter-tag').forEach(b => {
+        b.classList.toggle('active', b.dataset.cat === category);
+      });
+      this.renderGrid();
+    },
+
+    handleSearch: function(e) {
+      this.state.searchQuery = e.target.value;
+      this.renderGrid();
+    },
+
+    sortData: function(data) {
+      return data.sort((a, b) => a.name.localeCompare(b.name));
+    },
+
+    filterData: function(data, filter, query) {
+      let filtered = data;
+      
+      if (filter !== 'all') {
+        filtered = filtered.filter(item => item.cat === filter);
+      }
+      
+      if (query) {
+        const searchStr = query.toLowerCase();
+        filtered = filtered.filter(item => 
+          item.name.toLowerCase().includes(searchStr) ||
+          item.desc.toLowerCase().includes(searchStr) ||
+          item.cat.toLowerCase().includes(searchStr)
+        );
+      }
+      
+      return filtered;
+    },
+
+    getCategories: function(data) {
+      const categories = new Set(data.map(item => item.cat));
+      return ['all', ...Array.from(categories).sort()];
+    },
+
+    init: function() {
+      this.state.rawData = docsData;
+      const categories = this.getCategories(this.state.rawData);
+      this.renderFilters(categories);
+      this.renderGrid();
+
+      const filterContainer = document.querySelector(this.config.filterSelector);
+      if (filterContainer) {
+        filterContainer.addEventListener('click', this.handleFilterClick.bind(this));
+      }
+
+      const searchInput = document.querySelector(this.config.searchSelector);
+      if (searchInput) {
+        searchInput.addEventListener('input', this.handleSearch.bind(this));
+      }
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', App.init.bind(App));
+  } else {
+    App.init.bind(App)();
+  }
+})();
+
+// Clock
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock-time').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+  document.getElementById('clock-date').textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Theme
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+  
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    if (newTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    localStorage.setItem('theme', newTheme);
+  });
+  
+  themeToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      themeToggle.click();
+    }
+  });
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+});
+</script>
+
+</body>
+</html>

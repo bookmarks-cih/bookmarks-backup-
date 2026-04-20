@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bookmarks - Curated Intelligence Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A curated directory of high-quality resources, designed to counter AI-biased search results and promote digital privacy.">
+<link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?sz=64&domain=shodan.io">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --accent: #d4a853;
+  --accent-dark: #b8953c;
+  --bg-dark: #0f1117;
+  --text-light: #f4f1eb;
+  --text-mute: #a0a4ad;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --glow: rgba(212, 168, 83, 0.15);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.landing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 60px;
+}
+
+.landing-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.landing-logo h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.landing-logo .logo-mark {
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-content {
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.landing-content h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-light);
+  line-height: 1.2;
+}
+
+.landing-content .highlight {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.landing-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: var(--text-mute);
+  line-height: 1.7;
+}
+
+.landing-content .contact-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.landing-content .contact-link:hover {
+  color: var(--text-light);
+  text-decoration: underline;
+}
+
+.cta-section {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.visit-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--accent);
+  color: var(--bg-dark);
+  text-decoration: none;
+  border-radius: 50px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  border: none;
+  cursor: pointer;
+}
+
+.visit-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+
+.footer {
+  margin-top: 100px;
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-mute);
+  font-size: 0.9rem;
+}
+
+.footer .more-about {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.footer .more-about::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.footer .more-about:hover::after {
+  width: 100%;
+}
+
+.copyright {
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .landing-container {
+    padding: 60px 20px;
+  }
+
+  .landing-content h2 {
+    font-size: 2rem;
+  }
+
+  .visit-btn {
+    padding: 14px 30px;
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="landing-container">
+  <header class="landing-header">
+    <div class="landing-logo">
+      <div class="logo-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <h1>Bookmarks</h1>
+    </div>
+  </header>
+
+  <main class="landing-content">
+    <h2>Curated Intelligence for the Digital Age</h2>
+
+    <p>
+      In an era where search engines are increasingly influenced by artificial intelligence—often prioritizing commercial interests over relevance—<span class="highlight">Bookmarks</span> emerges as a solution. This platform meticulously curates high-quality resources across diverse categories, offering a reliable alternative to AI-biased search results.
+    </p>
+
+    <p>
+      As a personal initiative, <span class="highlight">Bookmarks</span> is designed to help individuals navigate the digital landscape with confidence. We prioritize <strong>privacy</strong>, <strong>security</strong>, and <strong>anonymity</strong>, ensuring that every listed resource adheres to ethical standards. No gray-area promotions—just the best tools and services across a wide range of domains.
+    </p>
+
+    <p>
+      For inquiries or suggestions, feel free to reach out at <a href="mailto:idritteris@proton.me" class="contact-link">idritteris@proton.me</a>.
+    </p>
+  </main>
+
+  <div class="cta-section">
+    <button class="visit-btn" onclick="window.location.href='hub.html'">Visit Hub</button>
+  </div>
+
+  <footer class="footer">
+    <a href="#" class="more-about">More About Us</a>
+    <div class="copyright">
+      <p>© 2026 <strong>Bookmarks - Curated Intelligence Hub</strong></p>
+      <p>All rights reserved. Designed by <strong>@morneface</strong>.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Smooth hover effect for "More About Us"
+  document.querySelector('.more-about').addEventListener('mouseenter', function() {
+    this.style.color = '#f4f1eb';
+  });
+
+  document.querySelector('.more-about').addEventListener('mouseleave', function() {
+    this.style.color = 'var(--accent)';
+  });
+</script>
+
+</body>
+</html>

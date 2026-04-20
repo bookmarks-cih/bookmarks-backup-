@@ -1,0 +1,198 @@
+<script>
+  (function() {
+    'use strict';
+
+    // --- CONFIGURATION ---
+    const SELECTORS = {
+      grid: '#docs-grid',
+      filters: '#filter-container',
+      count: '#resource-count'
+    };
+
+    // --- ÉLÉMENTS DOM ---
+    const grid = document.querySelector(SELECTORS.grid);
+    const filterContainer = document.querySelector(SELECTORS.filters);
+    const countElement = document.querySelector(SELECTORS.count);
+
+    // --- ÉTAT ---
+    let currentFilter = 'all';
+    let masterData = [];
+
+    // --- UTILITAIRES ---
+
+    // Sécurise l'affichage pour éviter les injections XSS
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // Extrait le nom de domaine proprement
+    function extractDomain(url) {
+      try {
+        const hostname = new URL(url).hostname;
+        return hostname.replace('www.', '');
+      } catch {
+        return 'link';
+      }
+    }
+
+    // --- LOGIQUE DE TRI & FILTRAGE ---
+
+    // 1. Fonction de tri alphabétique (A-Z)
+    function sortDataAlphabetically(data) {
+      return [...data].sort((a, b) => {
+        const nameA = (a.name || '').toLowerCase();
+        const nameB = (b.name || '').toLowerCase();
+        return nameA.localeCompare(nameB);
+      });
+    }
+
+    // 2. Récupère les catégories uniques
+    function getUniqueCategories(data) {
+      const categories = new Set();
+      data.forEach(item => {
+        if (item.cat) categories.add(item.cat);
+      });
+      return ['all', ...Array.from(categories)];
+    }
+
+    // 3. Filtre les données selon la catégorie choisie
+    function getFilteredData(data, filter) {
+      if (filter === 'all') return data;
+      return data.filter(item => 
+        (item.cat || '').toLowerCase() === filter.toLowerCase()
+      );
+    }
+
+    // --- RENDU ---
+
+    // Crée le HTML d'une carte
+    function createCardHTML(item, index) {
+      const delay = index * 0.03; // Délai animation
+      return `
+        <a href="${escapeHtml(item.link)}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="doc-card" 
+           style="animation-delay: ${delay}s"
+           aria-label="Visiter ${escapeHtml(item.name)}">
+          <div class="card-header">
+            <h3 class="card-title">${escapeHtml(item.name)}</h3>
+            <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/>
+              <polyline points="7,7 17,7 17,17"/>
+            </svg>
+          </div>
+          <p class="card-desc">${escapeHtml(item.desc)}</p>
+          <div class="card-footer">
+            <span class="card-category">${escapeHtml(item.cat || 'General')}</span>
+            <span class="card-domain">${extractDomain(item.link)}</span>
+          </div>
+        </a>
+      `;
+    }
+
+    // Affiche les boutons de filtre
+    function renderFilters(categories) {
+      if (!filterContainer) return;
+      
+      filterContainer.innerHTML = categories.map(cat => {
+        const isActive = cat === currentFilter;
+        const label = cat === 'all' ? 'All' : cat;
+        return `
+          <button class="filter-tag ${isActive ? 'active' : ''}" 
+                  data-filter="${cat}"
+                  aria-pressed="${isActive}">
+            ${label}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // Met à jour la grille
+    function renderGrid() {
+      if (!grid) return;
+
+      // 1. Trie les données maîtres
+      const sortedData = sortDataAlphabetically(masterData);
+      
+      // 2. Filtre les données triées
+      const dataToShow = getFilteredData(sortedData, currentFilter);
+
+      // 3. Met à jour le compteur
+      if (countElement) {
+        countElement.textContent = dataToShow.length;
+      }
+
+      // 4. Génère le HTML
+      if (dataToShow.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" width="48" height="48">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <p>Aucun document trouvé</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = dataToShow.map((item, i) => createCardHTML(item, i)).join('');
+    }
+
+    // --- ÉVÉNEMENTS ---
+
+    function handleFilterClick(e) {
+      const btn = e.target.closest('.filter-tag');
+      if (!btn) return;
+
+      const filter = btn.dataset.filter;
+      if (filter === currentFilter) return;
+
+      currentFilter = filter;
+
+      // Met à jour les classes actives
+      filterContainer.querySelectorAll('.filter-tag').forEach(b => {
+        const isActive = b.dataset.filter === filter;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive);
+      });
+
+      renderGrid();
+    }
+
+    // --- INITIALISATION ---
+
+    function init() {
+      // Vérifie si les données externes existent
+      if (typeof docsData === 'undefined' || !Array.isArray(docsData)) {
+        console.error('Erreur: docsData introuvable. Vérifiez le fichier docs-data.js');
+        grid.innerHTML = '<p style="color: red;">Erreur de chargement des données.</p>';
+        return;
+      }
+
+      // Stocke les données
+      masterData = docsData;
+
+      // Génère les catégories
+      const categories = getUniqueCategories(masterData);
+      
+      // Render
+      renderFilters(categories);
+      renderGrid();
+
+      // Event Listener pour les filtres
+      filterContainer.addEventListener('click', handleFilterClick);
+    }
+
+    // Lance l'app
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>

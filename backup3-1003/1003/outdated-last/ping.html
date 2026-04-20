@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTTPing - Live Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Real-time monitoring for bookmarks.love">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #4caf50; /* Green Theme */
+      --accent-dim: rgba(76, 175, 80, 0.15);
+      --accent-glow: rgba(76, 175, 80, 0.1);
+      --bg-primary: #0a0b0e;
+      --bg-secondary: #101114;
+      --bg-card: #13151a;
+      --bg-modal: #181b22;
+      --text-primary: #e8e6e1;
+      --text-secondary: #7a7d85;
+      --border: rgba(255, 255, 255, 0.08);
+      
+      --status-up: #4caf50;
+      --status-down: #f44336;
+      --status-paused: #9e9e9e;
+      --status-new: #607d8b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse at top, var(--accent-glow), transparent 70%),
+                  linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+      pointer-events: none; z-index: -1;
+    }
+
+    /* Layout */
+    .container { max-width: 1400px; margin: 0 auto; padding: 30px; }
+    .center-flex { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; }
+
+    /* Header */
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 30px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-left { display: flex; align-items: center; gap: 15px; }
+    .logo-box {
+      width: 46px; height: 46px; background: var(--accent-dim); border: 1px solid var(--accent);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(76, 175, 80, 0.2);
+    }
+    .logo-box svg { width: 24px; height: 24px; stroke: var(--accent); }
+    .header-title { font-size: 1.4rem; font-weight: 600; }
+    
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    
+    /* Switch */
+    .switch-wrapper { display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); }
+    .switch { position: relative; width: 44px; height: 24px; background: var(--bg-secondary); border-radius: 20px; cursor: pointer; border: 1px solid var(--border); transition: 0.3s; }
+    .switch::after { content: ''; position: absolute; width: 18px; height: 18px; background: var(--text-secondary); border-radius: 50%; top: 2px; left: 2px; transition: 0.3s; }
+    .switch.active { background: var(--accent); border-color: var(--accent); }
+    .switch.active::after { left: 22px; background: white; }
+
+    .btn-home {
+      padding: 8px 16px; background: transparent; border: 1px solid var(--border);
+      color: var(--text-secondary); text-decoration: none; border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; transition: 0.2s;
+    }
+    .btn-home:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* --- MONITOR VIEW (Single) --- */
+    .monitor-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      width: 100%; max-width: 500px; padding: 40px; text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; overflow: hidden;
+    }
+    .monitor-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .monitor-card.up::before { background: var(--status-up); }
+    .monitor-card.down::before { background: var(--status-down); }
+
+    .domain { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--text-secondary); margin-bottom: 20px; display: block; }
+    
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 10px; padding: 10px 24px;
+      border-radius: 50px; font-weight: 600; font-size: 1.2rem; margin-bottom: 30px;
+    }
+    .status-badge.up { background: rgba(76, 175, 80, 0.15); color: var(--status-up); }
+    .status-badge.down { background: rgba(244, 67, 54, 0.15); color: var(--status-down); }
+    
+    .pulse { width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+    .status-badge.up .pulse { animation: pulse 2s infinite; }
+    
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); } }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; border-top: 1px solid var(--border); padding-top: 25px; }
+    .stat-item { background: var(--bg-secondary); padding: 12px; border-radius: 8px; }
+    .stat-label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
+    .stat-val { font-size: 1.1rem; font-weight: 600; }
+    .stat-val.good { color: var(--status-up); }
+
+    /* --- SCANNER VIEW (List) --- */
+    .scanner-view { display: none; }
+    
+    .controls { display: flex; gap: 15px; margin-bottom: 25px; }
+    .search-box { position: relative; flex-grow: 1; }
+    .search-input { width: 100%; padding: 12px 20px 12px 45px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary); font-family: inherit; outline: none; }
+    .search-input:focus { border-color: var(--accent); }
+    .search-ico { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); stroke: var(--text-secondary); pointer-events: none; }
+    
+    .tabs { display: flex; gap: 5px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
+    .tab { padding: 8px 16px; background: var(--bg-card); border: 1px solid transparent; color: var(--text-secondary); border-radius: 6px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; white-space: nowrap; }
+    .tab.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 15px; }
+    
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; gap: 8px;
+      position: relative; overflow: hidden;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--status-new); }
+    .card.up::before { background: var(--status-up); }
+    .card.down::before { background: var(--status-down); }
+
+    .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .card-url { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    .tag { padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; flex-shrink: 0; }
+    .tag.up { background: rgba(76, 175, 80, 0.15); color: var(--status-up); }
+    .tag.down { background: rgba(244, 67, 54, 0.15); color: var(--status-down); }
+    .tag.new { background: rgba(96, 125, 139, 0.15); color: #b0bec5; border: 1px dashed var(--status-new); }
+
+    .card-stats { display: flex; gap: 15px; font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px; }
+    .card-stat-item span { color: var(--text-primary); font-weight: 500; }
+
+    /* --- MODAL (Details Window) --- */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+      z-index: 1000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: 0.3s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    
+    .modal {
+      background: var(--bg-modal); border: 1px solid var(--border); border-radius: 16px;
+      width: 90%; max-width: 500px; padding: 30px; position: relative;
+      transform: scale(0.9); transition: 0.3s; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .modal-overlay.active .modal { transform: scale(1); }
+    
+    .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; }
+    .modal-close:hover { color: var(--text-primary); }
+
+    .modal-header { margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    .modal-title { font-size: 1.1rem; margin-bottom: 5px; }
+    .modal-url { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); }
+
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+    .detail-box { background: var(--bg-card); padding: 12px; border-radius: 8px; }
+    .detail-label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; }
+    .detail-value { font-size: 1.2rem; font-weight: 600; margin-top: 5px; }
+
+    .logs-section { margin-top: 20px; }
+    .logs-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px; letter-spacing: 0.1em; }
+    .log-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .log-type { padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+    .log-type.down { background: rgba(244, 67, 54, 0.2); color: var(--status-down); }
+    .log-type.up { background: rgba(76, 175, 80, 0.2); color: var(--status-up); }
+
+    /* Footer */
+    .footer { margin-top: 40px; text-align: center; font-size: 0.7rem; color: var(--text-secondary); opacity: 0.6; }
+    
+    /* Loader */
+    .loader { width: 30px; height: 30px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      .container { padding: 20px; }
+      .header { flex-direction: column; gap: 15px; align-items: flex-start; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="app">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h1 class="header-title">HTTPing</h1>
+      </div>
+      
+      <div class="header-right">
+        <div class="switch-wrapper">
+          <span>Monitor</span>
+          <div class="switch" id="modeSwitch" onclick="toggleMode()"></div>
+          <span>Scanner</span>
+        </div>
+        <a href="https://bookmarks.love/hub" class="btn-home">Home</a>
+      </div>
+    </header>
+
+    <!-- VIEW 1: SINGLE MONITOR -->
+    <div id="viewMonitor" class="center-flex">
+      <div class="monitor-card up" id="singleCard">
+        <span class="domain">bookmarks.love</span>
+        <div class="status-badge up">
+          <div class="pulse"></div>
+          <span id="singleStatus">LOADING...</span>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-label">Response</span>
+            <span class="stat-val" id="singleResp">--ms</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Uptime 24h</span>
+            <span class="stat-val good" id="singleUptime">--%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Last Check</span>
+            <span class="stat-val" id="singleTime">--:--</span>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">Monitor Key Active</footer>
+    </div>
+
+    <!-- VIEW 2: SCANNER -->
+    <div id="viewScanner" class="scanner-view">
+      <div class="controls">
+        <div class="search-box">
+          <svg class="search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search URL..." oninput="renderList()">
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="up">Up</button>
+        <button class="tab" data-filter="down">Down</button>
+        <button class="tab" data-filter="new">Unmonitored</button>
+      </div>
+
+      <div class="grid" id="scannerGrid"><div class="loader"></div></div>
+      
+      <footer class="footer">Main API Key Active • dumps/ping-data.txt</footer>
+    </div>
+
+  </div>
+
+  <!-- MODAL WINDOW -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <h2 class="modal-title" id="mTitle">--</h2>
+        <span class="modal-url" id="mUrl">--</span>
+      </div>
+      
+      <div class="detail-grid">
+        <div class="detail-box">
+          <span class="detail-label">Status</span>
+          <div class="detail-value" id="mStatus" style="font-size:1rem;">--</div>
+        </div>
+        <div class="detail-box">
+          <span class="detail-label">Uptime (24h)</span>
+          <div class="detail-value" id="mUptime">--%</div>
+        </div>
+        <div class="detail-box">
+          <span class="detail-label">Avg Response</span>
+          <div class="detail-value" id="mResp">--ms</div>
+        </div>
+        <div class="detail-box">
+          <span class="detail-label">Type</span>
+          <div class="detail-value" id="mType" style="font-size:1rem;">HTTP(s)</div>
+        </div>
+      </div>
+
+      <div class="logs-section">
+        <div class="logs-title">Recent Logs</div>
+        <div id="mLogs">Loading logs...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- CONFIGURATION ---
+    const KEY_MONITOR = 'm802506934-3f5e4277c595e6187ba9f282'; 
+    const KEY_MAIN = 'u3355290-10bf84d41e87061bd3156529';     
+    const API_URL = 'https://api.uptimerobot.com/v2/';
+    // Proxy fiable pour contourner le CORS
+    const PROXY = 'https://corsproxy.io/?';
+    const DUMP_FILE = 'dumps/ping-data.txt';
+
+    // --- STATE ---
+    let isScannerMode = false;
+    let localUrls = [];
+    let apiMonitors = [];
+    let currentFilter = 'all';
+
+    // --- INITIALIZATION ---
+    function init() {
+      loadMonitorView(); 
+      setupTabs();
+    }
+
+    function toggleMode() {
+      const sw = document.getElementById('modeSwitch');
+      sw.classList.toggle('active');
+      isScannerMode = sw.classList.contains('active');
+      
+      document.getElementById('viewMonitor').style.display = isScannerMode ? 'none' : 'flex';
+      document.getElementById('viewScanner').style.display = isScannerMode ? 'block' : 'none';
+      
+      if(isScannerMode && localUrls.length === 0) loadScannerData();
+    }
+
+    // --- API HELPER (GET via Proxy) ---
+    // UptimeRobot supporte GET, ce qui est plus simple via proxy
+    async function apiGet(endpoint, key, params) {
+      const p = new URLSearchParams({ api_key: key, format: 'json', ...params });
+      const targetUrl = `${API_URL}${endpoint}?${p.toString()}`;
+      try {
+        // On utilise corsproxy.io
+        const res = await fetch(PROXY + encodeURIComponent(targetUrl));
+        if(!res.ok) throw new Error("Network response was not ok");
+        return await res.json();
+      } catch(e) { 
+        console.error("API Error:", e); 
+        return { stat: 'fail', error: { message: e.message } }; 
+      }
+    }
+
+    // --- VIEW 1: SINGLE MONITOR ---
+    async function loadMonitorView() {
+      const data = await apiGet('getMonitors', KEY_MONITOR, { response_times: 1, custom_uptime_ratios: '1' });
+      if(data.stat === 'ok' && data.monitors && data.monitors.length > 0) {
+        const m = data.monitors[0];
+        const up = m.status === 2;
+        document.getElementById('singleCard').className = 'monitor-card ' + (up ? 'up' : 'down');
+        document.getElementById('singleStatus').innerText = up ? 'UP' : 'DOWN';
+        document.getElementById('singleStatus').parentElement.className = 'status-badge ' + (up ? 'up' : 'down');
+        document.getElementById('singleResp').innerText = m.response_times?.[0]?.value ? m.response_times[0].value + 'ms' : 'N/A';
+        document.getElementById('singleUptime').innerText = m.custom_uptime_ratio?.split('-')[0] + '%' || '--%';
+        document.getElementById('singleTime').innerText = new Date().toLocaleTimeString();
+      } else {
+        document.getElementById('singleStatus').innerText = 'ERROR';
+        console.error(data.error);
+      }
+    }
+
+    // --- VIEW 2: SCANNER ---
+    async function loadScannerData() {
+      // 1. Load Text File
+      try {
+        const res = await fetch(DUMP_FILE);
+        if(!res.ok) throw new Error("File not found");
+        const text = await res.text();
+        localUrls = [...new Set(text.match(/https?:\/\/[^\s]+/gi) || [])];
+      } catch(e) {
+        document.getElementById('scannerGrid').innerHTML = `<p style="color:var(--status-down)">Error: Cannot load ${DUMP_FILE}</p>`;
+        return;
+      }
+
+      // 2. Load All Monitors from Main API
+      const data = await apiGet('getMonitors', KEY_MAIN, { custom_uptime_ratios: '1', logs: 1 });
+      if(data.stat === 'ok') {
+          apiMonitors = data.monitors;
+      } else {
+          console.error("Scanner API Error", data.error);
+      }
+
+      renderList();
+    }
+
+    function renderList() {
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      const grid = document.getElementById('scannerGrid');
+
+      // Merge Logic
+      // On normalise les URLs pour la comparaison (suppression du slash final)
+      const norm = u => u ? u.replace(/\/$/, '') : '';
+      
+      let items = localUrls.map(url => {
+        const cleanUrl = norm(url);
+        // Recherche dans les monitors existants
+        const found = apiMonitors.find(m => {
+           const apiU = norm(m.url);
+           // Comparaison stricte et comparaison http/https interchangeable
+           return apiU === cleanUrl || apiU === cleanUrl.replace('http://', 'https://') || apiU.replace('https://', 'http://') === cleanUrl;
+        });
+
+        if(found) {
+          return {
+            id: found.id,
+            url: url,
+            name: found.friendly_name,
+            status: found.status === 2 ? 'up' : 'down',
+            uptime: found.custom_uptime_ratio?.split('-')[0] || '--',
+            resp: found.response_times?.[0]?.value || '--',
+            logs: found.logs || [],
+            monitored: true
+          };
+        } else {
+          return {
+            id: null,
+            url: url,
+            name: new URL(url).hostname, // Extract domain for name
+            status: 'new',
+            uptime: '--',
+            resp: '--',
+            logs: [],
+            monitored: false
+          };
+        }
+      });
+
+      // Filtering
+      if(currentFilter !== 'all') items = items.filter(i => i.status === currentFilter);
+      if(term) items = items.filter(i => i.url.toLowerCase().includes(term));
+
+      // Render Cards
+      // Utilisation de data-attributes pour éviter les problèmes de guillemets
+      grid.innerHTML = items.map(i => `
+        <div class="card ${i.status}" 
+             data-id="${i.id || ''}" 
+             data-url="${i.url}" 
+             data-name="${i.name}" 
+             data-status="${i.status}" 
+             data-uptime="${i.uptime}" 
+             data-resp="${i.resp}"
+             onclick="handleCardClick(this)">
+          <div class="card-head">
+            <span class="card-url">${i.name}</span>
+            <span class="tag ${i.status}">${i.status === 'new' ? 'Unmonitored' : i.status}</span>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat-item">Uptime: <span>${i.uptime}%</span></div>
+            <div class="card-stat-item">Resp: <span>${i.resp}ms</span></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- MODAL LOGIC ---
+    function handleCardClick(el) {
+      const id = el.dataset.id;
+      const url = el.dataset.url;
+      const name = el.dataset.name;
+      const status = el.dataset.status;
+      const uptime = el.dataset.uptime;
+      const resp = el.dataset.resp;
+
+      if(!id) {
+        if(confirm("This URL is not monitored. Add to UptimeRobot?\n(Note: Due to browser security, this action might need to be done manually in the dashboard.)")) {
+            // Tenter d'ouvrir UptimeRobot en grand ou copier dans le presse-papier
+            prompt("Here is the URL to add manually or copy:", url);
+        }
+        return;
+      }
+
+      document.getElementById('mTitle').innerText = name;
+      document.getElementById('mUrl').innerText = url;
+      document.getElementById('mStatus').innerText = status.toUpperCase();
+      document.getElementById('mStatus').style.color = status === 'up' ? 'var(--status-up)' : 'var(--status-down)';
+      document.getElementById('mUptime').innerText = uptime + '%';
+      document.getElementById('mResp').innerText = resp + 'ms';
+
+      // Logs are already in the main data or fetch specific detail
+      // We already fetched logs in the main scan, so we could use them, but let's refetch for freshness
+      apiGet('getMonitors', KEY_MAIN, { monitors: id, logs: 1, response_times: 1 }).then(data => {
+          const logs = data.monitors?.[0]?.logs || [];
+          const logsHtml = logs.length > 0 ? logs.slice(0, 5).map(l => {
+            const date = new Date(l.datetime * 1000).toLocaleString();
+            return `<div class="log-item">
+              <span>${date}</span>
+              <span class="log-type ${l.type === 1 ? 'down' : 'up'}">${l.type === 1 ? 'DOWN' : 'UP'}</span>
+            </div>`;
+          }).join('') : '<div style="opacity:0.5; font-size:0.8rem">No recent incidents</div>';
+          document.getElementById('mLogs').innerHTML = logsHtml;
+      });
+
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal(e) {
+      if(!e || e.target === e.currentTarget) document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    function setupTabs() {
+      document.querySelectorAll('.tab').forEach(t => {
+        t.addEventListener('click', function() {
+          document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+          this.classList.add('active');
+          currentFilter = this.dataset.filter;
+          renderList();
+        });
+      });
+    }
+
+    // Start
+    init();
+  </script>
+</body>
+</html>

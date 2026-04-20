@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>News @Bookmarks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&family=DM Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* -------------------- THEME VARIABLES -------------------- */
+:root {
+  --bg-deep: #0a0c12;
+  --bg-surface: #14171f;
+  --bg-card: rgba(18, 22, 32, 0.85);
+  --bg-elevated: #1e222d;
+  --accent: #d4a853;
+  --accent-dim: #9a7832;
+  --accent-glow: rgba(212, 168, 83, 0.15);
+  --accent-subtle: rgba(212, 168, 83, 0.08);
+  --text-primary: #f0ede6;
+  --text-secondary: #9ca0aa;
+  --text-muted: #5a5f6a;
+  --border: rgba(255, 255, 255, 0.05);
+  --border-accent: rgba(212, 168, 83, 0.25);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --toggle-pill-bg: #252a35;
+}
+
+[data-theme="light"] {
+  --bg-deep: #f8f9fc;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-elevated: #f1f3f7;
+  --accent: #b8860b;
+  --accent-dim: #daa520;
+  --accent-glow: rgba(184, 134, 11, 0.12);
+  --accent-subtle: rgba(184, 134, 11, 0.06);
+  --text-primary: #181b22;
+  --text-secondary: #4a5568;
+  --text-muted: #8896a7;
+  --border: rgba(0, 0, 0, 0.06);
+  --border-accent: rgba(184, 134, 11, 0.25);
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------- BACKGROUND ATMOSPHERE -------------------- */
+.bg-atmosphere {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+
+.glow-orb {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 90vw; height: 90vw;
+  max-width: 1000px; max-height: 1000px;
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(120px);
+  transform: translate(-50%, -50%);
+  animation: breatheLuxury 18s infinite ease-in-out;
+  opacity: 0.5;
+  will-change: transform, opacity;
+}
+
+@keyframes breatheLuxury { 
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; } 
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; } 
+}
+
+/* -------------------- LAYOUT -------------------- */
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------- HEADER -------------------- */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 8px 24px var(--accent-glow);
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover .logo-mark {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.page-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.page-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Top Right Controls */
+.top-controls {
+  position: absolute;
+  top: 0; right: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--toggle-pill-bg);
+  border-radius: 26px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; width: 16px;
+  left: 3px; bottom: 3px;
+  background-color: var(--accent);
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider:before { transform: translateX(20px); background-color: #fff; }
+
+.back-btn {
+  position: absolute;
+  top: 0; left: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover { color: var(--accent); background: var(--accent-subtle); }
+.back-btn svg { width: 16px; height: 16px; }
+
+/* -------------------- NEWS LIST -------------------- */
+.news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* -------------------- NEWS ITEM -------------------- */
+.news-item {
+  position: relative;
+  padding-left: 24px;
+}
+
+/* The small separator line on the left */
+.news-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  border-radius: 2px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.news-item:hover::before {
+  opacity: 1;
+}
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.news-date {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  background: var(--accent-subtle);
+  border-radius: 4px;
+  border: 1px solid var(--border-accent);
+}
+
+.news-tag {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.news-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.news-item:hover .news-title {
+  color: var(--accent);
+}
+
+.news-content {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.news-content p {
+  margin-bottom: 12px;
+}
+
+.news-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Simple Separator between items */
+.separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 20px 0;
+}
+
+/* -------------------- FOOTER -------------------- */
+.site-footer {
+  margin-top: auto;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.footer-brand-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-year { color: var(--accent); font-weight: 600; }
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 768px) {
+  .app { padding: 32px 20px; }
+  
+  .top-controls { position: static; justify-content: center; margin-top: 24px; }
+  .back-btn { position: static; margin-bottom: 24px; width: fit-content; }
+  
+  .site-header { margin-bottom: 40px; }
+  
+  .news-title { font-size: 1.1rem; }
+  .news-content { font-size: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-atmosphere">
+    <div class="glow-orb"></div>
+</div>
+
+<div class="app">
+  
+  <header class="site-header">
+    <a href="hub.html" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+    
+    <a href="index.html" class="logo-link">
+      <div class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <h1 class="page-title">Bookmarks News</h1>
+      <span class="page-subtitle">Changelog & Updates</span>
+    </a>
+
+    <div class="top-controls">
+      <label class="theme-switch" aria-label="Toggle dark/light theme">
+        <input type="checkbox" id="theme-checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <main class="news-container">
+    
+    
+    
+    
+    
+    <article class="news-item">
+  <div class="news-meta">
+    <span class="news-date">May 22, 2025</span>
+    <span class="news-tag">Feature Update</span>
+  </div>
+  <h2 class="news-title">Interface Refinements & Mobile Optimization</h2>
+  <div class="news-content">
+    <p>
+      We’ve rolled out major visual updates to the main dashboard, focusing on atmosphere refinement with layered gradients and enhanced “glassmorphism” effects on cards for improved readability.
+    </p>
+    <p>
+      Most importantly, we’ve completely overhauled the mobile experience: all pages now feature a modern, fully responsive design built to be truly phone-friendly. Navigation, layout, and interactions are optimized for seamless use on smartphones and tablets — expect smoother transitions and a more consistent dark/light theme balance across all devices.
+    </p>
+  </div>
+</article>
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">March 9, 2026</span>
+        <span class="news-tag">Feature Update & Community</span>
+      </div>
+      <h2 class="news-title">New Sections Added: Civil Rights & Psychology in Bookmarks Docs</h2>
+      <div class="news-content">
+        <p>
+          We are excited to announce the addition of two new sections to the Docs area of Bookmarks: "Civil Rights" and "Psychology". These categories have been carefully curated to provide valuable resources and documentation on important social justice and mental health topics.
+        </p>
+        <p>
+          This update reflects our ongoing commitment to expanding access to knowledge and supporting diverse educational needs within our community.
+        </p>
+      </div>
+    </article>
+<!-- END POST TEMPLATE -->
+    
+    
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">March 8, 2026</span>
+        <span class="news-tag">Technical Update & Community</span>
+      </div>
+      <h2 class="news-title">Performance Overhaul & Special Wishes</h2>
+      <div class="news-content">
+        <p>
+          We have significantly improved the homepage and the hub by reducing animation lag and simplifying navigation and responsiveness on mobile devices. To support these enhancements, we have integrated new libraries such as AlpineJS, ThreeJS, GSAP, and AnimeJS.
+        </p>
+        <p>
+          Additionally, we have completed the graphic redesign of our HTTPing, however this service will be paused for the foreseeable future due to a lack of support, making us unable to cover the necessary runtime API costs.
+        </p>
+        <p>
+          On a lighter note, we wish a joyful International Women's Day 2026 to all the women in our community and around the world. Your strength and creativity continue to inspire us all.
+        </p>
+      </div>
+    </article>
+<!-- END POST TEMPLATE -->
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    
+<article class="news-item">
+  <div class="news-meta">
+    <span class="news-date">May 24, 2025</span>
+    <span class="news-tag">Feature Update</span>
+  </div>
+  <h2 class="news-title">Multi-Category Selection & Display Optimization</h2>
+  <div class="news-content">
+    <p>
+      We have introduced a highly requested feature: the ability to select multiple categories simultaneously. This allows for more precise filtering and a more flexible browsing experience tailored to your specific needs.
+    </p>
+    <p>
+      To ensure a cleaner and more minimalist interface, a "Show More" button has been added to the category list. This optimization hides the bulk of the categories by default, reducing visual clutter and keeping the focus on the main content.
+    </p>
+  </div>
+</article>
+<!-- END POST TEMPLATE -->
+    
+    
+    
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+<article class="news-item">
+  <div class="news-meta">
+    <span class="news-date">March 6, 2026</span>
+    <span class="news-tag">Feature Release</span>
+  </div>
+  <h2 class="news-title">Introducing Dump Status Dashboard & CSV Access</h2>
+  <div class="news-content">
+    <p>
+      We are excited to announce the launch of our new <strong>Dump Status</strong> page, a dedicated dashboard designed to provide full transparency on the health of the Bookmarks repository. You can now monitor the status of thousands of links in real-time, checking for active connections, redirect chains, and DNS errors. These status reports are generated daily between 12:00 and 18:00 (French time) to ensure up-to-date accuracy.
+    </p>
+    <p>
+      For developers and data enthusiasts who prefer raw data, we have also made the entire archive accessible via CSV files on GitHub. You can explore the datasets or integrate them into your own tools directly from our <a href="https://github.com/bookmarks-cih/statusdump-csv" target="_blank">GitHub Repository</a>. We hope these additions provide greater utility and reliability for the community.
+    </p>
+  </div>
+</article>
+<!-- END POST TEMPLATE -->
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+  <div class="news-meta">
+    <span class="news-date">March 5, 2026</span>
+    <span class="news-tag">Development Update</span>
+  </div>
+  <h2 class="news-title">Performance Improvements & Bug Fixes</h2>
+  <div class="news-content">
+    <p>
+      Following feedback from our users, particularly members of the French community on <a href="https://jeuxvideo.com" target="_blank">jeuxvideo.com</a>, the Bookmarks development team has addressed several issues that were causing latency and unexpected bugs. Our focus was on improving overall responsiveness and creating a smoother experience for everyone.
+    </p>
+    <p>
+      In addition, we have removed the animated custom cursor, which was contributing to performance slowdowns. These adjustments help ensure a faster, more reliable interface while maintaining a clean and functional design. We thank the community for their insights and encourage continued feedback as we refine and evolve Bookmarks.
+    </p>
+  </div>
+</article>
+    <!-- END POST TEMPLATE -->
+    
+    
+    
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">March 5, 2026</span>
+        <span class="news-tag">Freedom & Knowledge</span>
+      </div>
+      <h2 class="news-title">Responsible Exploration</h2>
+      <div class="news-content">
+        <p>
+          We've enhanced the way we present our referenced links, including resources that sometimes touch on the edge of legality, such as certain game accounts, streaming platforms, e-books, or niche forums. The focus is on curating knowledge, wellbeing, and community, not promoting illegal activity.
+        </p>
+        <p>
+          At the same time, we encourage personal responsibility and discernment—it's up to each individual to know what they engage with. Our priority remains freedom of exploration and access to information, while recognizing that illegal downloads are far from the most pressing concerns in the world today for our teams. Ultimately, our message is one of peace, curiosity, and mindful engagement with the digital landscape.
+        </p>
+      </div>
+    </article>
+<!-- END POST TEMPLATE -->
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">March 5, 2026</span>
+        <span class="news-tag">Support & Community</span>
+      </div>
+      <h2 class="news-title">Support Bookmarks</h2>
+      <div class="news-content">
+        <p>
+          The Bookmarks team is excited to offer a simple way for our community to support our work through Ko-fi. Your contributions help us maintain and expand our curated hub of knowledge, wellbeing resources, and safe exploration of digital spaces.
+        </p>
+        <p>
+          Supporting Bookmarks is more than a donation—it's a way to champion free access to knowledge, promote mindful engagement online, and sustain the growth of a community dedicated to curiosity and peace. Every coffee shared keeps our mission alive. Visit <a href="https://ko-fi.com/bookmarks" target="_blank">Ko-fi.com/bookmarks</a> to contribute.
+        </p>
+      </div>
+    </article>
+<!-- END POST TEMPLATE -->
+    
+    
+    
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">May 22, 2025</span>
+        <span class="news-tag">New Category</span>
+      </div>
+      <h2 class="news-title">Wellness</h2>
+      <div class="news-content">
+        <p>
+          The Bookmarks team is excited to announce the addition of the Safety & Prevention category, designed to provide curated resources on mental health, well-being, and personal safety. This new section integrates seamlessly with our existing interface, offering intuitive navigation and visually consistent card designs for quick access to trusted information.
+        </p>
+        <p>
+          We’ve also enhanced the user experience with subtle hover effects and improved readability, ensuring that exploring critical safety and prevention resources is both engaging and effortless. Expect a smoother, more cohesive browsing experience as we continue to expand our curated intelligence hub.
+        </p>
+      </div>
+    </article>
+    <!-- END POST TEMPLATE -->
+    
+    
+    <!-- BEGIN POST TEMPLATE -->
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">May 22, 2025</span>
+        <span class="news-tag">Feature Update</span>
+      </div>
+      <h2 class="news-title">Interface Refinements & Visual Identity</h2>
+      <div class="news-content">
+        <p>
+          We've rolled out significant visual updates to the main dashboard. The focus was on refining the atmosphere with layered gradients and improving the "glassmorphism" effects on cards for better readability.
+        </p>
+        <p>
+          Additionally, the cursor experience has been updated with a custom design for fine pointer devices, adding a subtle interaction layer to the navigation. Expect smoother transitions and a more cohesive dark/light theme balance.
+        </p>
+      </div>
+    </article>
+    <!-- END POST TEMPLATE -->
+    
+    
+    
+    
+    
+
+    <div class="separator"></div>
+
+    <!-- COPY/PASTE BLOCK START -->
+    <!--
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="news-date">DATE HERE</span>
+        <span class="news-tag">TAG HERE</span>
+      </div>
+      <h2 class="news-title">YOUR TITLE HERE</h2>
+      <div class="news-content">
+        <p>Your paragraph content here.</p>
+        <p>Second paragraph if needed.</p>
+      </div>
+    </article>
+    <div class="separator"></div>
+    -->
+    <!-- COPY/PASTE BLOCK END -->
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand-text">&copy; <span class="footer-year" id="footer-year">2025</span> Bookmarks CIH</p>
+  </footer>
+
+</div>
+
+<script>
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-checkbox');
+if (themeToggle) {
+  if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeToggle.checked = true;
+  }
+  themeToggle.addEventListener('change', (e) => {
+    const theme = e.target.checked ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  });
+}
+
+// Footer Year
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

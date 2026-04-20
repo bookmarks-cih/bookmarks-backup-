@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jobs - Universal Resource Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Curated collection of career resources: Tech Giants, Government Agencies, and Job Boards.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #d4a853;
+      --accent-dim: rgba(212, 168, 83, 0.15);
+      --accent-glow: rgba(212, 168, 83, 0.08);
+      --bg-primary: #0a0b0e;
+      --bg-secondary: #101114;
+      --bg-card: #13151a;
+      --text-primary: #e8e6e1;
+      --text-secondary: #7a7d85;
+      --border: rgba(255, 255, 255, 0.05);
+      --border-accent: rgba(212, 168, 83, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
+        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 20px; }
+
+    .logo-box {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--accent) 0%, #a88535 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(212, 168, 83, 0.2);
+    }
+
+    .logo-box svg { width: 26px; height: 26px; stroke: var(--bg-primary); }
+
+    .header-title { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.02em; }
+
+    .header-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .header-count {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .header-count span { color: var(--accent); font-weight: 500; }
+
+    /* --- SEARCH BAR STYLES --- */
+    .search-section {
+      margin-bottom: 40px;
+    }
+
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      stroke: var(--text-secondary);
+      pointer-events: none;
+      transition: stroke 0.3s ease;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 18px 24px 18px 56px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+
+    .search-input:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: var(--bg-secondary);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-dim);
+      background: var(--bg-secondary);
+    }
+
+    .search-input:focus + .search-icon {
+      stroke: var(--accent);
+    }
+
+    /* --- CONTROLS WRAPPER --- */
+    .controls-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .filter-section { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      flex-wrap: wrap; 
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .filter-tag {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-tag:hover { border-color: var(--border-accent); color: var(--text-primary); }
+
+    .filter-tag.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+    .docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .doc-card:hover { border-color: var(--border-accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
+    .doc-card:hover::before { opacity: 1; }
+
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+
+    .card-title { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); transition: color 0.25s ease; }
+    .doc-card:hover .card-title { color: var(--accent); }
+
+    .card-arrow {
+      width: 20px; height: 20px;
+      stroke: var(--text-secondary);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .doc-card:hover .card-arrow { stroke: var(--accent); transform: translate(3px, -3px); }
+
+    .card-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; flex-grow: 1; }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-category {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
+
+    .card-category::before { content: ''; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+
+    .card-domain { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; }
+
+    .separator { display: flex; align-items: center; gap: 20px; margin: 60px 0; }
+
+    .separator-line { flex-grow: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-accent), transparent); }
+
+    .separator-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .footer { margin-top: 100px; padding-top: 40px; border-top: 1px solid var(--border); text-align: center; }
+    .footer-text { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); }
+    .footer-text a { color: var(--accent); text-decoration: none; }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .doc-card { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease forwards; }
+
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .container { padding: 40px 20px; }
+      .header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .docs-grid { grid-template-columns: 1fr; }
+      .header-title { font-size: 1.5rem; }
+      .controls-wrapper { flex-direction: column; align-items: stretch; }
+      .search-wrapper { max-width: 100%; }
+      .filter-section { justify-content: center; }
+    }
+
+    .filter-tag:focus-visible, .doc-card:focus-visible, .search-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .doc-card { animation: none; opacity: 1; transform: none; }
+      .doc-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-box">
+          <!-- Briefcase Icon for Jobs -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="header-title">Jobs</h1>
+          <p class="header-subtitle">Universal Resource Hub</p>
+        </div>
+      </div>
+      <div class="header-count">
+        <span id="resource-count">0</span> resources
+      </div>
+    </header>
+
+    <section class="search-section">
+      <div class="search-wrapper">
+        <input type="text" id="search-input" class="search-input" placeholder="Search companies, roles, or keywords...">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+    </section>
+
+    <div class="controls-wrapper">
+      <section class="filter-section">
+        <span class="filter-label">Filter by</span>
+        <div class="filter-tags" id="filter-container"></div>
+      </section>
+    </div>
+
+    <div class="separator">
+      <div class="separator-line"></div>
+      <span class="separator-text">Opportunities</span>
+      <div class="separator-line"></div>
+    </div>
+
+    <main class="docs-grid" id="docs-grid"></main>
+
+    <footer class="footer">
+      <p class="footer-text">Curated with precision. <a href="index.html">Back to Hub</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // --- DATABASE (Original + 25 Niche Entries) ---
+    const docsData = [
+      // --- TECH GIANTS ---
+      { name: "Google Careers", link: "https://careers.google.com", desc: "Build awesome products and improve billions of lives.", cat: "Tech Giants" },
+      { name: "Microsoft Careers", link: "https://careers.microsoft.com", desc: "Come as you are, do what you love. Explore global opportunities.", cat: "Tech Giants" },
+      { name: "Apple Jobs", link: "https://jobs.apple.com", desc: "Join Apple and work on products that change the world.", cat: "Tech Giants" },
+      { name: "Amazon Jobs", link: "https://www.amazon.jobs", desc: "Find your next big career opportunity at Amazon.", cat: "Tech Giants" },
+      { name: "Meta Careers", link: "https://www.metacareers.com", desc: "Build technologies that help people connect and find community.", cat: "Tech Giants" },
+      { name: "Adobe Careers", link: "https://www.adobe.com/careers.html", desc: "Change the world through digital experiences.", cat: "Tech Giants" },
+      { name: "Netflix Jobs", link: "https://jobs.netflix.com", desc: "A great workplace combines exceptional colleagues and hard problems.", cat: "Tech Giants" },
+      { name: "Spotify Jobs", link: "https://www.lifeatspotify.com", desc: "Join the band and help shape the future of audio.", cat: "Tech Giants" },
+      { name: "NVIDIA Careers", link: "https://www.nvidia.com/en-us/about-nvidia/careers/", desc: "Work on the forefront of AI, computing, and graphics.", cat: "Tech Giants" },
+      { name: "Salesforce Careers", link: "https://www.salesforce.com/company/careers/", desc: "Success from anywhere. Join the Salesforce Ohana.", cat: "Tech Giants" },
+      { name: "IBM Careers", link: "https://www.ibm.com/careers", desc: "Start your journey with a technology leader.", cat: "Tech Giants" },
+      { name: "Intel Careers", link: "https://jobs.intel.com", desc: "Create the future of technology.", cat: "Tech Giants" },
+
+      // --- GOVERNMENT & INTELLIGENCE ---
+      { name: "CIA Careers", link: "https://www.cia.gov/careers", desc: "Serve the nation. Protect the country. Utilize your unique skills.", cat: "Government" },
+      { name: "FBI Jobs", link: "https://www.fbijobs.gov", desc: "Become part of the Bureau. Special agents and professional staff.", cat: "Government" },
+      { name: "NSA Careers", link: "https://www.intelligencecareers.gov/nsa", desc: "National Security Agency career opportunities.", cat: "Government" },
+      { name: "USAJobs", link: "https://www.usajobs.gov", desc: "The official portal for U.S. Federal Government jobs.", cat: "Government" },
+      { name: "NASA Careers", link: "https://www.nasa.gov/careers", desc: "Explore the universe with the National Aeronautics and Space Administration.", cat: "Government" },
+      { name: "Department of Defense", link: "https://dod.usajobs.gov", desc: "Civilian careers in the Department of Defense.", cat: "Government" },
+      { name: "MI5 Careers (UK)", link: "https://www.mi5.gov.uk/careers", desc: "Protecting national security in the UK.", cat: "Government" },
+      { name: "GCHQ Careers", link: "https://www.gchq.careers", desc: "Intelligence and cyber security careers in the UK.", cat: "Government" },
+      { name: "United Nations Careers", link: "https://careers.un.org", desc: "Work for peace and security around the globe.", cat: "Government" },
+      { name: "ClearanceJobs", link: "https://www.clearancejobs.com", desc: "The leading job board for positions requiring security clearance.", cat: "Intel" },
+      { name: "Lockheed Martin Careers", link: "https://www.lockheedmartin.com/en-us/careers.html", desc: "Aerospace and defense career opportunities.", cat: "Intel" },
+
+      // --- AGGREGATORS ---
+      { name: "LinkedIn Jobs", link: "https://www.linkedin.com/jobs", desc: "The world's largest professional network for job seekers.", cat: "Aggregator" },
+      { name: "Indeed", link: "https://www.indeed.com", desc: "The world's #1 job site. Search millions of jobs online.", cat: "Aggregator" },
+      { name: "Glassdoor", link: "https://www.glassdoor.com", desc: "Search jobs, salaries, and company reviews.", cat: "Aggregator" },
+      { name: "Monster", link: "https://www.monster.com", desc: "Find the job that fits your life.", cat: "Aggregator" },
+      { name: "ZipRecruiter", link: "https://www.ziprecruiter.com", desc: "Hiring simplified. Job search made easy.", cat: "Aggregator" },
+      { name: "CareerBuilder", link: "https://www.careerbuilder.com", desc: "One of the largest online employment websites.", cat: "Aggregator" },
+      { name: "SimplyHired", link: "https://www.simplyhired.com", desc: "Job search engine and aggregator.", cat: "Aggregator" },
+      { name: "Wellfound (AngelList)", link: "https://wellfound.com", desc: "The best place to find startup jobs.", cat: "Aggregator" },
+      { name: "Dice", link: "https://www.dice.com", desc: "The career hub for tech professionals.", cat: "Aggregator" },
+      { name: "Hired", link: "https://hired.com", desc: "Tech marketplace where companies apply to you.", cat: "Aggregator" },
+      { name: "Snagajob", link: "https://www.snagajob.com", desc: "Find hourly jobs and employment opportunities.", cat: "Aggregator" },
+      { name: "Otta", link: "https://otta.com", desc: "Curated job search for the world's best tech companies.", cat: "Aggregator" },
+
+      // --- CORPORATE & RETAIL ---
+      { name: "McDonald's Careers", link: "https://corporate.mcdonalds.com/corpmcd/careers.html", desc: "Join the team and start a fulfilling career.", cat: "Corporate" },
+      { name: "Starbucks Careers", link: "https://careers.starbucks.com", desc: "To be a partner is to be yourself.", cat: "Corporate" },
+      { name: "Walmart Careers", link: "https://careers.walmart.com", desc: "Find hourly and management jobs at Walmart.", cat: "Corporate" },
+      { name: "Target Careers", link: "https://jobs.target.com", desc: "Belong. Grow. Thrive. Join the Target team.", cat: "Corporate" },
+      { name: "The Walt Disney Company", link: "https://jobs.disneycareers.com", desc: "Create the magic. Be part of the legacy.", cat: "Corporate" },
+      { name: "Tesla Careers", link: "https://www.tesla.com/careers", desc: "Accelerate the world's transition to sustainable energy.", cat: "Corporate" },
+      { name: "Nike Careers", link: "https://jobs.nike.com", desc: "If you have a body, you are an athlete.", cat: "Corporate" },
+      { name: "Coca-Cola Careers", link: "https://careers.ko.com", desc: "Refresh the world. Make a difference.", cat: "Corporate" },
+      { name: "Ford Careers", link: "https://fordcareers.co", desc: "Building a better world through mobility.", cat: "Corporate" },
+      { name: "Goldman Sachs Careers", link: "https://www.goldmansachs.com/careers/", desc: "Explore opportunities in financial services.", cat: "Corporate" },
+      { name: "JPMorgan Chase Careers", link: "https://careers.jpmorgan.com", desc: "Make a difference with a global financial leader.", cat: "Corporate" },
+      { name: "Procter & Gamble", link: "https://www.pgcareers.com", desc: "Be a part of a company that improves everyday life.", cat: "Corporate" },
+
+      // --- REMOTE & FREELANCE ---
+      { name: "RemoteOK", link: "https://remoteok.com", desc: "The largest remote work community in the world.", cat: "Remote" },
+      { name: "We Work Remotely", link: "https://weworkremotely.com", desc: "The largest remote work community.", cat: "Remote" },
+      { name: "FlexJobs", link: "https://www.flexjobs.com", desc: "The best jobs for remote, work from home, and flexible jobs.", cat: "Remote" },
+      { name: "Upwork", link: "https://www.upwork.com", desc: "Freelance jobs and gigs for professionals.", cat: "Remote" },
+      { name: "Fiverr", link: "https://www.fiverr.com", desc: "Freelance services marketplace for the lean entrepreneur.", cat: "Remote" },
+      { name: "Toptal", link: "https://www.toptal.com/careers", desc: "Exclusive network of top freelance talent.", cat: "Remote" },
+      { name: "Working Nomads", link: "https://www.workingnomads.com", desc: "Remote jobs for digital working nomads.", cat: "Remote" },
+      { name: "Jobspresso", link: "https://jobspresso.co", desc: "High-quality remote jobs from top companies.", cat: "Remote" },
+      { name: "Gun.io", link: "https://gun.io", desc: "Elite freelance software developer jobs.", cat: "Remote" },
+      { name: "Turing", link: "https://www.turing.com", desc: "Remote software developer jobs with US companies.", cat: "Remote" },
+
+      // --- NICHE / DEEP / POWERFUL (New 25 Entries) ---
+      { name: "80,000 Hours", link: "https://80000hours.org", desc: "Career advice on how to make a difference with your career (Effective Altruism).", cat: "Niche" },
+      { name: "Climatebase", link: "https://climatebase.org", desc: "The leading platform for climate tech jobs and talent.", cat: "Niche" },
+      { name: "CryptoJobs", link: "https://crypto.jobs", desc: "The #1 source for blockchain and cryptocurrency jobs.", cat: "Web3" },
+      { name: "Web3.career", link: "https://web3.career", desc: "Remote Web3, Solidity, and Blockchain developer jobs.", cat: "Web3" },
+      { name: "Stack Overflow Jobs", link: "https://stackoverflow.com/jobs", desc: "Technical jobs for developers by the largest programming community.", cat: "Tech" },
+      { name: "Dribbble Jobs", link: "https://dribbble.com/jobs", desc: "Design jobs for freelance and full-time designers.", cat: "Design" },
+      { name: "Behance Jobs", link: "https://www.behance.net/joblist", desc: "Creative jobs for visual artists and designers.", cat: "Design" },
+      { name: "Kaggle Jobs", link: "https://www.kaggle.com/jobs", desc: "Data science and machine learning job board.", cat: "Data" },
+      { name: "Y Combinator Jobs", link: "https://www.ycombinator.com/jobs", desc: "Jobs at startups funded by Y Combinator.", cat: "Startup" },
+      { name: "Triplebyte", link: "https://triplebyte.com", desc: "Technical interviews for software engineers without resumes.", cat: "Tech" },
+      { name: "Levels.fyi", link: "https://www.levels.fyi/jobs", desc: "Job board with verified salary data and levels.", cat: "Intel" },
+      { name: "MyVisaJobs", link: "https://www.myvisajobs.com", desc: "Search for H1B visa sponsors and green card sponsors.", cat: "Intel" },
+      { name: "CoolWorks", link: "https://www.coolworks.com", desc: "Seasonal jobs in great places like national parks and ski resorts.", cat: "Niche" },
+      { name: "PowerToFly", link: "https://powertofly.com/jobs", desc: "Connecting diverse talent with inclusive employers.", cat: "Niche" },
+      { name: "Authentic Jobs", link: "https://authenticjobs.com", desc: "Job board for designers, developers, and creative pros.", cat: "Design" },
+      { name: "Himalayas", link: "https://himalayas.app", desc: "The largest database of remote tech jobs.", cat: "Remote" },
+      { name: "Key Values", link: "https://www.keyvalues.com", desc: "Find engineering teams that share your values.", cat: "Niche" },
+      { name: "Crossover", link: "https://www.crossover.com", desc: "High-paying remote jobs for top talent.", cat: "Remote" },
+      { name: "X-Team", link: "https://x-team.com/join", desc: "Community of developers working on long-term projects.", cat: "Remote" },
+      { name: "Arc.dev", link: "https://arc.dev/remote-jobs", desc: "Remote developer jobs at high-growth startups.", cat: "Remote" },
+      { name: "Relocation Jobs", link: "https://relocationjobs.io", desc: "Jobs that offer visa sponsorship and relocation packages.", cat: "Niche" },
+      { name: "Remotive", link: "https://remotive.io", desc: "Remote jobs in sales, marketing, tech, and customer support.", cat: "Remote" },
+      { name: "Startup Jobs", link: "https://startup.jobs", desc: "Find your next role at a high-growth startup.", cat: "Startup" },
+      { name: "HackerNews Jobs", link: "https://news.ycombinator.com/jobs", desc: "Jobs posted directly on Hacker News by tech companies.", cat: "Tech" },
+      { name: "Remote People", link: "https://remotepeople.io", desc: "Remote jobs aggregator for digital nomads.", cat: "Remote" }
+    ];
+
+    // --- LOGIC SCRIPT ---
+    (function() {
+      'use strict';
+
+      const App = {
+        config: {
+          gridSelector: '#docs-grid',
+          filterSelector: '#filter-container',
+          countSelector: '#resource-count',
+          searchSelector: '#search-input'
+        },
+        state: {
+          rawData: [],
+          currentFilter: 'all',
+          searchQuery: ''
+        },
+
+        escapeHtml: function(text) {
+          if (!text) return '';
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        },
+
+        getDomain: function(url) {
+          try { return new URL(url).hostname.replace('www.', ''); } catch (e) { return 'link'; }
+        },
+
+        sortData: function(data) {
+          return data.sort((a, b) => (a.name || '').toLowerCase().localeCompare((b.name || '').toLowerCase()));
+        },
+
+        filterData: function(data, category, query) {
+          let filtered = data;
+          
+          // Category Filter
+          if (category !== 'all') {
+            filtered = filtered.filter(item => (item.cat || '').toLowerCase() === category.toLowerCase());
+          }
+
+          // Search Filter
+          if (query && query.trim() !== '') {
+            const q = query.toLowerCase().trim();
+            filtered = filtered.filter(item => 
+              (item.name || '').toLowerCase().includes(q) ||
+              (item.desc || '').toLowerCase().includes(q) ||
+              (item.cat || '').toLowerCase().includes(q) ||
+              (item.link || '').toLowerCase().includes(q)
+            );
+          }
+          
+          return filtered;
+        },
+
+        getCategories: function(data) {
+          const cats = new Set();
+          data.forEach(item => { if (item.cat) cats.add(item.cat); });
+          // Order categories logically
+          const preferredOrder = ['Tech Giants', 'Government', 'Intel', 'Aggregator', 'Corporate', 'Remote', 'Web3', 'Design', 'Data', 'Startup', 'Tech', 'Niche'];
+          const sortedCats = Array.from(cats).sort((a, b) => {
+             const ia = preferredOrder.indexOf(a);
+             const ib = preferredOrder.indexOf(b);
+             if (ia === -1 && ib === -1) return a.localeCompare(b);
+             if (ia === -1) return 1;
+             if (ib === -1) return -1;
+             return ia - ib;
+          });
+          return ['all', ...sortedCats];
+        },
+
+        createCard: function(item, index) {
+          const safeName = this.escapeHtml(item.name);
+          const safeDesc = this.escapeHtml(item.desc);
+          const safeCat = this.escapeHtml(item.cat || 'General');
+          const safeLink = this.escapeHtml(item.link);
+          const domain = this.getDomain(item.link);
+          const delay = Math.min(index * 0.03, 0.6);
+
+          return `
+            <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="doc-card" style="animation-delay: ${delay}s">
+              <div class="card-header">
+                <h3 class="card-title">${safeName}</h3>
+                <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"/>
+                  <polyline points="7,7 17,7 17,17"/>
+                </svg>
+              </div>
+              <p class="card-desc">${safeDesc}</p>
+              <div class="card-footer">
+                <span class="card-category">${safeCat}</span>
+                <span class="card-domain">${domain}</span>
+              </div>
+            </a>
+          `;
+        },
+
+        renderFilters: function(categories) {
+          const container = document.querySelector(this.config.filterSelector);
+          if (!container) return;
+          container.innerHTML = categories.map(cat => {
+            const isActive = cat === this.state.currentFilter;
+            const label = cat === 'all' ? 'All' : cat;
+            return `<button class="filter-tag ${isActive ? 'active' : ''}" data-cat="${cat}">${label}</button>`;
+          }).join('');
+        },
+
+        renderGrid: function() {
+          const grid = document.querySelector(this.config.gridSelector);
+          const counter = document.querySelector(this.config.countSelector);
+          if (!grid) return;
+
+          const sorted = this.sortData([...this.state.rawData]);
+          const filtered = this.filterData(sorted, this.state.currentFilter, this.state.searchQuery);
+
+          if (counter) counter.textContent = filtered.length;
+
+          if (filtered.length === 0) {
+            grid.innerHTML = '<p class="empty-state">No listings found matching your criteria.</p>';
+            return;
+          }
+          grid.innerHTML = filtered.map((item, i) => this.createCard(item, i)).join('');
+        },
+
+        handleFilterClick: function(e) {
+          const btn = e.target.closest('.filter-tag');
+          if (!btn) return;
+          const category = btn.dataset.cat;
+          this.state.currentFilter = category;
+          document.querySelectorAll('.filter-tag').forEach(b => {
+            b.classList.toggle('active', b.dataset.cat === category);
+          });
+          this.renderGrid();
+        },
+
+        handleSearch: function(e) {
+          this.state.searchQuery = e.target.value;
+          this.renderGrid();
+        },
+
+        init: function() {
+          this.state.rawData = docsData;
+          const categories = this.getCategories(this.state.rawData);
+          this.renderFilters(categories);
+          this.renderGrid();
+
+          const filterContainer = document.querySelector(this.config.filterSelector);
+          if (filterContainer) {
+            filterContainer.addEventListener('click', this.handleFilterClick.bind(this));
+          }
+
+          const searchInput = document.querySelector(this.config.searchSelector);
+          if (searchInput) {
+            searchInput.addEventListener('input', this.handleSearch.bind(this));
+          }
+        }
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', App.init.bind(App));
+      } else {
+        App.init.bind(App)();
+      }
+    })();
+  </script>
+
+</body>
+</html>

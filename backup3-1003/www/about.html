@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Us - Bookmarks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Discover the story behind Bookmarks - A curated intelligence hub for the digital age.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --accent: #d4a853;
+  --accent-dark: #b8953c;
+  --accent-glow: rgba(212, 168, 83, 0.12);
+  --bg-dark: #0f1117;
+  --bg-card: #161921;
+  --bg-elevated: #1c1f28;
+  --text-light: #f4f1eb;
+  --text-mute: #9498a1;
+  --text-dim: #6b6f78;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(212, 168, 83, 0.25);
+  --separator: #d4a853;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(15, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-mark {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: var(--text-mute);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-light);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--accent);
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Main Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 40px 80px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-bottom: 80px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-accent);
+  border-radius: 20px;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  color: var(--text-light);
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-mute);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Separator */
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 60px 0;
+  opacity: 0;
+  transform: scaleX(0);
+  animation: scaleIn 0.6s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.separator-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--separator), transparent);
+  flex: 1;
+  max-width: 200px;
+}
+
+.separator-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--separator);
+  border-radius: 50%;
+  margin: 0 20px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.section-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-accent);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.section-content {
+  color: var(--text-mute);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.section-content p {
+  margin-bottom: 18px;
+}
+
+.section-content strong {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.section-content em {
+  color: var(--text-mute);
+  font-style: italic;
+}
+
+.section-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.section-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+}
+
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Values List */
+.values-list {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+}
+
+.value-item:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-elevated);
+}
+
+.value-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-glow);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.value-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--accent);
+}
+
+.value-content h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.value-content p {
+  font-size: 0.95rem;
+  color: var(--text-mute);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Content Zone - Zone de contenu infini */
+.content-zone {
+  margin-top: 80px;
+  border: 1px solid var(--border-accent);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.content-zone-header {
+  background: var(--bg-elevated);
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.content-zone-indicator {
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.content-zone-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.content-zone-body {
+  padding: 40px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.content-zone-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.content-zone-body::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Content Formatting */
+.content-zone-body h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin: 32px 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-accent);
+}
+
+.content-zone-body h2:first-child {
+  margin-top: 0;
+}
+
+.content-zone-body h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin: 24px 0 12px;
+}
+
+.content-zone-body p {
+  color: var(--text-mute);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.content-zone-body ul,
+.content-zone-body ol {
+  margin: 16px 0;
+  padding-left: 24px;
+  color: var(--text-mute);
+}
+
+.content-zone-body li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+.content-zone-body blockquote {
+  margin: 24px 0;
+  padding: 20px 24px;
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-mute);
+}
+
+.content-zone-body code {
+  font-family: 'Space Grotesk', monospace;
+  background: var(--bg-elevated);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+.content-zone-body pre {
+  background: var(--bg-elevated);
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.content-zone-body pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  margin: 32px 0;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.timeline-date {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.timeline-content h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.timeline-content p {
+  font-size: 0.95rem;
+  color: var(--text-mute);
+  margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  margin: 80px 0 40px;
+  padding: 48px;
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.cta-section h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-light);
+}
+
+.cta-section p {
+  color: var(--text-mute);
+  margin-bottom: 28px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 168, 83, 0.25);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--border-accent);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Footer */
+.footer {
+  margin-top: 60px;
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.footer-logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.footer-links a {
+  color: var(--text-mute);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.footer-copyright strong {
+  color: var(--text-mute);
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-light);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 16px 24px;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-dark);
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .container {
+    padding: 100px 24px 60px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .value-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .value-icon {
+    margin: 0 auto;
+  }
+
+  .cta-section {
+    padding: 32px 24px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .content-zone-body {
+    padding: 24px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f1117" stroke-width="2.5">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <span class="logo-text">Bookmarks</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="hub.html">Hub</a>
+      <a href="about.html" class="active">About</a>
+      <a href="https://ko-fi.com/bookmarks">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Main Container -->
+<main class="container">
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="hero-label">About Us</span>
+    <h1>Curated Intelligence<br>for the Digital Age</h1>
+    <p class="hero-subtitle">
+      A meticulously crafted directory designed to counter AI-biased search results, promote digital privacy, and provide reliable access to high-quality resources.
+    </p>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+  <!-- Mission Section -->
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Our Mission</h2>
+    </div>
+    <div class="section-content">
+      <p>
+        In an era where search engines are increasingly influenced by artificial intelligence—often prioritizing commercial interests over relevance—<strong>Bookmarks</strong> emerges as a solution. This platform meticulously curates high-quality resources across diverse categories, offering a reliable alternative to AI-biased search results.
+      </p>
+      <p>
+        As a personal initiative, <strong>Bookmarks</strong> is designed to help individuals navigate the digital landscape with confidence. We prioritize <strong>privacy</strong>, <strong>security</strong>, and <strong>anonymity</strong>, ensuring that every listed resource adheres to ethical standards. No gray-area promotions—just the best tools and services across a wide range of domains.
+      </p>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+  <!-- Values Section -->
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Core Values</h2>
+    </div>
+    <ul class="values-list">
+      <li class="value-item">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="value-content">
+          <h4>Privacy First</h4>
+          <p>Every resource is evaluated for privacy compliance. We reject services that compromise user data or engage in surveillance practices.</p>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="value-content">
+          <h4>Quality Over Quantity</h4>
+          <p>We curate selectively. Each entry is verified, tested, and evaluated before inclusion. No paid placements, no sponsored content.</p>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="value-content">
+          <h4>Transparency</h4>
+          <p>Clear categorization, honest descriptions, and open methodology. Users deserve to know why resources are recommended.</p>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="value-content">
+          <h4>Community Driven</h4>
+          <p>Built by enthusiasts, for enthusiasts. Community feedback shapes our curation decisions and platform evolution.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+  <!-- Statistics Section -->
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">By The Numbers</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" data-count="500">0</div>
+        <div class="stat-label">Curated Resources</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-count="24">0</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-count="100">0</div>
+        <div class="stat-label">Privacy Verified</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+  <!-- Approach Section -->
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Our Approach</h2>
+    </div>
+    <div class="section-content">
+      <p>
+        The modern internet has become a labyrinth of sponsored content, SEO-optimized mediocrity, and algorithmic manipulation. Traditional search engines, once gateways to knowledge, now serve as funnels for advertising revenue. <strong>Bookmarks</strong> represents a return to fundamentals—a human-curated approach to resource discovery.
+      </p>
+      <p>
+        Our methodology is straightforward: <em>we use what we recommend</em>. Every tool, service, and resource listed has been personally tested and vetted. We prioritize open-source solutions, privacy-respecting services, and tools that genuinely serve their stated purpose.
+      </p>
+      <p>
+        Categories span from <strong>security research</strong> and <strong>privacy tools</strong> to <strong>development resources</strong> and <strong>educational materials</strong>. Each category is maintained with regular updates, dead-link removal, and continuous quality assessment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+  <!-- Timeline Section -->
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Our Journey</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2023</div>
+        <div class="timeline-content">
+          <h4>Project Inception</h4>
+          <p>Started as a personal collection of verified resources, growing from a simple bookmark file to a structured directory.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2024</div>
+        <div class="timeline-content">
+          <h4>Platform Development</h4>
+          <p>Built the public interface, established categorization methodology, and implemented privacy-first hosting infrastructure.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025</div>
+        <div class="timeline-content">
+          <h4>Community Expansion</h4>
+          <p>Opened submission channels, integrated community feedback systems, and expanded to 500+ verified resources.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026</div>
+        <div class="timeline-content">
+          <h4>Continuous Evolution</h4>
+          <p>Ongoing refinement, new categories, and enhanced verification processes. The journey continues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+  <!-- Contact Section -->
+  <section class="section" data-reveal>
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Get In Touch</h2>
+    </div>
+    <div class="section-content">
+      <p>
+        We welcome suggestions, corrections, and collaboration inquiries. Whether you've discovered a broken link, want to recommend a resource, or have questions about our methodology—we're here to listen.
+      </p>
+      <p>
+        For all inquiries, reach out via: <a href="mailto:idritteris@proton.me">idritteris@proton.me</a>
+      </p>
+      <p>
+        <strong>Response Time:</strong> We aim to respond within 48-72 hours. For resource submissions, please include a brief description and relevant category.
+      </p>
+    </div>
+  </section>
+
+  <!-- Separator -->
+  <div class="separator">
+    <div class="separator-line"></div>
+    <div class="separator-dot"></div>
+    <div class="separator-line"></div>
+  </div>
+
+
+  <!-- CTA Section -->
+  <section class="cta-section" data-reveal>
+    <h3>Ready to Explore?</h3>
+    <p>Discover our curated collection of verified resources across security, privacy, development, and more.</p>
+    <div class="cta-buttons">
+      <a href="hub.html" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Visit Hub
+      </a>
+      <a href="mailto:idritteris@proton.me" class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Contact Us
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <div class="footer-logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f1117" stroke-width="2.5">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <span class="footer-logo-text">Bookmarks</span>
+    </div>
+    <div class="footer-links">
+      <a href="hub.html">Hub</a>
+      <a href="about.html">About</a>
+      <a href="https://ko-fi.com/bookmarks">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div class="footer-copyright">
+      <p>2026 <strong>Bookmarks - Curated Intelligence Hub</strong>. All rights reserved.</p>
+      <p>Designed by <strong>@morneface</strong></p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// Initialize variables first
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Mobile Navigation Toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    this.classList.toggle('active');
+  });
+}
+
+// Scroll Reveal Animation
+function initScrollReveal() {
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.section').forEach(function(section) {
+      section.classList.add('visible');
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  document.querySelectorAll('.section').forEach(function(section) {
+    observer.observe(section);
+  });
+}
+
+// Counter Animation
+function animateCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  
+  counters.forEach(function(counter) {
+    const target = parseInt(counter.getAttribute('data-count'), 10);
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      
+      counter.textContent = current + (target >= 100 ? '+' : '');
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = target + '+';
+      }
+    }
+    
+    // Intersection Observer for counter animation
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (prefersReducedMotion) {
+            counter.textContent = target + '+';
+          } else {
+            requestAnimationFrame(updateCounter);
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    observer.observe(counter);
+  });
+}
+
+// Smooth Scroll for Anchor Links
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href && href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      }
+    }
+  });
+});
+
+// Header Background on Scroll
+const header = document.querySelector('.header');
+let lastScroll = 0;
+
+function handleScroll() {
+  const currentScroll = window.pageYOffset;
+  
+  if (header) {
+    if (currentScroll > 100) {
+      header.style.background = 'rgba(15, 17, 23, 0.95)';
+    } else {
+      header.style.background = 'rgba(15, 17, 23, 0.85)';
+    }
+  }
+  
+  lastScroll = currentScroll;
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+
+// Initialize all functions
+document.addEventListener('DOMContentLoaded', function() {
+  initScrollReveal();
+  animateCounters();
+  handleScroll();
+});
+</script>
+
+</body>
+</html>

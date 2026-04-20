@@ -1,0 +1,1002 @@
+                                      #        Redirect                        Code
+URL                                   RedirectsClass Type 1                    1    Status 1       Redirect URL 1
+                                               No                                   Name Not
+https://convert.files/                        0Redirect                             Resolved
+                                               No
+https://onlineconvertfree.com/                0Redirecttext/html; charset=utf-8 200OK
+                                               No       text/html;
+https://pdfresizer.com/                       0Redirectcharset=UTF-8             200OK
+                                               No
+https://smallpdf.com/                         0Redirecttext/html; charset=utf-8 200OK
+                                               No
+https://cloudconvert.com/                     0Redirecttext/html; charset=utf-8 200OK
+                                               Single text/html;                    Moved
+https://tools.pdf24.org/                      1Redirectcharset=UTF-8             301Permanently    https://tools.pdf24.org/en/
+                                               No       text/html;
+https://convertio.co/                         0Redirectcharset=UTF-8             200OK
+                                               No
+https://search.brave.com/                     0Redirecttext/html; charset=utf-8 200OK
+                                               Single                               Moved
+https://convert-video-online.com/             1Redirect                          301Permanently    https://video-converter.com/
+                                               No       text/html;
+https://ezgif.com/                            0Redirectcharset=UTF-8             200OK
+                                               No       text/html;
+https://duckduckgo.com/                       0Redirectcharset=UTF-8             200OK
+                                               No
+https://searx.space/                          0Redirecttext/html; charset=utf-8 200OK
+                                               Single                               Moved
+https://freeconvert.com/                      1Redirect                          301Permanently    https://www.freeconvert.com/
+                                               No       text/html;
+https://video-converter.com/                  0Redirectcharset=UTF-8             200OK
+                                               No       text/html;
+https://online-audio-converter.com/           0Redirectcharset=UTF-8             200OK
+                                               No       text/html;
+https://pdf.io/                               0Redirectcharset=UTF-8             200OK
+                                               Single                               Moved
+https://sejda.com/                            1Redirect                          301Permanently    https://www.sejda.com/
+                                               Single                               Moved
+https://iloveimg.com/                         1Redirecttext/html                 301Permanently    https://www.iloveimg.com/
+                                               Single                               Moved
+https://ilovepdf.com/                         1Redirecttext/html                 301Permanently    https://www.ilovepdf.com/
+                                               No       text/html;
+https://yandex.com/                           0Redirectcharset=UTF-8             200Ok
+                                               No       text/html;
+https://freefileconvert.com/                  0Redirectcharset=UTF-8             200OK
+                                               No                                   Name Not
+https://pdfalpha.com/                         0Redirect                             Resolved
+                                               No                                   Name Not
+https://epub-converter.com/                   0Redirect                             Resolved
+                                               No
+https://pdfpro.com/                           0Redirecttext/html; charset=utf-8 200OK
+                                               No       text/html;
+https://anyconv.com/                          0Redirectcharset=UTF-8             200OK
+                                               No       text/html;
+https://imageonline.co/                       0Redirectcharset=UTF-8             200OK
+                                               Single                               Moved
+https://office-converter.com/                 1Redirect                          301Permanently    https://www.office-converter.com/
+                                               Single                               Moved
+https://y2mate.is/                            1Redirecttext/html; charset=utf-8 301Permanently     https://en1.y2mate.is/x213/
+                                               No       text/plain;
+https://onlinefontconverter.com/              0Redirectcharset=UTF-8             530<none>
+                                               Single text/html;                    Moved
+https://google.com/                           1Redirectcharset=UTF-8             301Permanently    https://www.google.com/
+                                               Single                               Moved
+https://qwant.com/                            1Redirecttext/html                 302Temporarily    https://www.qwant.com/
+                                               Single text/html;                    Moved
+https://pdfsam.com/pdfsam-online              1Redirectcharset=UTF-8             301Permanently    https://pdfsam.com/
+                                               No                                   Name Not
+https://sqlizer.io/                           0Redirect                             Resolved
+                                               No
+https://avepdf.com/                           0Redirecttext/html                 200OK
+                                               No
+https://wiby.me/                              0Redirecttext/html; charset=utf-8 200OK
+                                               No       text/html;
+https://transfonter.org/                      0Redirectcharset=UTF-8             200OK
+                                               Single                               Moved
+https://online-convert.com/                   1Redirect                          301Permanently    https://www.online-convert.com/
+                                               Single                               Moved
+https://ocr2edit.com/                         1Redirect                          301Permanently    https://www.ocr2edit.com/
+
+                                              Single                                Moved
+https://pdf2go.com/                          1Redirect                           301Permanently    https://www.pdf2go.com/
+                                              No       text/html;
+https://lifehacker.com/                      0Redirectcharset=UTF-8              200OK
+                                              Redirect                              Moved
+https://3d-convert.com/                      2Chain text/html                    301Permanently    http://3d-convert.com/en/
+                                              No
+https://pdfaid.com/                          0Redirecttext/html; charset=utf-8   200OK
+                                              No       text/html;
+https://qz.com/                              0Redirectcharset=UTF-8              403Forbidden
+                                              No
+https://reddit.com/r/writing                 0Redirecttext/html                  403Blocked
+                                              Single                                Moved
+https://sodapdf.com/                         1Redirect                           301Permanently    https://www.sodapdf.com/
+                                              No
+https://inc.com/                             0Redirecttext/html;charset=utf-8    403Forbidden
+                                              No       text/html;
+https://pdfcandy.com/                        0Redirectcharset=UTF-8              200OK
+                                              No
+https://fastcompany.com/                     0Redirecttext/html;charset=utf-8    403Forbidden
+                                              No       text/html;
+https://mashable.com/                        0Redirectcharset=UTF-8              200OK
+                                              Single                                Moved
+https://gchq.github.io/CyberChef             1Redirecttext/html                  301Permanently    https://gchq.github.io/CyberChef/
+                                              Single                                Moved
+https://search.marginalia.nu/                1Redirecttext/html                  302Temporarily    https://marginalia-search.com/
+                                              Single                                Moved
+https://png.to/                              1Redirecttext/html                  301Permanently    https://www.png.to/
+                                              No
+https://hashnode.com/                        0Redirecttext/html; charset=utf-8   200OK
+                                              Single                                Moved
+https://ps2pdf.com/                          1Redirect                           301Permanently    https://www.xconvert.com/
+                                              Single
+https://docupub.com/                         1Redirecttext/html                  302Object moved   https://docupub.com/pdfconvert/
+                                              Single                                Moved
+https://vox.com/                             1Redirect                           301Permanently    https://www.vox.com/
+                                              No
+https://flipboard.com/                       0Redirecttext/html                  403Forbidden
+                                              Single                                Moved
+https://theverge.com/                        1Redirect                           301Permanently    https://www.theverge.com/
+                                              No       text/html;
+https://medium.com/topics                    0Redirectcharset=UTF-8              403Forbidden
+                                              No       text/html;
+https://level.medium.com/                    0Redirectcharset=UTF-8              403Forbidden
+                                                      No
+https://lightpdf.com/                                0Redirecttext/html; charset=utf8    200OK
+                                                      Single                                Moved
+https://jpg.to/                                      1Redirecttext/html                  301Permanently   https://www.jpg.to/
+                                                      No
+https://substack.com/                                0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://formswift.com/                               0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://svgtopng.com/                                0Redirecttext/html; charset=utf-8   200OK
+                                                      Single text/html; charset=iso-        Moved
+https://meshconvert.com/                             1Redirect8859-1                     301Permanently   https://www.meshconvert.com/
+                                                      No
+https://deftpdf.com/                                 0Redirecttext/html; charset=utf-8   200OK
+                                                      No                                    Too Many
+https://aeon.co/                                     0Redirecttext/html; charset=utf-8   429Requests
+                                                      Single                                Moved
+https://cleverpdf.com/                               1Redirect                           301Permanently   https://www.cleverpdf.com/
+                                                      No       text/html;
+https://betterhumans.pub/                            0Redirectcharset=UTF-8              403Forbidden
+                                                      No
+https://hackernoon.com/                              0Redirecttext/html; charset=utf-8   200OK
+                                                      Redirect
+https://startpage.com/                               2Chain text/html                    303See Other     https://www.startpage.com/
+                                                      No
+https://dev.to/                                      0Redirecttext/html; charset=utf-8   200OK
+                                                      Single                                Moved
+https://wired.com/                                   1Redirecttext/html                  301Permanently   https://www.wired.com/
+                                                      No       text/html;charset=UTF-
+https://convertpdf.tistory.com/                      0Redirect8                          404
+                                                      No       text/html;
+https://towardsdatascience.com/                      0Redirectcharset=UTF-8              200OK
+                                                      No       text/html;
+https://csvjson.com/csv2json                         0Redirectcharset=UTF-8              200OK
+                                                      Single
+https://scribd.com/                                  1Redirect                           302Found         https://www.scribd.com/
+                                                      No
+https://meet.jit.si/                                 0Redirecttext/html                  200OK
+                                                      Single                                Moved
+https://notion.so/                                   1Redirecttext/html                  301Permanently   https://www.notion.so/
+                                                      Redirect                              Moved
+https://theatlantic.com/                             2Chain                              301Permanently   https://www.theatlantic.com/
+                                                      No
+https://cryptpad.fr/                                 0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://discord.com/                                 0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://asana.com/                                   0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://wetransfer.com/                              0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://mipdf.com/                                   0Redirecttext/html                  403Forbidden
+                                                      Single                                Moved
+https://canva.com/                                   1Redirect                           301Permanently   https://www.canva.com/
+                                                      No
+https://signal.org/                                  0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://proton.me/                                   0Redirecttext/html; charset=utf-8   200OK
+                                                      No       text/html;
+https://pdfcandy.com/desktop                         0Redirectcharset=UTF-8              404Not Found
+                                                      No
+https://mega.nz/                                     0Redirecttext/html                  200OK
+                                                      No
+https://simplelogin.io/                              0Redirecttext/html                  200OK
+                                                      No       text/html;
+https://mattermost.com/                              0Redirectcharset=UTF-8              200OK
+                                                      Single                                Temporary
+https://getpocket.com/explore                        1Redirect                           307Redirect      https://getpocket.com/home
+                                                      No
+https://streamable.com/                              0Redirecttext/html; charset=utf-8   200OK
+                                                      Redirecttext/html; charset=iso-       Moved
+https://coolutils.com/online                         3Chain 8859-1                       301Permanently   http://coolutils.com/online/
+                                                      No
+https://element.io/                                  0Redirecttext/html; charset=utf-8   200OK
+                                                      Single text/html;                     Moved
+https://box.com/                                     1Redirectcharset=UTF-8              301Permanently   https://www.box.com/
+                                                      Single text/html; charset=iso-        Moved
+https://zamzar.com/                                  1Redirect8859-1                     301Permanently   https://www.zamzar.com/
+                                                      No
+https://clickup.com/                                 0Redirecttext/html                  200OK
+                                                      No
+https://clockify.me/                                 0Redirecttext/html                  200OK
+                                                      No
+https://trello.com/                                  0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://monday.com/                                  0Redirecttext/html; charset=utf-8   200OK
+                                                      No       text/html;
+https://vimeo.com/                                   0Redirectcharset=UTF-8              200OK
+                                                      Single
+https://theconversation.com/                         1Redirecttext/html; charset=utf-8   302Found         https://theconversation.com/europe
+                                                      No
+https://allinpdf.com/                                0Redirecttext/html; charset=utf-8   200OK
+                                                      No
+https://miro.com/                                    0Redirecttext/html                  200OK
+                                                      No
+https://slack.com/                                   0Redirecttext/html; charset=utf-8   200OK
+                                                      Single
+https://doodle.com/                                  1Redirecttext/html                  302Found         https://doodle.com/en/
+                                                      No
+https://calendly.com/                                0Redirecttext/html                  200OK
+                                                      Single text/html; charset=iso-        Moved
+https://filezigzag.com/                              1Redirect8859-1                     301Permanently   https://www.filezigzag.com/
+                                                      Single text/html; charset=iso-        Moved
+https://aconvert.com/                                1Redirect8859-1                     301Permanently   https://www.aconvert.com/
+                                                      Single                                Moved
+https://toggl.com/track                              1Redirecttext/html                  301Permanently   https://toggl.com/
+                                                      Single                                Moved
+https://newyorker.com/                               1Redirecttext/html                  301Permanently   https://www.newyorker.com/
+                                                      Single                                Moved
+https://dropbox.com/                                 1Redirect                           301Permanently   https://www.dropbox.com/
+                                                      No
+https://longform.org/                                0Redirecttext/html; charset=utf-8   200OK
+                                                      Single                                Moved
+https://apowersoft.com/free-online-video-converter   1Redirecttext/html                  301Permanently   https://www.apowersoft.com/free-online-video-converter
+                                                      Single                                Moved
+https://webp.to/                                     1Redirecttext/html                  301Permanently   https://www.webp.to/
+                                                      No
+https://raindrop.io/                                 0Redirecttext/html; charset=utf-8   200OK
+                                                      Single                                Moved
+https://sync.com/                                    1Redirect                           301Permanently   https://www.sync.com/
+                                                      No
+https://readwise.io/                                 0Redirecttext/html; charset=utf-8   200OK
+                                          No
+https://ifttt.com/                       0Redirecttext/html; charset=utf-8   200OK
+                                          Single text/plain; charset=utf-       Moved
+https://airtable.com/                    1Redirect8                          301Permanently   https://www.airtable.com/
+                                          No
+https://buffer.com/                      0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://pcloud.com/                      1Redirecttext/html                  301Permanently   https://www.pcloud.com/
+                                          Single                                Moved
+https://veed.io/                         1Redirecttext/html                  301Permanently   https://www.veed.io/
+
+                                          Redirect                                            https://accounts.google.com/ServiceLogin?
+https://drive.google.com/                3Chain application/binary           302Found         service=wise&passive=1209600&osid=1&continue=https://drive.google.com/&followup=https://drive
+                                          No       text/html;
+https://later.com/                       0Redirectcharset=UTF-8              200OK
+                                          No
+https://spring.io/docs                   0Redirecttext/html; charset=utf-8   404Not Found
+                                          No
+https://huggingface.co/spaces            0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://kapwing.com/                     1Redirecttext/html                  301Permanently   https://www.kapwing.com/
+                                          Single                                Moved
+https://loom.com/                        1Redirect                           301Permanently   https://www.loom.com/
+                                          No       text/html;
+https://css-tricks.com/                  0Redirectcharset=UTF-8              200OK
+                                          Single
+https://docs.djangoproject.com/          1Redirecttext/html; charset=utf-8   302Found         https://docs.djangoproject.com/en/6.0/
+                                          No
+https://replit.com/                      0Redirecttext/html; charset=utf-8   200OK
+                                          Redirect                              Moved
+https://getpocket.com/                   3Chain                              302Temporarily   https://getpocket.com/en/
+                                          Single                                Moved
+https://udemy.com/                       1Redirecttext/html                  301Permanently   https://www.udemy.com/
+                                          No       text/html;
+https://pinboard.in/                     0Redirectcharset=UTF-8              200OK
+                                          Single                                Moved
+https://docs.python.org/                 1Redirecttext/html                  302Temporarily   https://docs.python.org/3/
+                                          No       text/html;
+https://techcrunch.com/                  0Redirectcharset=UTF-8              200OK
+                                          No
+https://zapier.com/                      0Redirecttext/html; charset=utf-8   200OK
+                                          No       text/html;
+https://docs.unrealengine.com/           0Redirectcharset=UTF-8              403Forbidden
+                                          Single                                Moved
+https://kotlinlang.org/docs              1Redirect                           301Permanently   https://kotlinlang.org/docs/
+                                          Single
+https://stackoverflow.com/               1Redirect                           302Found         https://stackoverflow.com/questions
+                                          No
+https://javascript.info/                 0Redirecttext/html; charset=utf-8   200OK
+                                          No
+https://egghead.io/                      0Redirecttext/html; charset=utf-8   200OK
+                                          No
+https://developer.apple.com/             0Redirecttext/html                  200OK
+                                          Single text/html; charset=iso-        Moved
+https://tutorialspoint.com/              1Redirect8859-1                     301Permanently   https://www.tutorialspoint.com/
+                                          No
+https://gobyexample.com/                 0Redirecttext/html                  200OK
+                                          Single                                Moved
+https://codecademy.com/                  1Redirect                           301Permanently   https://www.codecademy.com/
+                                          No
+https://overapi.com/                     0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://linuxjourney.com/                1Redirecttext/html                  301Permanently   https://labex.io/linuxjourney
+                                          Single                                Moved
+https://figma.com/                       1Redirect                           301Permanently   https://www.figma.com/
+                                          No
+https://docs.docker.com/                 0Redirecttext/html                  200OK
+                                          No
+https://git-scm.com/doc                  0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://typeform.com/                    1Redirect                           301Permanently   https://www.typeform.com/
+                                          No
+https://developer.android.com/           0Redirecttext/html; charset=utf-8   200OK
+                                          No
+https://ads.pinterest.com/               0Redirecttext/html; charset=utf-8   200OK
+                                          No
+https://roadmap.sh/                      0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://rescuetime.com/                  1Redirecttext/html                  301Permanently   https://www.rescuetime.com/
+                                          No       text/html;
+https://instapaper.com/                  0Redirectcharset=UTF-8              200OK
+                                          Single text/plain; charset=utf-       Moved
+https://smashingmagazine.com/            1Redirect8                          301Permanently   https://www.smashingmagazine.com/
+                                          Redirect                              Moved
+https://make.com/                        2Chain text/html                    301Permanently   https://www.make.com/
+                                          Single                                Moved
+https://taboola.com/                     1Redirect                           301Permanently   https://www.taboola.com/
+                                          No
+https://forbusiness.snapchat.com/        0Redirecttext/html; charset=utf-8   200OK
+                                          No       text/html;
+https://trafficstars.com/                0Redirectcharset=UTF-8              200OK
+                                          No       text/html;
+https://propellerads.com/                0Redirectcharset=UTF-8              200OK
+                                          No
+https://learn.unity.com/                 0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://kubernetes.io/docs               1Redirecttext/plain                 301Permanently   https://kubernetes.io/docs/home/
+                                          No
+https://vocal.media/                     0Redirecttext/html; charset=utf-8   200OK
+                                          Single                                Moved
+https://hootsuite.com/                   1Redirect                           301Permanently   https://www.hootsuite.com/
+                                          Single                                Moved
+https://php.net/                         1Redirecttext/html                  301Permanently   https://www.php.net/
+                                          Single
+https://glitch.com/                      1Redirect                           307redirect      https://blog.glitch.com/
+                                          Redirect                              Moved
+https://ruby-lang.org/en/documentation   2Chain text/html                    301Permanently   https://www.ruby-lang.org/en/documentation
+                                          No
+https://frontendmasters.com/             0Redirecttext/html                  200OK
+                                          Redirect                              Moved
+https://doc.rust-lang.org/book           2Chain text/html; charset=utf-8     302Temporarily   https://doc.rust-lang.org/doc/stable/book/
+                                          No
+https://hyros.com/                       0Redirecttext/html                  200OK
+                                          Single
+https://laravel.com/docs                 1Redirecttext/html; charset=utf-8   302Found         https://laravel.com/docs/12.x
+                                          Single text/html;                     Moved
+https://criteo.com/                      1Redirectcharset=UTF-8              301Permanently   https://www.criteo.com/
+                                          Single                                Moved
+https://keitaro.io/                      1Redirecttext/html                  301Permanently   https://keitaro.io/en/
+                                          No       text/html;
+https://poweradspy.com/                  0Redirectcharset=UTF-8              403Forbidden
+                                          Redirect
+https://ads.google.com/                  2Chain application/binary           302Found         https://ads.google.com/intl/en_PT/home/
+                                          Single                                 Moved
+https://redtrack.io/                     1Redirect                            301Permanently         https://www.redtrack.io/
+                                          Single
+https://outbrain.com/                    1Redirect                            301redirect            https://www.outbrain.com/
+                                          Single                                 Moved
+https://pluralsight.com/                 1Redirecttext/html                   301Permanently         https://www.pluralsight.com/
+                                          No       text/html;
+https://hilltopads.com/                  0Redirectcharset=UTF-8               200OK
+                                          Single                                 Moved
+https://coursera.org/                    1Redirect                            301Permanently         https://www.coursera.org/
+                                          Single
+https://awesome.re/                      1Redirect                            302Found               https://github.com/sindresorhus/awesome#readme
+                                          Single                                 Permanent
+https://quora.com/business/ads           1Redirecttext/html                   308Redirect            https://www.quora.com/business/ads
+                                          Single                                 Moved
+https://sitepoint.com/                   1Redirect                            301Permanently         https://www.sitepoint.com/
+                                          Single                                 Moved
+https://wickedreports.com/               1Redirect                            301Permanently         https://www.wickedreports.com/
+                                          Single                                 Moved
+https://mgid.com/                        1Redirecttext/html                   301Permanently         https://www.mgid.com/
+                                          No
+https://nautil.us/                       0Redirecttext/html; charset=utf-8    200OK
+                                          No
+https://instapage.com/                   0Redirecttext/html                   200OK
+                                          No       text/html;
+https://voluum.com/                      0Redirectcharset=UTF-8               200OK
+                                          No                                     Name Not
+https://annas-archive.org/               0Redirect                               Resolved
+                                          Single                                 Moved
+https://jotform.com/                     1Redirecttext/html                   301Permanently         https://www.jotform.com/
+                                          No       text/html;
+https://unbounce.com/                    0Redirectcharset=UTF-8               200OK
+                                          No       text/html;
+https://bemob.com/                       0Redirectcharset=UTF-8               200OK
+                                          Single                                 Moved
+https://semrush.com/                     1Redirecttext/html                   301Permanently         https://www.semrush.com/
+                                          No
+https://adsterra.com/                    0Redirecttext/html                   200OK
+                                          No       text/html;
+https://manybooks.net/                   0Redirectcharset=UTF-8               403Forbidden
+                                          Single                                 Moved
+https://adroll.com/                      1Redirect                            301Permanently         https://www.adroll.com/
+                                          Single                                 Moved
+https://activecampaign.com/              1Redirecttext/html                   301Permanently         https://www.activecampaign.com/
+                                          Single                                 Moved
+https://adspy.com/                       1Redirect                            301Permanently         https://www.adspy.com/
+                                          Single                                 Moved
+https://klaviyo.com/                     1Redirect                            301Permanently         https://www.klaviyo.com/
+                                          Redirect
+https://ads.reddit.com/                  2Chain text/html; charset=utf-8      302Found               https://business.reddit.com/
+                                          No       text/html;
+https://binom.org/                       0Redirectcharset=UTF-8               200OK
+                                          No       text/html;
+https://cpvlab.pro/                      0Redirectcharset=UTF-8               200OK
+                                          No
+https://moat.com/                        0Redirecttext/html                   400Bad Request
+                                          No       text/html;
+https://www.europeana.eu/                0Redirectcharset=UTF-8               403Forbidden
+                                          No
+https://sci-hub.se/                      0Redirecttext/html                   451
+                                          No       text/html;
+https://ahrefs.com/                      0Redirectcharset=UTF-8               200OK
+                                          No
+https://pdfdrive.com/                    0Redirect                                  Secure Failure
+                                          No       text/html;
+https://www.feedbooks.com/publicdomain   0Redirectcharset=UTF-8               403Forbidden
+                                          No
+https://ads.microsoft.com/               0Redirecttext/html; charset=utf-8    200OK
+                                                                                 Service
+                                          No       text/plain; charset=utf-      Temporarily
+https://whatrunswhere.com/               0Redirect8                           503Unavailable
+                                          No
+https://wikisource.org/                  0Redirecttext/plain                  403Forbidden
+                                          Redirect                               Moved
+https://linkedin.com/ads                 3Chain                               301Permanently         https://www.linkedin.com/ads
+                                          Single                                 Moved
+https://clickfunnels.com/                1Redirecttext/html                   301Permanently         https://www.clickfunnels.com/
+                                          Single                                 Moved
+https://hubspot.com/                     1Redirecttext/html                   301Permanently         https://www.hubspot.com/
+                                          Single text/html;                      Moved
+https://mailchimp.com/                   1Redirectcharset=UTF-8               302Temporarily         https://mailchimp.com/pt-br/
+                                          No
+https://wikibooks.org/                   0Redirecttext/plain                  403Forbidden
+                                          No
+https://gutenberg.org/                   0Redirecttext/html                   200OK
+                                          No       text/html;
+https://books.google.com/                0Redirectcharset=UTF-8               200OK
+                                          Single
+https://gallica.bnf.fr/                  1Redirect                            302                302https://gallica.bnf.fr/accueil/fr/html/accueil-fr
+                                          No
+https://classicreader.com/               0Redirect                                  Secure Failure
+                                          No
+https://z-lib.org/                       0Redirecttext/html                   403Forbidden
+                                          No
+https://archiveofourown.org/             0Redirecttext/html; charset=utf-8    200OK
+                                          Redirect                               Moved
+https://sendinblue.com/                  2Chain text/html                     301Permanently         https://www.sendinblue.com/
+                                          Single text/html;                      Moved
+https://improvely.com/                   1Redirectcharset=UTF-8               301Permanently         https://www.improvely.com/
+                                          No       application/xhtml+xml;
+                                          Redirectcharset=utf-8
+https://standardebooks.org/              0                                    200OK
+                                          No       text/html;
+https://bookboon.com/                    0Redirectcharset=UTF-8               200OK
+                                          No       text/html;
+https://novelupdates.com/                0Redirectcharset=UTF-8               403Forbidden
+                                          No       text/html;
+https://webnovel.com/                    0Redirectcharset=UTF-8               403Forbidden
+                                          No       text/html;
+https://scribblehub.com/                 0Redirectcharset=UTF-8               403Forbidden
+                                          Single                                 Moved
+https://hathitrust.org/                  1Redirect                            301Permanently         https://www.hathitrust.org/
+                                          No       text/html;
+https://www.planetebook.com/             0Redirectcharset=UTF-8               200OK
+                                          Single                                 Moved
+https://revcontent.com/                  1Redirecttext/html                   301Permanently         https://www.revcontent.com/
+                                          Single                                 Permanent
+https://leadpages.com/                   1Redirecttext/plain                  308Redirect            https://www.leadpages.com/
+                                          No       text/html;
+https://booknet.com/                     0Redirectcharset=UTF-8               200OK
+                                          No       text/html;
+https://inkitt.com/                      0Redirectcharset=UTF-8               403Forbidden
+                                          No
+https://neovel.io/                       0Redirecttext/html                   403Forbidden
+                                                                 No
+https://mediumish.com/                                          0Redirect                              Cannot Connect
+                                                                 No
+https://ebooks-bnr.com/                                         0Redirecttext/html; charset=utf-8   200OK
+                                                                 No                                    Name Not
+https://smackjeevesarchive.com/                                 0Redirect                              Resolved
+                                                                 No       text/html;
+https://obooko.com/                                             0Redirectcharset=UTF-8              403Forbidden
+                                                                 No       text/html;
+https://archive.org/details/texts                               0Redirectcharset=UTF-8              200OK
+                                                                 Single                                Moved
+https://lightnovelpub.com/                                      1Redirecttext/html                  301Permanently       https://www.lightnovelpub.com/
+                                                                 No                                    Name Not
+https://bookyards.com/                                          0Redirect                              Resolved
+                                                                 No       text/html;
+https://webcomicsapp.com/                                       0Redirectcharset=UTF-8              403Forbidden
+                                                                 Single
+https://surveymonkey.com/                                       1Redirect                           301Found             https://www.surveymonkey.com/
+                                                                 Redirect                              Moved
+https://royalroad.com/                                          2Chain                              301Permanently       https://www.royalroad.com/
+                                                                 No
+https://openlibrary.org/                                        0Redirecttext/html; charset=utf-8   200OK
+                                                                 Redirect
+https://ads.twitter.com/                                        3Chain                              302Found          https://business.twitter.com/en/advertising.html
+                                                                                                       Redirecting
+                                                                 Single                                wattpad.com to
+https://wattpad.com/                                            1Redirect                           301www.wattpad.comhttps://www.wattpad.com/
+                                                                 No       text/html;
+https://socialpeta.com/                                         0Redirectcharset=UTF-8              200OK
+                                                                 Single text/html;
+https://bigspy.com/                                             1Redirectcharset=UTF-8              302Found             https://bigspy.com/en
+                                                                 No
+https://arxiv.org/                                              0Redirecttext/html; charset=utf-8   200OK
+                                                                 Single text/html;
+https://www.smashwords.com/books/category/1/newest/0/free/any   1Redirectcharset=UTF-8              302Found             https://www.smashwords.com/shelves/home/1/free/any
+                                                                 Single                                Moved
+https://getresponse.com/                                        1Redirect                           301Permanently       https://www.getresponse.com/
+                                                                 No
+https://core.ac.uk/                                             0Redirecttext/html; charset=utf-8   200OK
+                                                                 No       text/html;
+https://moonquill.com/                                          0Redirectcharset=UTF-8              200OK
+                                                                 No
+https://openstax.org/                                           0Redirecttext/html                  200OK
+                                                                 Single                                Temporary
+https://manta.net/                                              1Redirect                           307Redirect          https://manta.net/en
+                                                                 No
+https://ocw.mit.edu/                                            0Redirecttext/html                  200OK
+                                                                 Single text/html;                     Moved
+https://storyberries.com/                                       1Redirectcharset=UTF-8              301Permanently       https://www.storyberries.com/
+                                                                 No       text/html;charset=UTF-
+https://oapen.org/                                              0Redirect8                          200OK
+                                                                 Single                                Moved
+https://similarweb.com/                                         1Redirecttext/html                  301Permanently       https://www.similarweb.com/
+                                                                 No
+https://comicfury.com/                                          0Redirecttext/html; charset=utf-8   200OK
+                                                                 No       text/html;
+https://onlinelibrary.wiley.com/                                0Redirectcharset=UTF-8              403Forbidden
+                                                                 No       text/html;
+https://readcomicsonline.ru/                                    0Redirectcharset=UTF-8              200OK
+                                                                 Single                                Moved
+https://literotica.com/                                         1Redirect                           301Permanently       https://www.literotica.com/
+                                                                 No
+https://doaj.org/                                               0Redirecttext/html; charset=utf-8   200OK
+                                                                 Single                                Moved
+https://amazon.com/kindle-dbs/free-ebooks                       1Redirecttext/html                  301Permanently       https://www.amazon.com/kindle-dbs/free-ebooks
+                                                                 Single                                Moved
+https://clickmagick.com/                                        1Redirecttext/html                  301Permanently       https://www.clickmagick.com/
+                                                                 Single
+https://tapas.io/                                               1Redirect                           302Found             https://tapas.io/error
+                                                                 Single                                Moved
+https://sciencedirect.com/                                      1Redirecttext/html                  301Permanently       https://www.sciencedirect.com/
+                                                                 No       text/html;
+https://novelcool.com/                                          0Redirectcharset=UTF-8              200OK
+                                                                 Single
+https://journals.plos.org/plosone                               1Redirect                           302Found             https://journals.plos.org/plosone/
+                                                                 Single                                Moved
+https://spyfu.com/                                              1Redirect                           301Permanently       https://www.spyfu.com/
+                                                                 Single                                Moved
+https://researchgate.net/                                       1Redirect                           301Permanently       https://www.researchgate.net/
+                                                                 Single
+https://webtoonxyz.com/                                         1Redirect                           302Found             http://ww1.webtoonxyz.com/
+                                                                 Single text/html; charset="utf-       Moved
+https://facebook.com/business/ads                               1Redirect8"                         301Permanently       https://www.facebook.com/business/ads
+                                                                 No       text/html;
+https://comicbookplus.com/                                      0Redirectcharset=UTF-8              200OK
+                                                                 Single                                Found : Moved
+https://open.edu/openlearn                                      1Redirect                           302Temporarily       https://www.open.edu/openlearn
+                                                                 No
+https://digital.darkhorse.com/                                  0Redirecttext/html; charset=utf-8   200OK
+                                                                 No       text/html;
+https://figshare.com/                                           0Redirectcharset=UTF-8              202Accepted
+                                                                 No
+https://zenodo.org/                                             0Redirecttext/html; charset=utf-8   200OK
+                                                                 Single                                Moved
+https://books.apple.com/                                        1Redirect                           302Temporarily       https://www.apple.com/apple-books/
+                                                                 No       text/html;
+https://futurelearn.com/                                        0Redirectcharset=UTF-8              403Forbidden
+                                                                 Single                                Moved
+https://kobo.com/                                               1Redirecttext/html                  302Temporarily       https://www.kobo.com/
+                                                                 Single text/html; charset=iso-        Moved
+https://esa.int/                                                1Redirect8859-1                     301Permanently       https://www.esa.int/
+                                                                 No       text/html;
+https://saylor.org/                                             0Redirectcharset=UTF-8              403Forbidden
+                                                                 No       text/html;charset=UTF-
+https://phet.colorado.edu/                                      0Redirect8                          200OK
+                                                                 Redirect                              Moved
+https://marvel.com/comics/unlimited                             2Chain text/plain                   302Temporarily       https://www.marvel.com/comics/unlimited
+                                                                 Single                                Moved
+https://toomics.com/                                            1Redirecttext/html                  302Temporarily       https://toomics.com/en
+                                                                 Single
+https://nasa.gov/                                               1Redirecttext/html; charset=utf-8   302Found             https://www.nasa.gov/
+                                                                 Single                                Moved
+https://who.int/                                                1Redirect                           301Permanently       https://www.who.int/
+                                                                 Single                                Moved
+https://gocomics.com/                                           1Redirecttext/html                  301Permanently       https://www.gocomics.com/
+                                                                 Single                                Moved
+https://free-ebooks.net/                                        1Redirecttext/html                  301Permanently       https://www.free-ebooks.net/
+                                                                 Single                                Moved
+https://smashwords.com/                                         1Redirecttext/html                  301Permanently       https://www.smashwords.com/
+                                                                 Redirect                              Moved
+https://ssrn.com/                                               2Chain                              301Permanently       https://www.ssrn.com/
+                                                                 Single                                Moved
+https://edx.org/                                                1Redirect                           301Permanently       https://www.edx.org/
+                                        No       text/html;
+https://digitalcomicmuseum.com/        0Redirectcharset=UTF-8              200OK
+                                        No
+https://eric.ed.gov/                   0Redirecttext/html; charset=utf-8   200OK
+                                        Single
+https://khanacademy.org/               1Redirect                           308Found               https://www.khanacademy.org/
+                                        No
+https://theduckwebcomics.com/          0Redirecttext/html; charset=utf-8   200OK
+                                        No       text/html;
+https://libretexts.org/                0Redirectcharset=UTF-8              200OK
+
+                                        Redirect                              Moved
+https://amazon.com/comixology          3Chain text/html                    301Permanently         https://www.amazon.com/comixology
+                                        No       text/html;
+https://academicearth.org/             0Redirectcharset=UTF-8              200OK
+                                        Single
+https://cern.ch/                       1Redirecttext/html; charset=utf-8   302Found               https://home.cern/
+                                        No       text/html;
+https://bigthink.com/                  0Redirectcharset=UTF-8              200OK
+                                        Single                                Moved
+https://unesco.org/science             1Redirect                           302Temporarily         https://www.unesco.org/science
+                                        Single text/html; charset=iso-        Moved
+https://science.org/                   1Redirect8859-1                     301Permanently         https://www.science.org/
+                                        No       text/html;
+https://about.jstor.org/open           0Redirectcharset=UTF-8              404Not Found
+                                        Redirecttext/html; charset=iso-       Moved
+https://ncbi.nlm.nih.gov/pmc           2Chain 8859-1                       301Permanently         https://www.ncbi.nlm.nih.gov/pmc
+                                        Single
+https://khanacademy.org/math           1Redirect                           308Found               https://www.khanacademy.org/math
+                                        Single
+https://livescience.com/               1Redirect                           301Apex Redirect       https://www.livescience.com/
+                                        Single text/html; charset=iso-        Moved
+https://indyplanet.com/                1Redirect8859-1                     301Permanently         https://www.indyplanet.com/
+                                        Single                                Moved
+https://ck12.org/                      1Redirect                           301Permanently         https://www.ck12.org/
+                                        No
+https://cdc.gov/                       0Redirecttext/html                  200OK
+                                        No       text/html;
+https://pubs.acs.org/                  0Redirectcharset=UTF-8              403Forbidden
+                                        No
+https://oeis.org/                      0Redirecttext/html; charset=utf-8   200OK
+                                        No       text/html;
+https://chemrxiv.org/                  0Redirectcharset=UTF-8              403Forbidden
+                                        Single                                Moved
+https://iflscience.com/                1Redirect                           301Permanently         https://www.iflscience.com/
+                                        Single
+https://dcuniverseinfinite.com/        1Redirect                           302Found               https://www.dcuniverseinfinite.com/
+                                        Single text/html; charset=iso-        Moved
+https://noaa.gov/                      1Redirect8859-1                     301Permanently         https://www.noaa.gov/
+                                        No
+https://sciencedaily.com/              0Redirecttext/html                  200OK
+                                        Redirect                              Moved
+https://ads.tiktok.com/                2Chain text/html                    301Permanently         https://ads.tiktok.com/business/
+
+                                        Redirect                              Moved
+https://nature.com/                    5Chain                              301Permanently         https://www.nature.com/
+                                        No
+https://arxiv.org/archive/math         0Redirecttext/html; charset=utf-8   200OK
+                                        No       text/html;
+https://projecteuler.net/              0Redirectcharset=UTF-8              200OK
+                                        Single                                Moved
+https://nsf.gov/                       1Redirect                           301Permanently         https://www.nsf.gov/
+                                        No
+https://openweathermap.org/            0Redirect                                 Secure Failure
+                                        No
+https://brilliant.org/                 0Redirecttext/html; charset=utf-8   200OK
+                                        Single                                Permanent
+https://geogebra.org/                  1Redirect                           308Redirect            https://www.geogebra.org/
+                                        Single text/html; charset=iso-        Moved
+https://ncbi.nlm.nih.gov/              1Redirect8859-1                     301Permanently         https://www.ncbi.nlm.nih.gov/
+                                        Redirecttext/html; charset=iso-       Moved
+https://ipcc.ch/                       2Chain 8859-1                       301Permanently         http://www.ipcc.ch/
+                                        Single                                Moved
+https://scientificamerican.com/        1Redirect                           301Permanently         https://www.scientificamerican.com/
+                                        No
+https://eol.org/                       0Redirecttext/html; charset=utf-8   200OK
+                                        No
+https://verywellmind.com/              0Redirecttext/plain                 460
+                                        No       text/html;charset=UTF-
+https://phys.org/                      0Redirect8                          200OK
+                                        No
+https://pubchem.ncbi.nlm.nih.gov/      0Redirecttext/html                  200OK
+                                        Single text/plain; charset=utf-       Moved
+https://ghost.org/explore              1Redirect8                          301Permanently         https://explore.ghost.org/
+
+                                        Redirect                              Moved
+https://springeropen.com/              5Chain                              301Permanently         https://www.springeropen.com/
+                                        No
+https://bibliomania.com/               0Redirect                                 Cannot Connect
+                                        No       text/html;
+https://mathworld.wolfram.com/         0Redirectcharset=UTF-8              200OK
+                                        Single text/html; charset=iso-
+https://biorxiv.org/                   1Redirect8859-1                     302Found               https://www.biorxiv.org/
+                                        No       text/html;
+https://nami.org/                      0Redirectcharset=UTF-8              403Forbidden
+                                        Redirecttext/html; charset=iso-       Moved
+https://childrensbooksonline.org/      2Chain 8859-1                       301Permanently         https://childrensbooksonline.org/'https://www.ignitetalentglobal.com/'
+                                        Single                                Moved
+https://mind.org.uk/                   1Redirecttext/html                  301Permanently         https://www.mind.org.uk/
+                                        Single                                Moved
+https://metoffice.gov.uk/              1Redirect                           301Permanently         https://www.metoffice.gov.uk/
+                                        No       text/html;
+https://childmind.org/                 0Redirectcharset=UTF-8              403Forbidden
+                                        No       text/html;
+https://hal.science/                   0Redirectcharset=UTF-8              200OK
+                                        No       text/html;
+https://planetmath.org/                0Redirectcharset=UTF-8              200OK
+                                        Single                                Moved
+https://rsc.org/                       1Redirecttext/html                  301Permanently         https://www.rsc.org/
+                                        No       text/html;
+https://nationaleatingdisorders.org/   0Redirectcharset=UTF-8              403Forbidden
+                                        No
+https://svs.gsfc.nasa.gov/             0Redirecttext/html; charset=utf-8   200OK
+                                        Single text/html; charset=iso-        Permanent
+https://gbif.org/                      1Redirect8859-1                     308Redirect            https://www.gbif.org/
+                                        Single text/html; charset=iso-        Moved
+https://mentalhealth.org.uk/           1Redirect8859-1                     301Permanently         https://www.mentalhealth.org.uk/
+                                        No       text/html;
+https://adaa.org/                      0Redirectcharset=UTF-8              403Forbidden
+                                        Single text/html; charset=iso-        Moved
+https://unicef.org/mental-health       1Redirect8859-1                     301Permanently         https://www.unicef.org/mental-health
+                                        Single                                Moved
+https://who.int/mental_health          1Redirect                           301Permanently         https://www.who.int/mental_health
+                                               No       text/html;
+https://bornthisway.foundation/               0Redirectcharset=UTF-8              200OK
+                                               No       text/html;
+https://perimeterinstitute.ca/                0Redirectcharset=UTF-8              200OK
+                                               Single                                Moved
+https://desmos.com/                           1Redirecttext/html                  302Temporarily      https://www.desmos.com/
+                                               No       text/html;
+https://jedfoundation.org/                    0Redirectcharset=UTF-8              200OK
+                                               Single                                Moved
+https://si.edu/                               1Redirect                           301Permanently      https://www.si.edu/
+                                               No
+https://verywellhealth.com/                   0Redirecttext/plain                 460
+                                               No
+https://blackwells.co.uk/                     0Redirect                              Secure Failure
+                                               Single                                Moved
+https://chemspider.com/                       1Redirecttext/html                  301Permanently      https://www.chemspider.com/
+                                               No
+https://samhsa.gov/                           0Redirecttext/html                  403Forbidden
+                                               Redirecttext/html;                    Moved
+https://unwomen.org/                          2Chain charset=UTF-8                301Permanently      https://www.unwomen.org/
+                                               Single text/html; charset=iso-
+https://medrxiv.org/                          1Redirect8859-1                     302Found            https://www.medrxiv.org/
+                                               No       text/html;
+https://mentalhealthliteracy.org/             0Redirectcharset=UTF-8              200OK
+                                               No
+https://play.google.com/books                 0Redirecttext/html; charset=utf-8   200OK
+                                               Single text/html; charset=iso-        Moved
+https://wolframalpha.com/                     1Redirect8859-1                     301Permanently      https://www.wolframalpha.com/
+                                               Redirect                              Moved
+https://psychologytoday.com/                  2Chain text/html                    301Permanently      https://www.psychologytoday.com/
+                                               Single                                Moved
+https://apa.org/helpcenter                    1Redirect                           301Permanently      https://www.apa.org/helpcenter
+                                               Single                                Moved
+https://sleepfoundation.org/                  1Redirecttext/html                  301Permanently      https://www.sleepfoundation.org/
+                                               Single                                Moved
+https://talkspace.com/                        1Redirect                           301Permanently      https://www.talkspace.com/
+                                               Single                                Moved
+https://newscientist.com/                     1Redirect                           301Permanently      https://www.newscientist.com/
+                                               Single                                Moved
+https://mhinnovation.net/                     1Redirecttext/html                  301Permanently      https://www.mhinnovation.net/
+                                               Single                                Moved
+https://healthline.com/health/mental-health   1Redirect                           301Permanently      https://www.healthline.com/health/mental-health
+                                               No
+https://alison.com/                           0Redirecttext/html; charset=utf-8   200OK
+                                               No
+https://www.w3schools.com/                    0Redirecttext/html                  200OK
+                                               No
+https://www.udacity.com/                      0Redirecttext/html; charset=utf-8   200OK
+                                               Single                                Moved
+https://nationalgeographic.com/               1Redirecttext/plain                 302Temporarily      https://www.nationalgeographic.com/
+                                               Single text/html; charset=iso-        Moved
+https://stopbullying.gov/                     1Redirect8859-1                     301Permanently      https://www.stopbullying.gov/
+                                               No       text/html;
+https://anad.org/                             0Redirectcharset=UTF-8              200OK
+                                               No       text/html;
+https://cyberbullying.org/                    0Redirectcharset=UTF-8              200OK
+                                               Redirect                              Moved
+https://lezhinus.com/                         3Chain text/html                    302Temporarily      https://www.lezhinus.com/
+                                               No       text/html;
+https://www.canva.com/designschool/           0Redirectcharset=UTF-8              403Forbidden
+                                               No       text/html;
+https://oyc.yale.edu/                         0Redirectcharset=UTF-8              200OK
+                                               No
+https://www.semrush.com/academy/              0Redirecttext/html; charset=utf-8   200OK
+                                               Redirecttext/html; charset=iso-       Moved
+https://ams.org/                              2Chain 8859-1                       301Permanently      https://www.ams.org//
+                                               Single                                Moved
+https://waterstones.com/                      1Redirecttext/html                  301Permanently      https://www.waterstones.com/
+                                               Single text/html;                     Moved
+https://online-learning.harvard.edu/          1Redirectcharset=UTF-8              301Permanently      https://pll.harvard.edu/
+                                               Single                                Moved
+https://crisistextline.org/                   1Redirect                           301Permanently      https://www.crisistextline.org/
+                                               No
+https://www.datacamp.com/                     0Redirecttext/html; charset=utf-8   200OK
+                                               No       text/html;
+https://leetcode.com/                         0Redirectcharset=UTF-8              403Forbidden
+                                               Single text/plain; charset=utf-
+https://developer.mozilla.org/                1Redirect8                          302Found            https://developer.mozilla.org/en-US/
+                                               No
+https://skillshop.withgoogle.com/             0Redirecttext/html; charset=utf-8   200OK
+                                               No
+https://exercism.org/                         0Redirecttext/html; charset=utf-8   200OK
+                                               No       text/html;
+https://www.memrise.com/                      0Redirectcharset=UTF-8              200OK
+                                               Single                                Redirected to
+https://headspace.com/                        1Redirect                           301www              https://www.headspace.com/
+                                               No
+https://www.theodinproject.com/               0Redirecttext/html; charset=utf-8   200OK
+                                               Redirecttext/html; charset=iso-       Moved
+https://climate.gov/                          2Chain 8859-1                       301Permanently      https://www.climate.gov/
+                                               No
+https://mylearn.oracle.com/                   0Redirecttext/html                  403Forbidden
+                                               No
+https://www.masterclass.com/                  0Redirecttext/html; charset=utf-8   200OK
+                                               No       text/html;
+https://training.linuxfoundation.org/         0Redirectcharset=UTF-8              200OK
+                                               Single                                Moved
+https://learn.microsoft.com/                  1Redirect                           302Temporarily      https://learn.microsoft.com/en-us/
+                                               No
+https://www.hackerrank.com/                   0Redirecttext/html; charset=utf-8   200OK
+                                               Redirect                              Moved
+https://biologyonline.com/                    2Chain text/html                    301Permanently      http://www.biologyonline.com/
+                                               No       text/html;
+https://thecrashcourse.com/                   0Redirectcharset=UTF-8              200OK
+                                               No       text/html;
+https://www.duolingo.com/                     0Redirectcharset=UTF-8              200OK
+                                               No
+https://www.codewars.com/                     0Redirecttext/html; charset=utf-8   200OK
+                                               Single                                Moved
+https://www.redhat.com/training               1Redirect                           301Permanently      https://www.redhat.com/en/services/training-and-certification
+                                               No
+https://www.babbel.com/                       0Redirecttext/html; charset=utf-8   200OK
+                                               No
+https://soundcloud.com/                       0Redirecttext/html                  200OK
+                                               Redirect                              Moved
+https://webtoons.com/                         2Chain                              301Permanently      https://www.webtoons.com/
+                                               No
+https://online.stanford.edu/                  0Redirecttext/html                  403Forbidden
+                                               Single text/html; charset=iso-        Moved
+https://usgs.gov/                             1Redirect8859-1                     301Permanently      https://www.usgs.gov/
+
+                                               Redirect                              Moved
+https://comixology.com/                       2Chain text/html                    301Permanently      https://www.amazon.com/kindle-dbs/comics-store/home?_encoding=UTF8&merchant=&ref=nav_y
+                                       No
+https://www.rosettastone.com/         0Redirecttext/html; charset=utf-8   200OK
+                                       No       text/html;
+https://oli.cmu.edu/                  0Redirectcharset=UTF-8              200OK
+                                       No
+https://trailhead.salesforce.com/     0Redirecttext/html; charset=utf-8   200OK
+                                       No       text/html;
+https://pixabay.com/                  0Redirectcharset=UTF-8              403Forbidden
+                                       Single                                Moved
+https://explore.skillbuilder.aws/     1Redirect                           302Permanently         https://skillbuilder.aws/?showRedirectNotFoundBanner=true
+                                       Redirect                              Moved
+https://amazon.com/kindle             3Chain text/html                    301Permanently         https://www.amazon.com/kindle
+                                       No
+https://vocaroo.com/                  0Redirecttext/html                  200OK
+                                       No       text/html;
+https://freemusicarchive.org/         0Redirectcharset=UTF-8              200OK
+                                       No       text/html;
+https://openverse.org/                0Redirectcharset=UTF-8              403Forbidden
+                                       No       text/html;
+https://bandcamp.com/                 0Redirectcharset=UTF-8              200OK
+                                       No       text/html;
+https://codepen.io/                   0Redirectcharset=UTF-8              403Forbidden
+                                       No       text/html;
+https://skillcrush.com/               0Redirectcharset=UTF-8              200OK
+                                       Single                                Moved
+https://pexels.com/                   1Redirect                           301Permanently         https://www.pexels.com/
+                                       Redirecttext/html; charset=iso-       Moved
+https://opencounseling.com/           2Chain 8859-1                       301Permanently         http://www.opencounseling.com/
+                                       Single                                Moved
+https://jamendo.com/                  1Redirecttext/html                  301Permanently         https://www.jamendo.com/
+                                       No
+https://ed.ted.com/                   0Redirecttext/html; charset=utf-8   200OK
+                                       Single text/plain; charset=utf-
+https://unsplash.com/                 1Redirect8                          307Unauthorized        https://unsplash.com/.within.website?redir=%2F
+                                       No       text/html;
+https://gtmetrix.com/                 0Redirectcharset=UTF-8              403Forbidden
+                                       No       text/html;
+https://10minutemail.com/             0Redirectcharset=UTF-8              403Forbidden
+                                       No       text/html;
+https://temp-mail.org/                0Redirectcharset=UTF-8              403Forbidden
+                                       No
+https://app.diagrams.net/             0Redirecttext/html                  200OK
+                                       No
+https://tinypng.com/                  0Redirecttext/html; charset=utf-8   200OK
+                                       Single                                Moved
+https://openaire.eu/                  1Redirecttext/html                  301Permanently         https://www.openaire.eu/
+                                       No
+https://carbon.now.sh/                0Redirecttext/html; charset=utf-8   200OK
+                                       No       text/html;
+https://rainn.org/                    0Redirectcharset=UTF-8              200OK
+                                       Redirect
+https://www.domestika.org/            2Chain                              302Found               https://www.domestika.org/en/
+                                       Single                                Moved
+https://humblebundle.com/books        1Redirecttext/html                  301Permanently         https://www.humblebundle.com/books
+                                       Single                                Moved
+https://acloudguru.com/               1Redirect                           301Permanently         https://www.pluralsight.com/cloud-guru
+                                       No
+https://jsfiddle.net/                 0Redirecttext/html; charset=utf-8   200OK
+                                       Redirecttext/html;
+https://mentalhealth.gov/             2Chain charset=UTF-8                302Redirect            https://www.mentalhealth.gov/
+                                       Single                                Moved
+https://betterhelp.com/               1Redirect                           301Permanently         https://www.betterhelp.com/
+                                       Single                                Permanent
+https://remove.bg/                    1Redirecttext/html                  308Redirect            https://www.remove.bg/
+                                       No
+https://regex101.com/                 0Redirecttext/html; charset=utf-8   200OK
+                                       No       text/html;
+https://pastebin.com/                 0Redirectcharset=UTF-8              200OK
+                                       No       text/html;
+https://bookwalker.jp/                0Redirectcharset=UTF-8              200OK
+                                       No       text/html;
+https://mynoise.net/                  0Redirectcharset=UTF-8              200OK
+                                       No
+https://odysee.com/                   0Redirecttext/html; charset=utf-8   200OK
+                                       No       text/html;charset=UTF-
+https://academy.hubspot.com/          0Redirect8                          200OK
+                                       No
+https://jsonlint.com/                 0Redirecttext/html; charset=utf-8   200OK
+                                       No
+https://thispersondoesnotexist.com/   0Redirectimage/jpeg                 200OK
+                                       No
+https://fmoviesz.to/                  0Redirecttext/html                  451
+                                       No
+https://flickr.com/                   0Redirecttext/html                  200OK
+                                       No       text/html;
+https://asoftmurmur.com/              0Redirectcharset=UTF-8              200OK
+                                       No       text/html;
+https://instances.joinpeertube.org/   0Redirectcharset=UTF-8              200OK
+                                       Single text/html; charset=iso-        Moved
+https://eurekalert.org/               1Redirect8859-1                     301Permanently         https://www.eurekalert.org/
+                                       Single
+https://virustotal.com/               1Redirecttext/html; charset=utf-8   302Found               https://www.virustotal.com/gui/
+                                       Single                                Moved
+https://youtube.com/                  1Redirectapplication/binary         301Permanently         https://www.youtube.com/
+                                       No
+https://archive.org/details/tv        0Redirecttext/html; charset=utf-8   200OK
+                                       No
+https://archive.org/                  0Redirecttext/html; charset=utf-8   200OK
+                                       No       text/html;
+https://archive.org/details/movies    0Redirectcharset=UTF-8              200OK
+                                       No
+https://directory.doabooks.org/       0Redirecttext/html;charset=utf-8    200
+                                       No
+https://www.creativelive.com/         0Redirecttext/html; charset=utf-8   200OK
+                                       Single                                Moved
+https://dailymotion.com/              1Redirecttext/html                  301Permanently         https://www.dailymotion.com/
+                                       No       text/html;
+https://www.openculture.com/          0Redirectcharset=UTF-8              200OK
+                                       No       text/html;
+https://caniuse.com/                  0Redirectcharset=UTF-8              200OK
+                                       Single text/plain; charset=utf-
+https://radiooooo.com/                1Redirect8                          302Found               https://app.radiooooo.com/
+                                       No
+https://web.archive.org/              0Redirecttext/html                  200OK
+                                       Single
+https://mixcloud.com/                 1Redirect                           302Found               https://www.mixcloud.com/
+                                       Redirecttext/html;                    Moved
+https://mhe-sme.org/                  2Chain charset=UTF-8                301Permanently         https://www.mhe-sme.org/
+                                       No
+https://privatebin.net/               0Redirect                                 Secure Failure
+                                       No
+https://thenounproject.com/           0Redirecttext/html; charset=utf-8   200OK
+                               Single                 Moved
+https://quantamagazine.org/   1Redirecttext/html   301Permanently        https://www.quantamagazine.org/
+                               No                     Name Not
+https://icoconvert.com/       0Redirect               Resolved
+                               No
+https://fictionpress.com/     0Redirect               Timeout
+                               No
+https://libgen.is/            0Redirect               Timeout
+                               No
+https://fanfiction.net/       0Redirect               Timeout
+                               No
+https://readprint.com/        0Redirect               Timeout
+                               Single                 Moved
+https://barnesandnoble.com/   1Redirect            301Permanently        https://www.barnesandnoble.com/
+                               No
+https://honeyfeed.fm/         0Redirect               Connection error
+                               No
+https://convertio.xyz/        0Redirect               Timeout
+

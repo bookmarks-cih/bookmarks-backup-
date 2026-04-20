@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bookmarks - Curated Intelligence Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A curated directory of high-quality resources, designed to counter AI-biased search results and promote digital privacy.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        accent: '#d4a853',
+        'accent-dark': '#b8953c',
+        'bg-dark': '#0a0c10',
+        'bg-card': '#12151c',
+        'text-light': '#f4f1eb',
+        'text-mute': '#8a8f9c',
+        'border-subtle': 'rgba(255, 255, 255, 0.06)',
+        'httping-green': '#00ff88',
+        'httping-green-dim': '#00cc6a',
+        'line-cyan': '#0a84ff',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['DM Sans', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  :root {
+    --accent: #d4a853;
+    --accent-dark: #b8953c;
+    --bg-dark: #0a0c10;
+    --text-light: #f4f1eb;
+    --text-mute: #8a8f9c;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --httping-green: #00ff88;
+    --httping-green-dim: #00cc6a;
+    --line-cyan: #0a84ff;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #three-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .glass-card {
+    background: rgba(18, 21, 28, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--text-light) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 60px rgba(212, 168, 83, 0.15),
+                0 0 100px rgba(212, 168, 83, 0.1);
+  }
+
+  .highlight {
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+  }
+
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0.5;
+  }
+
+  .contact-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .contact-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .contact-link:hover::before {
+    width: 100%;
+  }
+
+  .contact-link:hover {
+    color: var(--text-light);
+  }
+
+  .visit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 48px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: var(--bg-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(212, 168, 83, 0.1);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .visit-btn:hover::before {
+    left: 100%;
+  }
+
+  .visit-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(212, 168, 83, 0.2);
+  }
+
+  .visit-btn:active {
+    transform: translateY(-2px) scale(0.98);
+  }
+
+  .httping-logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .httping-logo-link:hover {
+    transform: translateY(-3px);
+  }
+
+  .httping-logo-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--httping-green) 0%, var(--httping-green-dim) 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 24px rgba(0, 255, 136, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .httping-logo-link:hover .httping-logo-icon {
+    box-shadow: 0 8px 36px rgba(0, 255, 136, 0.4);
+    transform: rotate(-5deg);
+  }
+
+  .httping-logo-icon svg {
+    width: 26px;
+    height: 26px;
+    color: var(--bg-dark);
+  }
+
+  .httping-logo-text {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-light);
+  }
+
+  .httping-logo-text span {
+    color: var(--httping-green);
+  }
+
+  .try-link {
+    color: var(--httping-green);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  .try-link:hover {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+  }
+
+  .more-about {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 8px 0;
+  }
+
+  .more-about::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .more-about:hover::after {
+    width: 100%;
+  }
+
+  .more-about:hover {
+    color: var(--text-light);
+  }
+
+  .floating-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 83, 0.2); }
+    50% { box-shadow: 0 0 40px rgba(212, 168, 83, 0.4); }
+  }
+
+  .logo-mark {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+</style>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body x-data="{ loaded: false, mobileMenu: false }" x-init="loaded = true">
+
+<canvas id="three-canvas"></canvas>
+
+<div class="relative z-10 min-h-screen flex flex-col">
+
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="floating-particle" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-particle" style="top: 25%; left: 85%; animation-delay: 1s;"></div>
+    <div class="floating-particle" style="top: 65%; left: 20%; animation-delay: 2s;"></div>
+    <div class="floating-particle" style="top: 75%; left: 75%; animation-delay: 3s;"></div>
+    <div class="floating-particle" style="top: 45%; left: 90%; animation-delay: 4s;"></div>
+  </div>
+
+  <header class="w-full py-6 px-4 sm:px-8 lg:px-12" x-show="loaded" x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 -translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="max-w-7xl mx-auto">
+      <nav class="flex justify-between items-center">
+        <div class="flex items-center gap-3" id="main-logo">
+          <div class="logo-mark w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a0c10" stroke-width="2.5">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h1 class="font-display text-2xl sm:text-3xl font-bold text-text-light tracking-tight">Bookmarks</h1>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="about.html" class="text-text-mute hover:text-text-light transition-colors duration-300 font-medium text-sm uppercase tracking-wider">About</a>
+          <a href="hub.html" class="text-text-mute hover:text-text-light transition-colors duration-300 font-medium text-sm uppercase tracking-wider">Hub</a>
+          <a href="docs.html" class="text-text-mute hover:text-text-light transition-colors duration-300 font-medium text-sm uppercase tracking-wider">Docs</a>
+        </div>
+
+        <button 
+          @click="mobileMenu = !mobileMenu" 
+          class="md:hidden p-2 rounded-lg bg-bg-card border border-border-subtle"
+          aria-label="Toggle menu"
+        >
+          <svg x-show="!mobileMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg x-show="mobileMenu" x-cloak width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+
+      <div 
+        x-show="mobileMenu" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 -translate-y-4"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-4"
+        x-cloak
+        class="md:hidden mt-4 glass-card rounded-2xl p-6"
+      >
+        <div class="flex flex-col gap-4">
+          <a href="about.html" class="text-text-mute hover:text-text-light transition-colors font-medium">About</a>
+          <a href="hub.html" class="text-text-mute hover:text-text-light transition-colors font-medium">Hub</a>
+          <a href="docs.html" class="text-text-mute hover:text-text-light transition-colors font-medium">Docs</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center px-4 sm:px-8 lg:px-12 py-12">
+    <div class="max-w-5xl w-full">
+      
+      <div class="text-center mb-16" id="hero-section">
+        <div class="inline-block mb-6 reveal" id="hero-badge">
+          <span class="glass-card px-4 py-2 rounded-full text-sm font-mono text-accent border border-accent/20">
+            Curated Intelligence Hub
+          </span>
+        </div>
+        
+        <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-text-light leading-tight mb-8 reveal" id="hero-title">
+          Curated Intelligence<br>
+          <span class="gradient-text">for the Digital Age</span>
+        </h2>
+      </div>
+
+      <div class="grid gap-6 mb-12">
+        <div class="glass-card rounded-2xl p-6 sm:p-8 reveal glow-accent" id="card-1">
+          <div class="flex gap-4">
+            <div class="hidden sm:flex w-12 h-12 rounded-xl bg-accent/10 items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div>
+              <p class="text-base sm:text-lg text-text-mute leading-relaxed">
+                In an era where search engines are increasingly influenced by artificial intelligence—often prioritizing commercial interests over relevance—<span class="highlight">Bookmarks</span> emerges as a solution. This platform meticulously curates high-quality resources across diverse categories, offering a reliable alternative to AI-biased search results.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 sm:p-8 reveal" id="card-2">
+          <div class="flex gap-4">
+            <div class="hidden sm:flex w-12 h-12 rounded-xl bg-accent/10 items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-base sm:text-lg text-text-mute leading-relaxed">
+                As a personal initiative, <span class="highlight">Bookmarks</span> is designed to help individuals navigate the digital landscape with confidence. We prioritize <strong class="text-text-light">privacy</strong>, <strong class="text-text-light">security</strong>, and <strong class="text-text-light">anonymity</strong>, ensuring that every listed resource adheres to ethical standards. No gray-area promotions—just the best tools and services across a wide range of domains.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 sm:p-8 reveal" id="card-3">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c--1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <span class="text-text-mute text-sm sm:text-base">For inquiries or suggestions:</span>
+            </div>
+            <a href="mailto:idritteris@proton.me" class="contact-link text-lg sm:text-xl font-display font-medium">idritteris@proton.me</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4 mb-12 reveal" id="stats-row">
+        <div class="glass-card rounded-xl p-4 sm:p-6 text-center">
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">Resources</div>
+        </div>
+        <div class="glass-card rounded-xl p-4 sm:p-6 text-center">
+          <div class="stat-number" data-target="50">0</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="glass-card rounded-xl p-4 sm:p-6 text-center">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-label">Verified</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-8 reveal" id="cta-section">
+        <button 
+          class="visit-btn group" 
+          onclick="window.location.href='hub.html'"
+          aria-label="Visit the Bookmarks Hub"
+        >
+          <span>Visit Hub</span>
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <div class="flex flex-col items-center pt-4">
+          <div class="divider-line w-32 mb-6"></div>
+          
+          <div class="docs-logo-link" onclick="window.location.href='docs.html'" role="link" tabindex="0" aria-label="Go to Docs">
+            <div class="docs-logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div class="docs-logo-text">Doc<span>Hub</span></div>
+          </div>
+          
+          <span class="try-link" onclick="window.location.href='docs.html'" role="link" tabindex="0">Browse Docs</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-8 px-4 sm:px-8 lg:px-12 reveal" id="footer">
+    <div class="max-w-5xl mx-auto">
+      <div class="glass-card rounded-2xl p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div class="flex flex-col items-center sm:items-start gap-2">
+            <a href="about.html" class="more-about text-lg">More About Us</a>
+            <p class="text-text-mute text-sm">Discover our mission and methodology</p>
+          </div>
+          
+          <div class="text-center sm:text-right">
+            <p class="text-text-mute text-sm mb-1">2026 Bookmarks - Curated Intelligence Hub</p>
+            <p class="text-text-mute/60 text-xs">Designed by <span class="text-accent">@morneface</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('three-canvas');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({ 
+  canvas: canvas, 
+  alpha: true, 
+  antialias: true 
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// Particle system - Gold and White only (no green)
+const particleCount = 600;
+const positions = new Float32Array(particleCount * 3);
+const colors = new Float32Array(particleCount * 3);
+const sizes = new Float32Array(particleCount);
+
+const accentColor = new THREE.Color('#d4a853');
+const whiteColor = new THREE.Color('#f4f1eb');
+
+for (let i = 0; i < particleCount; i++) {
+  const i3 = i * 3;
+  
+  const radius = Math.random() * 50 + 20;
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos(2 * Math.random() - 1);
+  
+  positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+  positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+  positions[i3 + 2] = radius * Math.cos(phi);
+  
+  // Only accent and white colors
+  const color = Math.random() < 0.5 ? accentColor : whiteColor;
+  
+  colors[i3] = color.r;
+  colors[i3 + 1] = color.g;
+  colors[i3 + 2] = color.b;
+  
+  sizes[i] = Math.random() * 2.5 + 0.8;
+}
+
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geometry.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
+geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+
+const material = new THREE.ShaderMaterial({
+  uniforms: {
+    uTime: { value: 0 },
+    uPixelRatio: { value: renderer.getPixelRatio() }
+  },
+  vertexShader: `
+    attribute vec3 aColor;
+    attribute float aSize;
+    varying vec3 vColor;
+    uniform float uTime;
+    uniform float uPixelRatio;
+    
+    void main() {
+      vColor = aColor;
+      
+      vec3 pos = position;
+      pos.x += sin(uTime * 0.5 + position.y * 0.05) * 2.0;
+      pos.y += cos(uTime * 0.3 + position.x * 0.05) * 2.0;
+      pos.z += sin(uTime * 0.4 + position.z * 0.05) * 2.0;
+      
+      vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+      gl_PointSize = aSize * uPixelRatio * (300.0 / -mvPosition.z);
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `,
+  fragmentShader: `
+    varying vec3 vColor;
+    
+    void main() {
+      float dist = length(gl_PointCoord - vec2(0.5));
+      if (dist > 0.5) discard;
+      
+      float alpha = 1.0 - smoothstep(0.0, 0.5, dist);
+      alpha *= 0.5;
+      
+      gl_FragColor = vec4(vColor, alpha);
+    }
+  `,
+  transparent: true,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+// Animated Tech Lines System
+const lineGroup = new THREE.Group();
+scene.add(lineGroup);
+
+// Create flowing data lines
+const createFlowingLine = (startPos, endPos, color, delay) => {
+  const points = [];
+  const segments = 50;
+  
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    const x = startPos.x + (endPos.x - startPos.x) * t;
+    const y = startPos.y + (endPos.y - startPos.y) * t + Math.sin(t * Math.PI * 3) * 2;
+    const z = startPos.z + (endPos.z - startPos.z) * t;
+    points.push(new THREE.Vector3(x, y, z));
+  }
+  
+  const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+  
+  const lineMaterial = new THREE.LineBasicMaterial({
+    color: color,
+    transparent: true,
+    opacity: 0.15,
+    linewidth: 1
+  });
+  
+  const line = new THREE.Line(lineGeometry, lineMaterial);
+  line.userData = { 
+    delay: delay, 
+    baseOpacity: 0.15,
+    pulseSpeed: 0.5 + Math.random() * 0.5
+  };
+  
+  return line;
+};
+
+// Generate network of flowing lines
+const lineColors = [0x0a84ff, 0x5e5ce6, 0x30d158, 0xd4a853];
+const lineCount = 25;
+
+for (let i = 0; i < lineCount; i++) {
+  const startAngle = Math.random() * Math.PI * 2;
+  const endAngle = startAngle + (Math.random() * Math.PI - Math.PI / 2);
+  
+  const startRadius = 30 + Math.random() * 20;
+  const endRadius = 30 + Math.random() * 20;
+  
+  const startPos = new THREE.Vector3(
+    Math.cos(startAngle) * startRadius,
+    (Math.random() - 0.5) * 40,
+    Math.sin(startAngle) * startRadius
+  );
+  
+  const endPos = new THREE.Vector3(
+    Math.cos(endAngle) * endRadius,
+    (Math.random() - 0.5) * 40,
+    Math.sin(endAngle) * endRadius
+  );
+  
+  const color = lineColors[Math.floor(Math.random() * lineColors.length)];
+  const line = createFlowingLine(startPos, endPos, color, i * 0.2);
+  lineGroup.add(line);
+}
+
+// Add horizontal scan lines
+const scanLineCount = 8;
+for (let i = 0; i < scanLineCount; i++) {
+  const y = -30 + (i / scanLineCount) * 60;
+  const points = [
+    new THREE.Vector3(-60, y, -20),
+    new THREE.Vector3(60, y, -20)
+  ];
+  
+  const scanGeometry = new THREE.BufferGeometry().setFromPoints(points);
+  const scanMaterial = new THREE.LineBasicMaterial({
+    color: 0x0a84ff,
+    transparent: true,
+    opacity: 0.05
+  });
+  
+  const scanLine = new THREE.Line(scanGeometry, scanMaterial);
+  scanLine.userData = { isScanLine: true, baseY: y };
+  lineGroup.add(scanLine);
+}
+
+// Add vertical data streams
+const streamCount = 12;
+for (let i = 0; i < streamCount; i++) {
+  const x = -50 + (i / streamCount) * 100;
+  const points = [];
+  const segments = 30;
+  
+  for (let j = 0; j <= segments; j++) {
+    const t = j / segments;
+    const y = -40 + t * 80;
+    const z = Math.sin(t * Math.PI * 2) * 5 - 15;
+    points.push(new THREE.Vector3(x, y, z));
+  }
+  
+  const streamGeometry = new THREE.BufferGeometry().setFromPoints(points);
+  const streamMaterial = new THREE.LineBasicMaterial({
+    color: 0xd4a853,
+    transparent: true,
+    opacity: 0.08
+  });
+  
+  const stream = new THREE.Line(streamGeometry, streamMaterial);
+  stream.userData = { isStream: true, index: i };
+  lineGroup.add(stream);
+}
+
+// Geometric wireframe shapes
+const torusGeometry = new THREE.TorusGeometry(15, 0.3, 16, 100);
+const torusMaterial = new THREE.MeshBasicMaterial({ 
+  color: '#d4a853', 
+  wireframe: true,
+  transparent: true,
+  opacity: 0.08
+});
+const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+torus.position.set(-30, 10, -20);
+scene.add(torus);
+
+const icosaGeometry = new THREE.IcosahedronGeometry(12, 1);
+const icosaMaterial = new THREE.MeshBasicMaterial({ 
+  color: '#0a84ff', 
+  wireframe: true,
+  transparent: true,
+  opacity: 0.06
+});
+const icosahedron = new THREE.Mesh(icosaGeometry, icosaMaterial);
+icosahedron.position.set(35, -15, -25);
+scene.add(icosahedron);
+
+// Octahedron for more tech feel
+const octaGeometry = new THREE.OctahedronGeometry(10, 0);
+const octaMaterial = new THREE.MeshBasicMaterial({ 
+  color: '#5e5ce6', 
+  wireframe: true,
+  transparent: true,
+  opacity: 0.05
+});
+const octahedron = new THREE.Mesh(octaGeometry, octaMaterial);
+octahedron.position.set(0, 25, -30);
+scene.add(octahedron);
+
+camera.position.z = 50;
+
+// Mouse interaction
+let mouseX = 0;
+let mouseY = 0;
+let targetX = 0;
+let targetY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+// Animation loop
+function animate() {
+  requestAnimationFrame(animate);
+  
+  const time = performance.now() * 0.001;
+  
+  material.uniforms.uTime.value = time;
+  
+  targetX += (mouseX * 5 - targetX) * 0.02;
+  targetY += (mouseY * 5 - targetY) * 0.02;
+  
+  camera.position.x = targetX;
+  camera.position.y = targetY;
+  camera.lookAt(scene.position);
+  
+  particles.rotation.y = time * 0.03;
+  particles.rotation.x = time * 0.01;
+  
+  // Animate lines
+  lineGroup.children.forEach((line, index) => {
+    if (line.userData.isScanLine) {
+      // Animate scan lines
+      line.position.y = Math.sin(time * 0.5 + line.userData.baseY * 0.1) * 2;
+      line.material.opacity = 0.03 + Math.sin(time * 2 + index) * 0.02;
+    } else if (line.userData.isStream) {
+      // Animate data streams
+      line.rotation.y = time * 0.1;
+      line.material.opacity = 0.05 + Math.sin(time * 1.5 + line.userData.index) * 0.03;
+    } else {
+      // Animate flowing lines
+      const pulseTime = time * line.userData.pulseSpeed + line.userData.delay;
+      line.material.opacity = line.userData.baseOpacity + Math.sin(pulseTime) * 0.08;
+      line.rotation.z = Math.sin(time * 0.2 + index) * 0.05;
+    }
+  });
+  
+  lineGroup.rotation.y = time * 0.02;
+  
+  torus.rotation.x = time * 0.1;
+  torus.rotation.y = time * 0.15;
+  
+  icosahedron.rotation.x = -time * 0.08;
+  icosahedron.rotation.z = time * 0.1;
+  
+  octahedron.rotation.x = time * 0.05;
+  octahedron.rotation.y = time * 0.07;
+  
+  renderer.render(scene, camera);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  material.uniforms.uPixelRatio.value = renderer.getPixelRatio();
+});
+
+// Keyboard accessibility for Docs links
+document.querySelectorAll('.docs-logo-link, .try-link').forEach(el => {
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      window.location.href = 'docs.html';
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReducedMotion) {
+    gsap.set('.reveal', { opacity: 0, y: 40 });
+    gsap.set('#main-logo', { opacity: 0, x: -30 });
+    gsap.set('.stat-number', { scale: 0.5 });
+    
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    
+    tl.to('#main-logo', {
+      opacity: 1,
+      x: 0,
+      duration: 0.8,
+      delay: 0.3
+    })
+    .to('#hero-badge', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6
+    }, '-=0.4')
+    .to('#hero-title', {
+      opacity: 1,
+      y: 0,
+      duration: 0.8
+    }, '-=0.3')
+    .to('#card-1', {
+      opacity: 1,
+      y: 0,
+      duration: 0.7
+    }, '-=0.5')
+    .to('#card-2', {
+      opacity: 1,
+      y: 0,
+      duration: 0.7
+    }, '-=0.4')
+    .to('#card-3', {
+      opacity: 1,
+      y: 0,
+      duration: 0.7
+    }, '-=0.4')
+    .to('#stats-row', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6
+    }, '-=0.3')
+    .to('#cta-section', {
+      opacity: 1,
+      y: 0,
+      duration: 0.7
+    }, '-=0.3')
+    .to('#footer', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6
+    }, '-=0.3');
+    
+    document.querySelectorAll('.stat-number').forEach((el) => {
+      const target = parseInt(el.dataset.target);
+      gsap.to(el, {
+        textContent: target,
+        duration: 2,
+        ease: 'power1.out',
+        snap: { textContent: 1 },
+        delay: 1.5,
+        onStart: () => {
+          gsap.to(el, { scale: 1, duration: 0.5, ease: 'back.out(1.7)' });
+        }
+      });
+    });
+  } else {
+    gsap.set('.reveal', { opacity: 1, y: 0 });
+    gsap.set('#main-logo', { opacity: 1, x: 0 });
+    document.querySelectorAll('.stat-number').forEach((el) => {
+      el.textContent = el.dataset.target;
+    });
+  }
+  
+  const visitBtn = document.querySelector('.visit-btn');
+  if (visitBtn && !prefersReducedMotion) {
+    visitBtn.addEventListener('mousemove', (e) => {
+      const rect = visitBtn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      gsap.to(visitBtn, {
+        x: x * 0.2,
+        y: y * 0.2,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+    
+    visitBtn.addEventListener('mouseleave', () => {
+      gsap.to(visitBtn, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'elastic.out(1, 0.5)'
+      });
+    });
+  }
+});
+</script>
+
+<style>
+  [x-cloak] { display: none !important; }
+</style>
+
+</body>
+</html>

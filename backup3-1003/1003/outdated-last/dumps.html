@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Status - Live Scanner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Real-time scanning and monitoring powered by local dump and UptimeRobot.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #d4a853;
+      --accent-dim: rgba(212, 168, 83, 0.15);
+      --accent-glow: rgba(212, 168, 83, 0.08);
+      --bg-primary: #0a0b0e;
+      --bg-secondary: #101114;
+      --bg-card: #13151a;
+      --text-primary: #e8e6e1;
+      --text-secondary: #7a7d85;
+      --border: rgba(255, 255, 255, 0.05);
+      --border-accent: rgba(212, 168, 83, 0.2);
+      
+      /* Status Colors */
+      --status-up: #4caf50;
+      --status-down: #f44336;
+      --status-paused: #9e9e9e;
+      --status-unmonitored: #607d8b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
+        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 60px 40px; }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 20px; }
+
+    .logo-box {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--accent) 0%, #a88535 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(212, 168, 83, 0.2);
+    }
+
+    .logo-box svg { width: 26px; height: 26px; stroke: var(--bg-primary); }
+
+    .header-title { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.02em; }
+
+    .header-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .header-count {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .header-count span { color: var(--accent); font-weight: 500; }
+
+    /* Notice Banner */
+    .notice-banner {
+      background: rgba(2, 136, 209, 0.1);
+      border: 1px solid rgba(2, 136, 209, 0.2);
+      border-radius: 10px;
+      padding: 12px 20px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .notice-icon { color: #2196f3; flex-shrink: 0; }
+    .notice-text { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #64b5f6; }
+
+    /* Search Section */
+    .search-section { margin-bottom: 30px; display: flex; gap: 20px; flex-wrap: wrap; }
+    .search-wrapper { position: relative; flex-grow: 1; max-width: 600px; }
+
+    .search-icon {
+      position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+      width: 20px; height: 20px; stroke: var(--text-secondary); pointer-events: none;
+      transition: stroke 0.3s ease;
+    }
+
+    .search-input {
+      width: 100%; padding: 18px 24px 18px 56px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); outline: none;
+    }
+
+    .search-input::placeholder { color: var(--text-secondary); opacity: 0.7; }
+    .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); background: var(--bg-secondary); }
+    .search-input:focus + .search-icon { stroke: var(--accent); }
+
+    /* Action Buttons */
+    .action-btn {
+      padding: 0 24px; height: 58px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; gap: 10px;
+      white-space: nowrap;
+    }
+    .action-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .action-btn.primary { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+    .action-btn.primary:hover { opacity: 0.9; }
+
+    /* Tabs */
+    .tabs-container {
+      display: flex; gap: 0; margin-bottom: 30px;
+      border-bottom: 1px solid var(--border); overflow-x: auto;
+      padding-bottom: 1px;
+    }
+
+    .tab-btn {
+      background: transparent; border: none; padding: 12px 24px;
+      color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem; cursor: pointer; position: relative;
+      transition: color 0.2s; white-space: nowrap;
+    }
+
+    .tab-btn::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 2px; background: transparent; transition: background 0.2s;
+    }
+
+    .tab-btn:hover { color: var(--text-primary); }
+    .tab-btn.active { color: var(--accent); }
+    .tab-btn.active::after { background: var(--accent); }
+
+    /* Grid & Cards */
+    .docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+
+    .doc-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+    }
+
+    .doc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: transparent; transition: background 0.3s ease;
+    }
+
+    .doc-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+    
+    /* Dynamic Status Border */
+    .doc-card.status-up::before { background: var(--status-up); }
+    .doc-card.status-down::before { background: var(--status-down); }
+    .doc-card.status-paused::before { background: var(--status-paused); }
+    .doc-card.status-unmonitored::before { background: var(--status-unmonitored); }
+
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    
+    .status-badge {
+      padding: 4px 10px; border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600;
+      white-space: nowrap; text-transform: uppercase;
+    }
+
+    .badge-up { background: rgba(76, 175, 80, 0.15); color: var(--status-up); border: 1px solid rgba(76, 175, 80, 0.3); }
+    .badge-down { background: rgba(244, 67, 54, 0.15); color: var(--status-down); border: 1px solid rgba(244, 67, 54, 0.3); }
+    .badge-paused { background: rgba(158, 158, 158, 0.15); color: var(--status-paused); border: 1px solid rgba(158, 158, 158, 0.3); }
+    .badge-unmonitored { background: rgba(96, 125, 139, 0.15); color: #b0bec5; border: 1px solid rgba(96, 125, 139, 0.3); }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600;
+      color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 250px;
+    }
+    
+    .card-url {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+      color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; padding-top: 16px; border-top: 1px solid var(--border);
+    }
+
+    .stat-box {
+      background: var(--bg-secondary); padding: 12px; border-radius: 8px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-value {
+      font-size: 1.1rem; font-weight: 600; color: var(--text-primary);
+    }
+    
+    .stat-value.good { color: var(--status-up); }
+    .stat-value.bad { color: var(--status-down); }
+
+    /* Unmonitored Action */
+    .unmonitored-action {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      background: rgba(212, 168, 83, 0.1);
+      border: 1px dashed var(--accent);
+      color: var(--accent);
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .unmonitored-action:hover {
+      background: rgba(212, 168, 83, 0.2);
+    }
+
+    /* Separator */
+    .separator { display: flex; align-items: center; gap: 20px; margin: 40px 0 30px; }
+    .separator-line { flex-grow: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-accent), transparent); }
+    .separator-text { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); white-space: nowrap; }
+
+    /* Loading & Empty */
+    .loading-overlay {
+      position: fixed; inset: 0; background: rgba(10, 11, 14, 0.9);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .loading-overlay.active { opacity: 1; pointer-events: all; }
+    .loader {
+      width: 40px; height: 40px; border: 3px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    .empty-state {
+      grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+      color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem; opacity: 0.7;
+    }
+
+    /* Footer */
+    .footer { margin-top: 100px; padding-top: 40px; border-top: 1px solid var(--border); text-align: center; }
+    .footer-text { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); }
+
+    /* Animations */
+    .doc-card { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .container { padding: 40px 20px; }
+      .header { flex-direction: column; align-items: flex-start; }
+      .docs-grid { grid-template-columns: 1fr; }
+      .search-section { flex-direction: column; }
+      .search-wrapper { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loading-overlay" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="header-title">System Scanner</h1>
+          <p class="header-subtitle">Live Status Check</p>
+        </div>
+      </div>
+      <div class="header-count">
+        <span id="resource-count">0</span> urls scanned
+      </div>
+    </header>
+
+    <!-- Notice Banner -->
+    <div class="notice-banner">
+      <svg class="notice-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+      <span class="notice-text">Source: dumps/ping-data.txt — Data via UptimeRobot Main API.</span>
+    </div>
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-wrapper">
+        <input type="text" id="search-input" class="search-input" placeholder="Search by URL or name...">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <button id="sync-btn" class="action-btn primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+        </svg>
+        Sync / Start Monitoring
+      </button>
+    </section>
+
+    <nav class="tabs-container">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="up">Up</button>
+      <button class="tab-btn" data-filter="down">Down</button>
+      <button class="tab-btn" data-filter="unmonitored">Unmonitored</button>
+    </nav>
+
+    <div class="separator">
+      <div class="separator-line"></div>
+      <span class="separator-text">Results</span>
+      <div class="separator-line"></div>
+    </div>
+
+    <main class="docs-grid" id="docs-grid"></main>
+
+    <footer class="footer">
+      <p class="footer-text">Scanner Interface v1.0</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const App = {
+        config: {
+          gridSelector: '#docs-grid',
+          countSelector: '#resource-count',
+          loaderSelector: '#loader',
+          searchSelector: '#search-input',
+          syncBtnSelector: '#sync-btn',
+          tabsSelector: '.tab-btn',
+          // Main API Key Provided
+          apiKey: 'u3355290-10bf84d41e87061bd3156529', 
+          apiUrl: 'https://api.uptimerobot.com/v2/',
+          localDumpUrl: 'dumps/ping-data.txt'
+        },
+        state: {
+          currentFilter: 'all',
+          localUrls: [],
+          apiMonitors: [],
+          mergedData: [],
+          searchTerm: ''
+        },
+
+        // --- Initialization ---
+
+        init: function() {
+          this.bindEvents();
+          this.initialLoad();
+        },
+
+        bindEvents: function() {
+          document.querySelector(this.config.searchSelector).addEventListener('input', this.handleSearch.bind(this));
+          document.querySelector(this.config.tabsSelector).parentElement.addEventListener('click', this.handleTabClick.bind(this));
+          document.querySelector(this.config.syncBtnSelector).addEventListener('click', this.syncMonitors.bind(this));
+        },
+
+        // --- Data Fetching ---
+
+        initialLoad: async function() {
+          this.showLoader(true);
+          try {
+            // 1. Load Local File
+            await this.loadLocalDump();
+            
+            // 2. Load API Data
+            await this.loadApiMonitors();
+
+            // 3. Merge and Render
+            this.mergeData();
+            this.renderGrid();
+          } catch (err) {
+            console.error(err);
+            document.querySelector(this.config.gridSelector).innerHTML = `<div class="empty-state">Error: ${err.message}<br><small>Ensure IP is whitelisted in UptimeRobot or check Console for CORS issues.</small></div>`;
+          } finally {
+            this.showLoader(false);
+          }
+        },
+
+        loadLocalDump: async function() {
+          try {
+            const response = await fetch(this.config.localDumpUrl);
+            if (!response.ok) throw new Error('Local dump file not found at ' + this.config.localDumpUrl);
+            const text = await response.text();
+            
+            // Parse URLs
+            const urls = text.match(/https?:\/\/[^\s]+/gi) || [];
+            
+            // Clean and Unique
+            this.state.localUrls = [...new Set(urls.map(u => u.trim()))];
+            console.log(`Loaded ${this.state.localUrls.length} URLs from local file.`);
+          } catch (e) {
+            console.error("Error loading local dump", e);
+            throw e;
+          }
+        },
+
+        loadApiMonitors: async function() {
+          try {
+            const response = await fetch(this.config.apiUrl + 'getMonitors', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Cache-Control': 'no-cache' },
+              body: `api_key=${this.config.apiKey}&format=json&logs=1&response_times=1&custom_uptime_ratios=1-7-30`
+            });
+            const data = await response.json();
+            if (data.stat === 'fail') throw new Error(data.error.message);
+            
+            this.state.apiMonitors = data.monitors;
+            console.log(`Loaded ${this.state.apiMonitors.length} monitors from API.`);
+          } catch (e) {
+            console.warn("UptimeRobot API Error:", e.message);
+            // Continue to show unmonitored list even if API fails
+          }
+        },
+
+        // --- Logic ---
+
+        mergeData: function() {
+          const apiMap = new Map();
+          
+          // Populate API Map with normalized URLs
+          this.state.apiMonitors.forEach(m => {
+            const normUrl = m.url.endsWith('/') ? m.url.slice(0, -1) : m.url;
+            apiMap.set(normUrl, m);
+          });
+
+          this.state.mergedData = this.state.localUrls.map(url => {
+            let normUrl = url.endsWith('/') ? url.slice(0, -1) : url;
+            
+            let monitorData = apiMap.get(normUrl);
+            
+            // Try matching http vs https if not found
+            if (!monitorData) {
+                const altUrl = normUrl.startsWith('https://') 
+                  ? normUrl.replace('https://', 'http://') 
+                  : normUrl.replace('http://', 'https://');
+                monitorData = apiMap.get(altUrl);
+            }
+
+            if (monitorData) {
+              return {
+                id: monitorData.id,
+                url: url,
+                name: monitorData.friendly_name,
+                status: this.mapStatus(monitorData.status),
+                code: monitorData.status,
+                response: monitorData.response_times && monitorData.response_times.length > 0 ? monitorData.response_times[0].value : null,
+                uptime: monitorData.custom_uptime_ratio ? monitorData.custom_uptime_ratio.split(',')[0] : '--',
+                type: monitorData.type,
+                isMonitored: true
+              };
+            } else {
+              return {
+                id: null,
+                url: url,
+                name: this.extractDomain(url),
+                status: 'unmonitored',
+                code: 0,
+                response: null,
+                uptime: '--',
+                type: 1,
+                isMonitored: false
+              };
+            }
+          });
+        },
+
+        extractDomain: function(url) {
+            try {
+                const u = new URL(url);
+                return u.hostname;
+            } catch(e) {
+                return url;
+            }
+        },
+
+        mapStatus: function(code) {
+          if (code === 2) return 'up';
+          if (code === 9 || code === 8) return 'down';
+          if (code === 0 || code === 1) return 'paused';
+          return 'unknown';
+        },
+
+        // --- Actions ---
+
+        syncMonitors: async function() {
+          const unmonitored = this.state.mergedData.filter(d => !d.isMonitored);
+          if (unmonitored.length === 0) {
+            alert("All URLs are already monitored!");
+            return;
+          }
+
+          if (!confirm(`This will add ${unmonitored.length} monitors to your UptimeRobot account. Proceed?`)) return;
+
+          this.showLoader(true);
+          let addedCount = 0;
+          let errorCount = 0;
+
+          for (const item of unmonitored) {
+            try {
+              const response = await fetch(this.config.apiUrl + 'newMonitor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `api_key=${this.config.apiKey}&format=json&friendly_name=${encodeURIComponent(item.name)}&url=${encodeURIComponent(item.url)}&type=1`
+              });
+              const res = await response.json();
+              if(res.stat === 'ok') addedCount++;
+              else errorCount++;
+              
+              await new Promise(r => setTimeout(r, 300)); 
+            } catch (e) {
+              errorCount++;
+              console.error(`Failed to add ${item.url}`, e);
+            }
+          }
+
+          this.showLoader(false);
+          alert(`Sync Complete. Added: ${addedCount}, Failed: ${errorCount}`);
+          
+          this.initialLoad();
+        },
+
+        // --- Rendering ---
+
+        createCard: function(item, index) {
+          let statusClass = `status-${item.status}`;
+          let badgeClass = `badge-${item.status}`;
+          let badgeText = item.status.toUpperCase();
+          if(item.status === 'unmonitored') badgeText = 'NOT MONITORED';
+
+          const respTime = item.response ? `${item.response}ms` : 'N/A';
+          const uptime = item.uptime ? `${item.uptime}%` : '--';
+          
+          let statsHtml = '';
+          if (item.isMonitored) {
+            statsHtml = `
+              <div class="stat-box">
+                <span class="stat-label">Response</span>
+                <span class="stat-value">${respTime}</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Uptime (24h)</span>
+                <span class="stat-value ${parseFloat(item.uptime) < 90 ? 'bad' : 'good'}">${uptime}</span>
+              </div>
+            `;
+          } else {
+            statsHtml = `
+              <div class="stat-box" style="grid-column: 1 / -1;">
+                <span class="stat-label">Status</span>
+                <span class="stat-value" style="font-size:0.9rem; color:var(--text-secondary)">Awaiting scan integration...</span>
+              </div>
+              <button class="unmonitored-action" onclick="App.quickAdd('${item.url}', '${item.name}')">+ Start Monitoring</button>
+            `;
+          }
+
+          return `
+            <div class="doc-card ${statusClass}" style="animation-delay: ${index * 0.03}s">
+              <div class="card-header">
+                <div style="overflow:hidden">
+                  <div class="card-title">${item.name}</div>
+                  <div class="card-url">${item.url}</div>
+                </div>
+                <div class="status-badge ${badgeClass}">${badgeText}</div>
+              </div>
+              <div class="stats-grid">
+                ${statsHtml}
+              </div>
+            </div>
+          `;
+        },
+
+        quickAdd: async function(url, name) {
+            try {
+                const response = await fetch(this.config.apiUrl + 'newMonitor', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `api_key=${this.config.apiKey}&format=json&friendly_name=${encodeURIComponent(name)}&url=${encodeURIComponent(url)}&type=1`
+                });
+                const res = await response.json();
+                if(res.stat === 'ok') {
+                    alert(`${name} added successfully! Refreshing...`);
+                    this.initialLoad();
+                } else {
+                    alert(`Error: ${res.error.message}`);
+                }
+            } catch(e) {
+                alert("Network error adding monitor.");
+            }
+        },
+
+        renderGrid: function() {
+          const grid = document.querySelector(this.config.gridSelector);
+          const term = this.state.searchTerm.toLowerCase();
+          const filter = this.state.currentFilter;
+
+          let filtered = this.state.mergedData;
+
+          // 1. Filter by Tab
+          if (filter !== 'all') {
+            if (filter === 'unmonitored') {
+              filtered = filtered.filter(d => !d.isMonitored);
+            } else {
+              filtered = filtered.filter(d => d.status === filter);
+            }
+          }
+
+          // 2. Filter by Search
+          if (term) {
+            filtered = filtered.filter(d => 
+              d.url.toLowerCase().includes(term) ||
+              d.name.toLowerCase().includes(term)
+            );
+          }
+
+          // Update Counter
+          document.querySelector(this.config.countSelector).textContent = filtered.length;
+
+          if (filtered.length === 0) {
+            grid.innerHTML = '<p class="empty-state">No results found.</p>';
+          } else {
+            grid.innerHTML = filtered.map((item, i) => this.createCard(item, i)).join('');
+          }
+        },
+
+        // --- Handlers ---
+
+        handleSearch: function(e) {
+          this.state.searchTerm = e.target.value;
+          this.renderGrid();
+        },
+
+        handleTabClick: function(e) {
+          if (!e.target.classList.contains('tab-btn')) return;
+          document.querySelectorAll(this.config.tabsSelector).forEach(btn => btn.classList.remove('active'));
+          e.target.classList.add('active');
+          this.state.currentFilter = e.target.dataset.filter;
+          this.renderGrid();
+        },
+
+        showLoader: function(show) {
+          const loader = document.querySelector(this.config.loaderSelector);
+          if(loader) loader.classList.toggle('active', show);
+        }
+      };
+
+      window.App = App; // Expose for inline onclick
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', App.init.bind(App));
+      } else {
+        App.init();
+      }
+    })();
+  </script>
+
+</body>
+</html>

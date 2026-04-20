@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bookmarks - Curated Intelligence Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A curated directory of high-quality resources, designed to counter AI-biased search results and promote digital privacy.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#f0f7ff',
+          100: '#e0effe',
+          200: '#bae0fd',
+          300: '#7cc4fb',
+          400: '#36a5f6',
+          500: '#0c84f3',
+          600: '#0066d9',
+          700: '#0152b2',
+          800: '#05468c',
+          900: '#0a3c72',
+        },
+        surface: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        }
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  :root {
+    --brand: #0c84f3;
+    --brand-dark: #0066d9;
+    --surface-bg: #f8fafc;
+    --surface-card: #ffffff;
+    --surface-muted: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-light: #e2e8f0;
+    --border-subtle: #f1f5f9;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-mesh {
+    background-image: 
+      radial-gradient(at 40% 20%, rgba(12, 132, 243, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(12, 132, 243, 0.05) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(0, 102, 217, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(12, 132, 243, 0.03) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(0, 102, 217, 0.06) 0px, transparent 50%);
+  }
+
+  .card-flat {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-flat:hover {
+    border-color: rgba(12, 132, 243, 0.3);
+    box-shadow: 0 4px 24px rgba(12, 132, 243, 0.08);
+  }
+
+  .gradient-brand {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--brand) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(12, 132, 243, 0.25);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(12, 132, 243, 0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .highlight {
+    color: var(--brand);
+    font-weight: 500;
+  }
+
+  .contact-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand);
+    transition: width 0.3s ease;
+  }
+
+  .contact-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 4px 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--brand);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .stat-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    border-color: var(--brand);
+    box-shadow: 0 4px 20px rgba(12, 132, 243, 0.1);
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .logo-mark {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .logo-mark:hover {
+    transform: rotate(-5deg) scale(1.05);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(12, 132, 243, 0.08);
+    border: 1px solid rgba(12, 132, 243, 0.15);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--brand);
+  }
+
+  .icon-box {
+    width: 48px;
+    height: 48px;
+    background: var(--surface-muted);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .stat-number {
+      font-size: 1.5rem;
+    }
+    
+    .btn-primary {
+      padding: 14px 32px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+  }
+
+  [x-cloak] { display: none !important; }
+</style>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+
+<body x-data="{ loaded: false, mobileMenu: false }" x-init="loaded = true" class="bg-mesh">
+
+<div class="fixed inset-0 pointer-events-none z-0" id="canvas-container">
+  <canvas id="bg-canvas"></canvas>
+</div>
+
+<div class="relative z-10 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="w-full py-4 sm:py-6 px-4 sm:px-6 lg:px-8" x-show="loaded" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+    <div class="max-w-6xl mx-auto">
+      <nav class="flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group" id="main-logo">
+          <div class="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h1 class="font-display text-xl sm:text-2xl font-bold text-surface-900 tracking-tight">Bookmarks</h1>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="about.html" class="nav-link">About</a>
+          <a href="hub.html" class="nav-link">Hub</a>
+          <a href="hub.html" class="btn-primary text-sm py-2.5 px-5">
+            Explore
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button 
+          @click="mobileMenu = !mobileMenu" 
+          class="md:hidden p-2 rounded-lg bg-white border border-surface-200"
+          aria-label="Toggle menu"
+        >
+          <svg x-show="!mobileMenu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg x-show="mobileMenu" x-cloak width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div 
+        x-show="mobileMenu" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 -translate-y-3"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-3"
+        x-cloak
+        class="md:hidden mt-4 bg-white rounded-xl border border-surface-200 p-5 shadow-lg"
+      >
+        <div class="flex flex-col gap-4">
+          <a href="about.html" class="text-surface-600 hover:text-surface-900 font-medium transition-colors">About</a>
+          <a href="hub.html" class="text-surface-600 hover:text-surface-900 font-medium transition-colors">Hub</a>
+          <div class="divider my-2"></div>
+          <a href="hub.html" class="btn-primary text-center">
+            Explore Hub
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div class="max-w-4xl w-full">
+      
+      <!-- Hero Section -->
+      <div class="text-center mb-10 sm:mb-14" id="hero-section">
+        <div class="mb-5 reveal" id="hero-badge">
+          <span class="badge">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Curated Intelligence Hub
+          </span>
+        </div>
+        
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-surface-900 leading-tight mb-5 reveal" id="hero-title">
+          Navigate the Digital<br class="hidden sm:block">
+          <span class="text-gradient">Landscape with Confidence</span>
+        </h2>
+        
+        <p class="text-surface-500 text-base sm:text-lg max-w-2xl mx-auto reveal" id="hero-subtitle">
+          A meticulously curated directory of high-quality resources, designed to counter AI-biased search results.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid gap-4 sm:gap-5 mb-8 sm:mb-10">
+        
+        <!-- Card 1 -->
+        <div class="card-flat p-5 sm:p-6 reveal" id="card-1">
+          <div class="flex gap-4">
+            <div class="icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0c84f3" stroke-width="2" stroke-linecap="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div>
+              <p class="text-surface-600 leading-relaxed text-sm sm:text-base">
+                In an era where search engines are increasingly influenced by artificial intelligence—often prioritizing commercial interests over relevance—<span class="highlight">Bookmarks</span> emerges as a solution. This platform curates high-quality resources across diverse categories, offering a reliable alternative to AI-biased search results.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-flat p-5 sm:p-6 reveal" id="card-2">
+          <div class="flex gap-4">
+            <div class="icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0c84f3" stroke-width="2" stroke-linecap="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="text-surface-600 leading-relaxed text-sm sm:text-base">
+                As a personal initiative, <span class="highlight">Bookmarks</span> helps individuals navigate the digital landscape with confidence. We prioritize <strong class="text-surface-800">privacy</strong>, <strong class="text-surface-800">security</strong>, and <strong class="text-surface-800">anonymity</strong>, ensuring every listed resource adheres to ethical standards.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 - Contact -->
+        <div class="card-flat p-5 sm:p-6 reveal" id="card-3">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0c84f3" stroke-width="2" stroke-linecap="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <span class="text-surface-500 text-sm sm:text-base">For inquiries or suggestions:</span>
+            </div>
+            <a href="mailto:idritteris@proton.me" class="contact-link text-base sm:text-lg font-display">idritteris@proton.me</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-10 sm:mb-12 reveal" id="stats-row">
+        <div class="stat-card">
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">Resources</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="50">0</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-label">Verified</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="flex flex-col items-center gap-6 reveal" id="cta-section">
+        <button 
+          class="btn-primary" 
+          onclick="window.location.href='hub.html'"
+          aria-label="Visit the Bookmarks Hub"
+        >
+          <span>Visit Hub</span>
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-6 sm:py-8 px-4 sm:px-6 lg:px-8 reveal" id="footer">
+    <div class="max-w-4xl mx-auto">
+      <div class="card-flat p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <a href="about.html" class="text-brand-500 hover:text-brand-600 font-medium text-sm transition-colors flex items-center gap-2">
+            More About Us
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          
+          <div class="text-center sm:text-right">
+            <p class="text-surface-400 text-xs">2026 Bookmarks - Curated Intelligence Hub</p>
+            <p class="text-surface-300 text-xs mt-1">Designed by <span class="text-brand-400">@morneface</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Three.js Background -->
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('bg-canvas');
+const container = document.getElementById('canvas-container');
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({ 
+  canvas: canvas, 
+  alpha: true, 
+  antialias: true 
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// Soft floating particles
+const particleCount = 120;
+const positions = new Float32Array(particleCount * 3);
+const sizes = new Float32Array(particleCount);
+
+for (let i = 0; i < particleCount; i++) {
+  const i3 = i * 3;
+  positions[i3] = (Math.random() - 0.5) * 100;
+  positions[i3 + 1] = (Math.random() - 0.5) * 100;
+  positions[i3 + 2] = (Math.random() - 0.5) * 50 - 20;
+  sizes[i] = Math.random() * 3 + 1;
+}
+
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+
+const material = new THREE.ShaderMaterial({
+  uniforms: {
+    uTime: { value: 0 },
+    uColor: { value: new THREE.Color('#0c84f3') },
+    uPixelRatio: { value: renderer.getPixelRatio() }
+  },
+  vertexShader: `
+    attribute float aSize;
+    varying float vAlpha;
+    uniform float uTime;
+    uniform float uPixelRatio;
+    
+    void main() {
+      vec3 pos = position;
+      pos.x += sin(uTime * 0.3 + position.y * 0.05) * 3.0;
+      pos.y += cos(uTime * 0.2 + position.x * 0.05) * 3.0;
+      
+      vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+      gl_PointSize = aSize * uPixelRatio * (200.0 / -mvPosition.z);
+      gl_Position = projectionMatrix * mvPosition;
+      
+      vAlpha = 0.15 + sin(uTime + position.x * 0.5) * 0.1;
+    }
+  `,
+  fragmentShader: `
+    uniform vec3 uColor;
+    varying float vAlpha;
+    
+    void main() {
+      float dist = length(gl_PointCoord - vec2(0.5));
+      if (dist > 0.5) discard;
+      
+      float alpha = (1.0 - smoothstep(0.0, 0.5, dist)) * vAlpha;
+      gl_FragColor = vec4(uColor, alpha);
+    }
+  `,
+  transparent: true,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+// Subtle geometric accent
+const ringGeometry = new THREE.TorusGeometry(25, 0.2, 16, 100);
+const ringMaterial = new THREE.MeshBasicMaterial({ 
+  color: '#0c84f3', 
+  transparent: true, 
+  opacity: 0.04 
+});
+const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+ring.position.z = -30;
+ring.rotation.x = Math.PI * 0.4;
+scene.add(ring);
+
+const ring2 = new THREE.Mesh(
+  new THREE.TorusGeometry(35, 0.15, 16, 100),
+  new THREE.MeshBasicMaterial({ color: '#0066d9', transparent: true, opacity: 0.03 })
+);
+ring2.position.z = -35;
+ring2.rotation.x = Math.PI * 0.3;
+ring2.rotation.y = Math.PI * 0.2;
+scene.add(ring2);
+
+camera.position.z = 40;
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  
+  const time = performance.now() * 0.001;
+  material.uniforms.uTime.value = time;
+  
+  camera.position.x += (mouseX * 3 - camera.position.x) * 0.02;
+  camera.position.y += (mouseY * 3 - camera.position.y) * 0.02;
+  camera.lookAt(scene.position);
+  
+  particles.rotation.y = time * 0.02;
+  
+  ring.rotation.z = time * 0.05;
+  ring2.rotation.z = -time * 0.03;
+  
+  renderer.render(scene, camera);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  material.uniforms.uPixelRatio.value = renderer.getPixelRatio();
+});
+</script>
+
+<!-- GSAP Animations -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReducedMotion) {
+    gsap.set('.reveal', { opacity: 0, y: 24 });
+    gsap.set('#main-logo', { opacity: 0, x: -20 });
+    gsap.set('.stat-number', { scale: 0.8 });
+    
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    
+    tl.to('#main-logo', {
+      opacity: 1,
+      x: 0,
+      duration: 0.6,
+      delay: 0.2
+    })
+    .to('#hero-badge', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.3')
+    .to('#hero-title', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6
+    }, '-=0.2')
+    .to('#hero-subtitle', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.3')
+    .to('#card-1', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.2')
+    .to('#card-2', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.3')
+    .to('#card-3', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.3')
+    .to('#stats-row', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.2')
+    .to('#cta-section', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.2')
+    .to('#footer', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5
+    }, '-=0.2');
+    
+    document.querySelectorAll('.stat-number').forEach((el) => {
+      const target = parseInt(el.dataset.target);
+      gsap.to(el, {
+        textContent: target,
+        duration: 1.8,
+        ease: 'power1.out',
+        snap: { textContent: 1 },
+        delay: 1.2,
+        onStart: () => {
+          gsap.to(el, { scale: 1, duration: 0.4, ease: 'back.out(1.7)' });
+        }
+      });
+    });
+  } else {
+    gsap.set('.reveal', { opacity: 1, y: 0 });
+    gsap.set('#main-logo', { opacity: 1, x: 0 });
+    document.querySelectorAll('.stat-number').forEach((el) => {
+      el.textContent = el.dataset.target;
+    });
+  }
+  
+  const visitBtn = document.querySelector('.btn-primary');
+  if (visitBtn && !prefersReducedMotion) {
+    visitBtn.addEventListener('mouseenter', () => {
+      gsap.to(visitBtn, { scale: 1.02, duration: 0.2 });
+    });
+    visitBtn.addEventListener('mouseleave', () => {
+      gsap.to(visitBtn, { scale: 1, duration: 0.3, ease: 'elastic.out(1, 0.5)' });
+    });
+  }
+});
+</script>
+
+</body>
+</html>

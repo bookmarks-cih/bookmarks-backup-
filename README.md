@@ -1,18 +1,17 @@
-# 🌐 bookmarks.love
-
 <p align="center">
-  <img src="https://bookmarks.love/preview.png" alt="bookmarks.love preview" width="100%" />
+  <img src="assets/preview.png" alt="bookmarks.love preview" width="45%" />
 </p>
 
-<p align="center">
-  <a href="https://bookmarks.love">
-    <img src="https://img.shields.io/badge/Live-Website-0c84f3?style=for-the-badge&logo=google-chrome&logoColor=white" />
-  </a>
-  <img src="https://img.shields.io/github/stars/bookmarks-cih/bookmarks.github.io?style=for-the-badge" />
-  <img src="https://img.shields.io/github/last-commit/bookmarks-cih/bookmarks.github.io?style=for-the-badge" />
-  <img src="https://img.shields.io/github/license/bookmarks-cih/bookmarks.github.io?style=for-the-badge" />
+<br>
+<center>
+<p>
+  <img src="https://img.shields.io/badge/Curated-By%20Humans-0c84f3?style=for-the-badge&logo=bookstack&logoColor=white" />
+  <img src="https://img.shields.io/badge/Privacy-First-0c84f3?style=for-the-badge&logo=protonmail&logoColor=white" />
+  <img src="https://img.shields.io/badge/bookmarks.love-curated%20internet-0c84f3?style=flat-square" />
+  <br>
+  <img src="https://img.shields.io/badge/Open-Source-111111?style=for-the-badge&logo=github&logoColor=white" />
 </p>
-
+</center>
 ---
 
 ## ✨ About
@@ -55,7 +54,7 @@ Each link is manually reviewed.
 
 ## 🚀 Stack
 
-- Static site (GitHub Pages)
+- Static site (Neocities)
 - HTML / CSS / JavaScript
 - Fast, minimal, no bloat
 
@@ -64,7 +63,7 @@ Each link is manually reviewed.
 ## 📸 Preview
 
 <p align="center">
-  <img src="https://bookmarks.love/preview.png" width="90%" />
+  <img src="https://i.pinimg.com/736x/ce/52/5a/ce525a8983ab0ec1be6daefc945026bc.jpg" width="70%" />
 </p>
 
 ---
@@ -84,7 +83,7 @@ Quality > quantity.
 
 If you like the project:
 
-👉 https://ko-fi.com/bookmarks
+👉  [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N81VG1DL)
 
 ---
 
@@ -94,5 +93,6 @@ If you like the project:
 
 ---
 
-Créé avec ❤️ par @morneface  
+Créé avec ❤️ par @Marvyn  
 Projet Open Source - Tous droits réservés à l'auteur
+

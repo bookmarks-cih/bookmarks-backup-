@@ -21,17 +21,18 @@
       --text-dim: rgba(247,251,255,0.45);
       --border: rgba(255,255,255,0.08);
       --glass-border: rgba(255,255,255,0.12);
+      --accent-red: #ff4757;
+      --accent-green: #2ed573;
+      --accent-purple: #a855f7;
+      --accent-orange: #ff9f43;
+      --accent-cyan: #00d4aa;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* 
-       DESKTOP ZOOM: Base font 125% for desktop 
-       MOBILE: Standard 100% (defined in media query or default)
-    */
     html { 
       scroll-behavior: smooth; 
-      font-size: 125%; /* Zoom 25% applied here for desktop/global context */
+      font-size: 125%;
     }
 
     body {
@@ -47,14 +48,9 @@
       padding: 20px;
     }
 
-    /* Reset font size for mobile to ensure 'normal' display */
     @media (max-width: 768px) {
-      html {
-        font-size: 100%; /* Standard mobile size */
-      }
-      body {
-        padding: 16px;
-      }
+      html { font-size: 100%; }
+      body { padding: 16px; }
     }
 
     /* ===== ANIMATED BACKGROUND ===== */
@@ -89,12 +85,11 @@
     .noise { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
 
     /* ===== MAIN CARD CONTAINER ===== */
-    /* Using rem units so it scales with the 125% font-size on desktop */
     .main-card {
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 42.5rem; /* ~680px at 100% zoom, scales up with font-size */
+      max-width: 42.5rem;
       padding: 2.5rem 1.875rem;
       background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
       border: 1px solid var(--glass-border);
@@ -141,10 +136,7 @@
       transform: translateY(-2px);
     }
 
-    .nav-btn svg {
-      width: 0.875rem;
-      height: 0.875rem;
-    }
+    .nav-btn svg { width: 0.875rem; height: 0.875rem; }
 
     /* ===== LOVE PATTERN WATERMARK ===== */
     .love-pattern {
@@ -158,7 +150,7 @@
     .love-text {
       position: absolute;
       font-family: "Space Grotesk", sans-serif;
-      font-size: 5.85rem; /* Reduced by 35% from 9rem */
+      font-size: 5.85rem;
       font-weight: 700;
       line-height: 1;
       color: var(--text);
@@ -379,9 +371,7 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
 
-    .link-item:hover::before {
-      opacity: 1;
-    }
+    .link-item:hover::before { opacity: 1; }
 
     .link-img {
       width: 44px;
@@ -432,13 +422,46 @@
     .link-tag {
       padding: 3px 8px;
       border-radius: 6px;
-      background: rgba(12,132,243,0.15);
       font-size: 0.65rem;
       font-weight: 600;
-      color: var(--brand-light);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       flex-shrink: 0;
+    }
+
+    .link-tag.tag-default {
+      background: rgba(12,132,243,0.15);
+      color: var(--brand-light);
+    }
+
+    .link-tag.tag-web {
+      background: rgba(168,85,247,0.15);
+      color: var(--accent-purple);
+    }
+
+    .link-tag.tag-network {
+      background: rgba(0,212,170,0.15);
+      color: var(--accent-cyan);
+    }
+
+    .link-tag.tag-framework {
+      background: rgba(255,159,67,0.15);
+      color: var(--accent-orange);
+    }
+
+    .link-tag.tag-platform {
+      background: rgba(46,213,115,0.15);
+      color: var(--accent-green);
+    }
+
+    .link-tag.tag-course {
+      background: rgba(255,71,87,0.15);
+      color: var(--accent-red);
+    }
+
+    .link-tag.tag-guide {
+      background: rgba(12,132,243,0.15);
+      color: var(--brand-light);
     }
 
     .link-arrow {
@@ -475,6 +498,162 @@
       border-color: rgba(255,255,255,0.15);
     }
 
+    /* ===== VIDEO SECTION ===== */
+    .video-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .video-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .video-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .video-title::before {
+      content: "";
+      display: inline-block;
+      width: 3px;
+      height: 16px;
+      background: var(--accent-red);
+      border-radius: 2px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .video-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-left: auto;
+    }
+
+    .video-subtitle a {
+      color: var(--brand-light);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .video-subtitle a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(12,132,243,0.05), rgba(0,0,0,0.4));
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .video-placeholder:hover {
+      background: linear-gradient(135deg, rgba(12,132,243,0.1), rgba(0,0,0,0.5));
+    }
+
+    .video-placeholder:hover .play-btn {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255,0,0,0.4);
+    }
+
+    .play-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(255,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+      margin-left: 4px;
+    }
+
+    .video-placeholder-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    .card-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .footer-text a {
+      color: var(--brand-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -490,6 +669,10 @@
       .link-item { padding: 0.625rem; }
       .link-img { width: 38px; height: 38px; }
       .love-text { font-size: 4rem; }
+      .video-title { font-size: 0.9rem; }
+      .video-subtitle { display: none; }
+      .play-btn { width: 56px; height: 56px; }
+      .play-btn svg { width: 24px; height: 24px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -556,42 +739,108 @@
     <!-- Content Area -->
     <div class="content-area" id="contentArea"></div>
 
+    <!-- Video Section -->
+    <div class="video-section">
+      <div class="video-header">
+        <span class="video-title">Featured Content</span>
+        <span class="video-subtitle">More from <a href="https://www.youtube.com/@Cyb3rMaddy" target="_blank">@cyb3rmaddy</a></span>
+      </div>
+      <div class="video-container">
+        <div class="video-wrapper" id="videoWrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/3OV6D1BMHow" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+          
+          <!-- Placeholder until video is added -->
+          <div class="video-placeholder" onclick="this.style.display='none'">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-placeholder-text">Click to play featured video</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <p class="footer-text">Curated with care by <a href="https://bookmarks.love" target="_blank">bookmarks.love</a></p>
+    </div>
+
   </div>
 
   <script>
     /* ============================================================
-       DATA
+       DATA - All items now have tags with color-coded categories
     ============================================================ */
     const collectionData = [
+      
+      
+      {
+    title: "About",
+    items: [
+      
+      {
+        name: "HiveMind Security",
+        desc: "Founder of HiveMind Security",
+        img: "/creators/img/hiveminds.png",
+        url: "https://www.hivemindsecurity.org/",
+        tag: "About",
+        tagClass: "tag-about"
+      },
+      
+      {
+        name: "Hivemind Media",
+        desc: "Co‑Founder – HiveMind Media",
+        img: "/creators/img/hivemindmedia.png",
+        url: "https://www.hivemindsmedia.io/",
+        tag: "About",
+        tagClass: "tag-about"
+      },
+      
+      {
+        name: "LinkTree",
+        desc: "Join Cyb3rMaddy on Linktree today",
+        img: "/creators/img/linktree.png",
+        url: "https://linktr.ee/Cyb3rMaddy",
+        tag: "About",
+        tagClass: "tag-about"
+      },
+      
+      ]
+      },
+      
+      
+      
+      
       {
         title: "Getting Started",
         items: [
-          { name: "Intro to Security", desc: "Foundational concepts for beginners.", img: "/creators/img/introduction-to-cybersecurity.jpg", url: "#", tag: "Course" },
-          { name: "Linux Basics", desc: "Command line essentials for hackers.", img: "/creators/img/Linux-Basic-course-image.jpg", url: "#", tag: "Guide" },
-          { name: "Networking 101", desc: "TCP/IP and OSI model explained.", img: "/creators/img/networking101.png", url: "#" },
-          { name: "Web Architecture", desc: "How the internet works under the hood.", img: "/creators/img/Web_App_Architecture.jpg", url: "#" },
-          { name: "Security Principles", desc: "CIA triad and threat modeling basics.", img: "/creators/img/securityprinciples.jpg", url: "#" },
+          { name: "Intro to Security", desc: "Foundational concepts for beginners.", img: "/creators/img/introduction-to-cybersecurity.jpg", url: "https://bookmarks.love/creators/bookmarks-pages/introductiontosec", tag: "Course", tagClass: "tag-course" },
+          { name: "Linux Basics", desc: "Command line essentials for hackers.", img: "/creators/img/Linux-Basic-course-image.jpg", url: "/creators/bookmarks-pages/linuxbasics.html", tag: "Guide", tagClass: "tag-guide" },
+          { name: "Networking 101", desc: "TCP/IP and OSI model explained.", img: "/creators/img/networking101.png", url: "https://bookmarks.love/creators/bookmarks-pages/network101", tag: "Course", tagClass: "tag-course" },
+          { name: "Web Architecture", desc: "How the internet works under the hood.", img: "/creators/img/Web_App_Architecture.jpg", url: "https://bookmarks.love/creators/bookmarks-pages/webarchitecture", tag: "Guide", tagClass: "tag-guide" },
+          { name: "Security Principles", desc: "CIA triad and threat modeling basics.", img: "/creators/img/securityprinciples.jpg", url: "https://bookmarks.love/creators/bookmarks-pages/securityprinciples", tag: "Course", tagClass: "tag-course" },
         ]
       },
       {
         title: "Essential Tools",
         items: [
-          { name: "Burp Suite", desc: "Industry standard web testing.", img: "/links/BurpSuite.png", url: "https://bookmarks.love/links/burpsuite", tag: "Web" },
-          { name: "Nmap", desc: "Network discovery and scanning.", img: "", url: "#", tag: "Network" },
-          { name: "Metasploit", desc: "Penetration testing framework.", img: "", url: "#", tag: "Framework" },
-          { name: "Wireshark", desc: "Network protocol analyzer.", img: "", url: "#" },
-          { name: "VS Code", desc: "Code editor for scripting.", img: "", url: "#" },
-          { name: "Nuclei", desc: "Fast vulnerability scanner.", img: "", url: "#" },
+          { name: "Burp Suite", desc: "Industry standard web testing.", img: "/links/BurpSuite.png", url: "https://bookmarks.love/links/burpsuite", tag: "Web", tagClass: "tag-web" },
+          { name: "Nmap", desc: "Network discovery and scanning.", img: "/links/nmap.png", url: "https://bookmarks.love/links/nmap", tag: "Network", tagClass: "tag-network" },
+          { name: "Metasploit", desc: "Penetration testing framework.", img: "/links/metasploit.jpg", url: "https://bookmarks.love/links/metasploit", tag: "Framework", tagClass: "tag-framework" },
+          { name: "Wireshark", desc: "Network protocol analyzer.", img: "/links/wireshark.png", url: "https://bookmarks.love/links/wireshark", tag: "Network", tagClass: "tag-network" },
+          { name: "VS Code", desc: "Code editor for scripting.", img: "/links/vscode.png", url: "https://bookmarks.love/links/vscode", tag: "Tool", tagClass: "tag-default" },
+          { name: "Nuclei", desc: "Fast vulnerability scanner.", img: "/links/nuclei.png", url: "https://bookmarks.love/links/nuclei", tag: "Web", tagClass: "tag-web" },
         ]
       },
       {
         title: "Practice Labs",
         items: [
-          { name: "TryHackMe", desc: "Gamified learning platform.", img: "/creators/img/tryhackme.png", url: "#", tag: "Platform" },
-          { name: "Hack The Box", desc: "Real world challenges.", img: "/creators/img/Hack-The-Box-logo.png", url: "#", tag: "Platform" },
-          { name: "PortSwigger", desc: "Web security academy.", img: "/creators/img/portswigger.png", url: "#" },
-          { name: "PentesterLab", desc: "Hands-on exercises.", img: "/creators/img/pentesterlab.png", url: "#" },
-          { name: "OverTheWire", desc: "Wargames for Linux skills.", img: "/creators/img/noimagee.jpg", url: "#" },
+          { name: "TryHackMe", desc: "Gamified learning platform.", img: "/creators/img/tryhackme.png", url: "https://bookmarks.love/creators/bookmarks-pages/tryhackme", tag: "Platform", tagClass: "tag-platform" },
+          { name: "Hack The Box", desc: "Real world challenges.", img: "/creators/img/Hack-The-Box-logo.png", url: "https://bookmarks.love/creators/bookmarks-pages/hackthebox", tag: "Platform", tagClass: "tag-platform" },
+          { name: "PortSwigger", desc: "Web security academy.", img: "/creators/img/portswigger.png", url: "https://bookmarks.love/creators/bookmarks-pages/portswigger", tag: "Web", tagClass: "tag-web" },
+          { name: "PentesterLab", desc: "Hands-on exercises.", img: "/creators/img/pentesterlab.png", url: "https://bookmarks.love/creators/bookmarks-pages/pentesterlab", tag: "Platform", tagClass: "tag-platform" },
+          { name: "OverTheWire", desc: "Wargames for Linux skills.", img: "/creators/img/overthewire0pp.png", url: "https://bookmarks.love/creators/bookmarks-pages/overthewire", tag: "Platform", tagClass: "tag-platform" },
         ]
       }
     ];
@@ -599,7 +848,6 @@
     // --- 1. GENERATE LOVE PATTERN ---
     function generateLovePattern() {
       const container = document.getElementById('lovePattern');
-      // Clear existing
       container.innerHTML = '';
       
       const positions = [
@@ -634,7 +882,6 @@
     const contentArea = document.getElementById('contentArea');
 
     function generateUI() {
-      // Clear existing
       contentArea.innerHTML = '';
 
       collectionData.forEach(section => {
@@ -681,7 +928,9 @@
              <path d="M21 15l-5-5L5 21"/>
            </svg>`;
 
-      const tagHtml = item.tag ? `<span class="link-tag">${item.tag}</span>` : '';
+      // Now all items have tags, so always show them
+      const tagClass = item.tagClass || 'tag-default';
+      const tagHtml = item.tag ? `<span class="link-tag ${tagClass}">${item.tag}</span>` : '';
 
       return `
         <div class="link-img">${imgContent}</div>

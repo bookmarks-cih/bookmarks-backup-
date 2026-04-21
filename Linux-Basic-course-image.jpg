@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Collection — Natalie Brunell</title>
+  <title>Collection — Dr. Chengdiao Fan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +11,9 @@
 
   <style>
     :root {
-      --brand: #f7931a;
-      --brand-dark: #c67a15;
-      --brand-light: #ffb347;
+      --brand: #8b5cf6;
+      --brand-dark: #7c3aed;
+      --brand-light: #c4b5fd;
       --bg: #050a12;
       --surface: rgba(255,255,255,0.04);
       --text: #f7fbff;
@@ -63,7 +63,7 @@
     /* ===== ANIMATED BACKGROUND ===== */
     .bg-container {
       position: fixed; inset: 0; z-index: 0; overflow: hidden;
-      background: radial-gradient(circle at 50% 0%, #1a1408 0%, #050a12 60%);
+      background: radial-gradient(circle at 50% 0%, #140a22 0%, #050a12 60%);
     }
 
     .glow-orb {
@@ -74,13 +74,13 @@
 
     .glow-orb-1 {
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(247,147,26,0.25), transparent 70%);
+      background: radial-gradient(circle, rgba(139,92,246,0.25), transparent 70%);
       top: -200px; left: 20%;
     }
 
     .glow-orb-2 {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(255,179,71,0.15), transparent 70%);
+      background: radial-gradient(circle, rgba(168,85,247,0.15), transparent 70%);
       bottom: -100px; right: 10%; animation-delay: -5s;
     }
 
@@ -191,13 +191,13 @@
       border-radius: 50%;
       padding: 3px;
       background: linear-gradient(135deg, var(--brand-light), var(--brand-dark));
-      box-shadow: 0 0 40px rgba(247,147,26,0.4);
+      box-shadow: 0 0 40px rgba(139,92,246,0.4);
       animation: ringPulse 4s ease-in-out infinite;
     }
 
     @keyframes ringPulse {
-      0%, 100% { box-shadow: 0 0 30px rgba(247,147,26,0.4); }
-      50% { box-shadow: 0 0 50px rgba(247,147,26,0.6); }
+      0%, 100% { box-shadow: 0 0 30px rgba(139,92,246,0.4); }
+      50% { box-shadow: 0 0 50px rgba(139,92,246,0.6); }
     }
 
     .avatar-img {
@@ -233,12 +233,30 @@
 
     .avatar-badge svg { width: 12px; height: 12px; color: white; }
 
+    .profile-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.2);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--brand-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    .profile-category svg { width: 12px; height: 12px; }
+
     .profile-name {
       font-family: "Space Grotesk", sans-serif;
       font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #fff, #ffd699);
+      background: linear-gradient(135deg, #fff, #d8b4fe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0.25rem;
@@ -256,7 +274,7 @@
       color: var(--text-dim);
       font-size: 0.8rem;
       max-width: 28rem;
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 1rem;
     }
 
@@ -277,6 +295,7 @@
       justify-content: center;
       color: var(--text-soft);
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     .social-icon:hover {
@@ -284,7 +303,7 @@
       border-color: var(--brand);
       color: white;
       transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(247,147,26,0.3);
+      box-shadow: 0 6px 16px rgba(139,92,246,0.3);
     }
 
     .social-icon svg { width: 16px; height: 16px; }
@@ -315,6 +334,7 @@
     .section:nth-child(2) { animation-delay: 0.3s; }
     .section:nth-child(3) { animation-delay: 0.4s; }
     .section:nth-child(4) { animation-delay: 0.5s; }
+    .section:nth-child(5) { animation-delay: 0.6s; }
 
     .section-header {
       display: flex;
@@ -376,18 +396,31 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(247,147,26,0.1), transparent);
+      background: linear-gradient(135deg, rgba(139,92,246,0.1), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
     .link-item:hover {
-      border-color: rgba(255,179,71,0.3);
+      border-color: rgba(196,181,253,0.3);
       transform: translateX(4px);
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
 
     .link-item:hover::before { opacity: 1; }
+
+    .link-item.is-favorite {
+      border-color: rgba(251, 191, 36, 0.15);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.04), rgba(255,255,255,0.03));
+    }
+
+    .link-item.is-favorite::before {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), transparent);
+    }
+
+    .link-item.is-favorite:hover {
+      border-color: rgba(251, 191, 36, 0.3);
+    }
 
     .link-img {
       width: 44px;
@@ -419,12 +452,20 @@
     }
 
     .link-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-weight: 600;
       font-size: 0.9rem;
       margin-bottom: 2px;
+      overflow: hidden;
+    }
+
+    .link-name-text {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 0;
     }
 
     .link-desc {
@@ -435,7 +476,69 @@
       text-overflow: ellipsis;
     }
 
-    /* ===== UPDATED TAG STYLES ===== */
+    /* ===== FAVORITE STAR ===== */
+    .favorite-star {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .favorite-star svg {
+      width: 13px;
+      height: 13px;
+      color: var(--accent-amber);
+      filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.5));
+      animation: starGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes starGlow {
+      0%, 100% { filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.35)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 9px rgba(251, 191, 36, 0.7)); transform: scale(1.12); }
+    }
+
+    .favorite-star-label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.85;
+      white-space: nowrap;
+    }
+
+    /* ===== SECTION EXPLORE LINK ===== */
+    .section-explore-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.375rem;
+      padding: 0.5rem;
+      margin-top: 0.375rem;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .section-explore-link:hover {
+      color: var(--brand-light);
+      background: rgba(139, 92, 246, 0.06);
+    }
+
+    .section-explore-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .section-explore-link:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    /* ===== TAG STYLES ===== */
     .link-tag {
       padding: 3px 8px;
       border-radius: 6px;
@@ -447,7 +550,7 @@
     }
 
     .link-tag.tag-website {
-      background: rgba(247,147,26,0.15);
+      background: rgba(139,92,246,0.15);
       color: var(--brand-light);
     }
 
@@ -506,6 +609,26 @@
       color: var(--accent-pink);
     }
 
+    .link-tag.tag-research {
+      background: rgba(139,92,246,0.15);
+      color: var(--brand-light);
+    }
+
+    .link-tag.tag-whitepaper {
+      background: rgba(148,163,184,0.15);
+      color: var(--accent-slate);
+    }
+
+    .link-tag.tag-app {
+      background: rgba(46,213,115,0.15);
+      color: var(--accent-green);
+    }
+
+    .link-tag.tag-community {
+      background: rgba(244,114,182,0.15);
+      color: var(--accent-pink);
+    }
+
     .link-arrow {
       width: 16px;
       height: 16px;
@@ -517,6 +640,10 @@
     .link-item:hover .link-arrow {
       transform: translateX(4px);
       color: var(--brand-light);
+    }
+
+    .link-item.is-favorite:hover .link-arrow {
+      color: var(--accent-amber);
     }
 
     /* ===== SHOW MORE BUTTON ===== */
@@ -550,7 +677,7 @@
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.6s ease forwards;
-      animation-delay: 0.6s;
+      animation-delay: 0.7s;
     }
 
     .video-header {
@@ -625,29 +752,35 @@
       position: absolute;
       inset: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      z-index: 5;
       cursor: pointer;
-      z-index: 2;
+      transition: all 0.3s ease;
     }
 
-    .video-placeholder img {
+    .video-placeholder-bg {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      background-size: cover;
+      background-position: center;
+      filter: blur(2px) brightness(0.4);
+      transition: filter 0.3s ease;
     }
 
-    .video-placeholder:hover img {
-      transform: scale(1.03);
-      filter: brightness(0.7);
+    .video-placeholder:hover .video-placeholder-bg {
+      filter: blur(1px) brightness(0.5);
     }
 
-    .custom-play-btn {
+    .video-placeholder:hover .play-btn {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255,0,0,0.5);
+    }
+
+    .play-btn {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       width: 64px;
       height: 64px;
       border-radius: 50%;
@@ -655,24 +788,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 1rem;
       box-shadow: 0 8px 24px rgba(255,0,0,0.3);
       transition: all 0.3s ease;
     }
 
-    .custom-play-btn::after {
-      content: "";
-      display: block;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 10px 0 10px 18px;
-      border-color: transparent transparent transparent white;
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      color: white;
       margin-left: 4px;
     }
 
-    .video-placeholder:hover .custom-play-btn {
-      transform: scale(1.12);
-      box-shadow: 0 0 40px rgba(255,0,0,0.5);
+    .video-placeholder-text {
+      position: relative;
+      z-index: 2;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     /* ===== FOOTER ===== */
@@ -685,7 +819,7 @@
       z-index: 1;
       opacity: 0;
       animation: fadeInUp 0.6s ease forwards;
-      animation-delay: 0.7s;
+      animation-delay: 0.8s;
     }
 
     .footer-text {
@@ -720,9 +854,12 @@
       .love-text { font-size: 4rem; }
       .video-title { font-size: 0.9rem; }
       .video-subtitle { display: none; }
-      .custom-play-btn { width: 56px; height: 56px; }
-      .custom-play-btn::after { border-width: 8px 0 8px 15px; margin-left: 3px; }
+      .play-btn { width: 56px; height: 56px; }
+      .play-btn svg { width: 24px; height: 24px; }
       .link-tag { font-size: 0.6rem; padding: 2px 6px; }
+      .profile-name { font-size: 1.5rem; }
+      .favorite-star svg { width: 11px; height: 11px; }
+      .favorite-star-label { font-size: 0.5rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -760,7 +897,7 @@
       <div class="avatar-wrapper">
         <div class="avatar-ring">
           <div class="avatar-img">
-            <img src="/creators/img/natpfp.jpg" alt="Natalie Brunell">
+            <img src="https://cdn-ilehkna.nitrocdn.com/HWkhaRwUyufobGYsEqsSlFCDqvvZeqjw/assets/images/optimized/rev-a54c932/minepi.com/wp-content/uploads/2022/09/Dr.-Chengdiao-Fan-1-1.jpg" alt="Dr. Chengdiao Fan">
           </div>
         </div>
         <div class="avatar-badge">
@@ -768,24 +905,24 @@
         </div>
       </div>
 
-      <h1 class="profile-name">Natalie Brunell</h1>
-      <span class="profile-handle">@NatBrunell</span>
-      <p class="profile-bio">Investing journalist, podcaster and Bitcoin educator. Host of the Coin Stories Podcast.</p>
+      <div class="profile-category">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        Anthropological Sciences
+      </div>
+
+      <h1 class="profile-name">Dr. Chengdiao Fan</h1>
+      <span class="profile-handle">@chengdiaofan</span>
+      <p class="profile-bio">Stanford‑trained PhD in Anthropological Sciences and co‑founder & Head of Product of Pi Network. Her work focuses on human behavior, group dynamics, and social computing — applying these principles to human‑computer interaction and blockchain technology to design accessible, people‑centered digital ecosystems.</p>
 
       <div class="social-links">
-        <a href="https://x.com/NatBrunell" class="social-icon" title="X">
+        <a href="https://x.com/Chengdiao" class="social-icon" title="X">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://www.youtube.com/@NatalieBrunell" class="social-icon" title="YouTube">
+        <a href="https://www.youtube.com/hashtag/drchengdiaofan" class="social-icon" title="YouTube">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
-        <a href="https://www.instagram.com/natbrunell/" class="social-icon" title="Instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://podcasts.apple.com/us/podcast/coin-stories-with-natalie-brunell/id1569130932" class="social-icon" title="Apple Podcasts">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16.365 1.43c0 1.14-.42 2.07-1.26 2.79-.84.72-1.8 1.14-2.88 1.26-.06-.18-.09-.39-.09-.63 0-1.08.39-2.01 1.17-2.79.78-.78 1.68-1.17 2.7-1.17.12 0 .24.03.36.06v.48zm4.41 16.02c-.3.9-.75 1.74-1.35 2.52-.78 1.02-1.59 1.53-2.43 1.53-.48 0-1.05-.15-1.71-.45-.66-.3-1.26-.45-1.8-.45-.6 0-1.23.15-1.89.45-.66.3-1.2.45-1.62.45-.84 0-1.68-.48-2.52-1.44-.84-.96-1.5-2.1-1.98-3.42-.54-1.44-.81-2.85-.81-4.23 0-1.56.36-2.91 1.08-4.05.72-1.14 1.68-1.71 2.88-1.71.54 0 1.23.15 2.07.45.84.3 1.38.45 1.62.45.18 0 .78-.18 1.8-.54 1.02-.36 1.89-.51 2.61-.45 1.92.18 3.36 1.02 4.32 2.52-1.71 1.02-2.55 2.46-2.55 4.32 0 1.44.54 2.67 1.62 3.69.48.48.99.84 1.53 1.08-.12.24-.21.48-.27.72z"/>
-          </svg>
+        <a href="https://minepi.com" class="social-icon" title="Pi Network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </a>
       </div>
     </div>
@@ -798,12 +935,19 @@
     <!-- Video Section -->
     <div class="video-section">
       <div class="video-header">
-        <span class="video-title">Featured Episode</span>
-        <span class="video-subtitle">More from <a href="https://www.youtube.com/@NatalieBrunell" target="_blank">@NatBrunell</a></span>
+        <span class="video-title">Featured Talk</span>
+        <span class="video-subtitle">More from <a href="https://www.youtube.com/hashtag/drchengdiaofan" target="_blank">@chengdiaofan</a></span>
       </div>
       <div class="video-container">
         <div class="video-wrapper" id="videoWrapper">
-          <div class="video-placeholder" id="videoPlaceholder"></div>
+          <div class="video-placeholder" id="videoPlaceholder">
+            <div class="video-placeholder-bg" style="background-image: url('https://i.ytimg.com/vi/tWn1irrGlaM/hqdefault.jpg');"></div>
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-placeholder-text">Dr. Chengdiao Fan — Click to play</span>
+          </div>
+          <iframe id="videoIframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -823,144 +967,167 @@
         title: "About",
         items: [
           {
-            name: "Natalie Brunell - Talking Bitcoin",
-            desc: "Official website and portfolio",
-            img: "/creators/img/talkingbtc.png",
-            url: "https://www.nataliebrunell.com/",
+            name: "Pi Network — Official Website",
+            desc: "The decentralized cryptocurrency you can mine on your phone",
+            url: "https://minepi.com/",
             tag: "Website",
-            tagClass: "tag-website"
+            tagClass: "tag-website",
+            img: "/creators/img/pinetwork2.jpg",
           },
           {
-            name: "Coin Stories Podcast",
-            desc: "Weekly Bitcoin conversations with industry leaders",
-            img: "/creators/img/coinstories.jpeg",
-            url: "https://www.coinstoriespodcast.com/",
-            tag: "Podcast",
-            tagClass: "tag-podcast"
+            name: "Dr. Chengdiao Fan — Pi Network Profile",
+            desc: "Co‑founder & Head of Product at Pi Network",
+            url: "https://minepi.com/dr-chengdiao-fan",
+            tag: "Website",
+            tagClass: "tag-website",
+            img: "/creators/img/pinetwork2.jpg",
           },
           {
-            name: "Coin Stories Newsletter",
-            desc: "under construction. - Weekly insights delivered to your inbox",
-            img: "/creators/img/coinstories-newsletter.png",
-            url: "https://www.coinstoriespodcast.com/newsletter",
-            tag: "Newsletter",
-            tagClass: "tag-newsletter"
+            name: "Pi Network Whitepaper",
+            desc: "Original technical document outlining the Pi blockchain vision",
+            url: "https://minepi.com/white-paper",
+            tag: "Whitepaper",
+            tagClass: "tag-whitepaper",
+            img: "/creators/img/pinetwork2.jpg",
           }
         ]
       },
       {
-        title: "Listen to Coin Stories",
+        title: "Pi Network Ecosystem",
         items: [
           {
-            name: "YouTube",
-            desc: "Watch full video episodes on YouTube",
-            img: "/creators/img/ytlogo.jpg",
-            url: "https://www.youtube.com/@NatalieBrunell",
-            tag: "Video",
-            tagClass: "tag-video"
+            name: "Pi Mining App",
+            desc: "Mine Pi from your phone — available on iOS & Android",
+            url: "https://minepi.com/download",
+            tag: "App",
+            tagClass: "tag-app",
+            img: "/creators/img/pinetwork.png",
           },
           {
-            name: "Apple Podcasts",
-            desc: "Subscribe on Apple Podcasts",
-            img: "/creators/img/applepodcast.png",
-            url: "https://podcasts.apple.com/us/podcast/coin-stories/id1652887276",
-            tag: "Podcast",
-            tagClass: "tag-podcast"
-          },
-          {
-            name: "Spotify",
-            desc: "Listen on Spotify",
-            img: "/creators/img/spotifylogo.png",
-            url: "https://open.spotify.com/show/5qPZ2iE9LpHbZj8g0UuB0R",
-            tag: "Podcast",
-            tagClass: "tag-podcast"
-          },
-          {
-            name: "Rumble",
-            desc: "Watch on Rumble — censorship-free",
-            img: "/creators/img/rumblelogo.jpg",
-            url: "https://rumble.com/c/NatBrunell",
-            tag: "Video",
-            tagClass: "tag-video"
-          },
-        ]
-      },
-      {
-        title: "Bitcoin Essentials",
-        items: [
-          {
-            name: "The Bitcoin Whitepaper",
-            desc: "Satoshi Nakamoto's original 2008 paper",
-            img: "/creators/img/pdf.png",
-            url: "https://bitcoin.org/bitcoin.pdf",
-            tag: "Paper",
-            tagClass: "tag-paper"
-          },
-          {
-            name: "The Bitcoin Standard",
-            desc: "Saifedean Ammous — essential reading",
-            img: "/creators/img/book.png",
-            url: "https://www.amazon.com/Bitcoin-Standard-Decentralized-Alternative-Central/dp/1119473861",
-            tag: "Book",
-            tagClass: "tag-book"
-          },
-          {
-            name: "Bitcoin.org",
-            desc: "Official Bitcoin open-source project",
-            img: "/creators/img/btc.png",
-            url: "https://bitcoin.org/",
-            tag: "Website",
-            tagClass: "tag-website"
-          },
-          
-          {
-            name: "Bitcoin Layers",
-            desc: "Understanding Lightning and L2 scaling",
-            img: "/creators/img/bitcoinlayers.png",
-            url: "https://www.bitcoinlayers.org/",
-            tag: "Website",
-            tagClass: "tag-website"
-          }
-        ]
-      },
-      {
-        title: "Learning & Resources",
-        items: [
-          {
-            name: "River Learning Center",
-            desc: "In-depth Bitcoin education articles",
-            img: "/creators/img/riverlearn.jpg",
-            url: "https://river.com/learn/",
-            tag: "Education",
-            tagClass: "tag-education"
-          },
-          {
-            name: "Swan Bitcoin",
-            desc: "Bitcoin savings plan — stack automatically",
-            img: "/creators/img/swanbitcoin.png",
-            url: "https://www.swanbitcoin.com/",
+            name: "Pi Browser",
+            desc: "Built‑in browser for decentralized Pi applications",
+            url: "https://browser.pi",
             tag: "Platform",
-            tagClass: "tag-platform"
+            tagClass: "tag-platform",
+            img: "/creators/img/pinetwork.png",
           },
           {
-            name: "Mempool.space",
-            desc: "Real-time Bitcoin blockchain explorer",
-            img: "/creators/img/mempool.png",
-            url: "https://mempool.space/",
-            tag: "Explorer",
-            tagClass: "tag-explorer"
+            name: "Pi Developer Portal",
+            desc: "Build decentralized apps on the Pi blockchain",
+            url: "https://developers.pi",
+            tag: "Guide",
+            tagClass: "tag-guide",
+            img: "/creators/img/pinetwork.png",
           },
           {
-            name: "Bitcoin Magazine Pro",
-            desc: "get clarity about Bitcoin using data analytics you can't get anywhere else.",
-            img: "/creators/img/btcmagazine.png",
-            url: "https://lookintobitcoin.com/",
-            tag: "Charts",
-            tagClass: "tag-charts"
+            name: "Pi Chat & Community",
+            desc: "Connect with Pioneers worldwide in the Pi community",
+            url: "https://chat.pi",
+            tag: "Community",
+            tagClass: "tag-community",
+            img: "/creators/img/pinetwork.png",
+          }
+        ]
+      },
+      {
+        title: "Research & Academia",
+        items: [
+          {
+            name: "Computer Science Bibliography",
+            desc: "Dplb - Chenglin Fan",
+            url: "https://dblp.org/",
+            tag: "Research",
+            tagClass: "tag-research",
+            img: "/creators/img/dplbico.png",
           },
+          {
+            name: "Stanford Anthropological Sciences",
+            desc: "Department where Dr. Fan earned her PhD",
+            url: "https://anthropology.stanford.edu/",
+            tag: "Education",
+            tagClass: "tag-education",
+            img: "/creators/img/anthropology_stanford.png",
+          },
+          {
+            name: "Social Computing — Stanford HCI Group",
+            desc: "Research at the intersection of social behavior and computing",
+            url: "https://hci.stanford.edu/",
+            tag: "Research",
+            tagClass: "tag-research",
+            img: "/creators/img/stanford_hci.png",
+          },
+          {
+            name: "Human Behavior & Group Dynamics",
+            desc: "Understanding collective decision-making and social networks",
+            url: "https://plato.stanford.edu/entries/social-choice/",
+            tag: "Research",
+            tagClass: "tag-research",
+            img: "/creators/img/sep-man-red.png",
+          }
+        ]
+      },
+      {
+        title: "Publications",
+        exploreLink: {
+          text: "Explore all publications on ResearchGate",
+          url: "https://www.researchgate.net/scientific-contributions/Chenglin-Fan-2137202056"
+        },
+        items: [
+          {
+            name: "Classification Acceleration via Merging Decision Trees",
+            desc: "Dr. Chengdiao Fan & Ping Li — SIGIR 2020",
+            url: "https://dl.acm.org/doi/10.1145/3412815.3416886",
+            tag: "Paper",
+            tagClass: "tag-paper",
+            img: "/creators/img/acm.jpg",
+            favorite: true
+          },
+          {
+            name: "ResearchGate — Chenglin Fan",
+            desc: "Full list of scientific contributions, citations & co-authors",
+            url: "https://www.researchgate.net/scientific-contributions/Chenglin-Fan-2137202056",
+            tag: "Research",
+            tagClass: "tag-research",
+            img: "/creators/img/researchgate.png",
+          }
+        ]
+      },
+      {
+        title: "Blockchain & Social Computing",
+        items: [
+          {
+            name: "MIT Digital Currency Initiative",
+            desc: "Recherche de pointe sur la sécurité, la gouvernance et les dynamiques sociales des systèmes blockchain — une base solide pour comprendre comment les réseaux distribués influencent les comportements humains.",
+            url: "https://dci.mit.edu/",
+            tag: "Research",
+            tagClass: "tag-research",
+            img: "/creators/img/dci.png",
+          },
+          {
+            name: "Stanford HCI Group — Human‑Centered Web3",
+            desc: "Approches centrées humain pour concevoir des systèmes décentralisés réellement utilisables, en étudiant cognition, adoption et interactions sociales dans les environnements Web3.",
+            url: "https://hci.stanford.edu/research/",
+            tag: "Guide",
+            tagClass: "tag-guide",
+            img: "/creators/img/hci-stanford.png",
+          },
+          {
+            name: "W3C Decentralized Identifiers (DID)",
+            desc: "Standard clé pour l'identité auto‑souveraine, fondation technique et sociale de la confiance dans les réseaux décentralisés — essentiel pour comprendre les mécanismes de réputation et de légitimité.",
+            url: "https://www.w3.org/TR/did-core/",
+            tag: "Paper",
+            tagClass: "tag-paper",
+            img: "/creators/img/web3.png",
+          }
         ]
       }
     ];
+
+
+    /* ============================================================
+       FEATURED VIDEO
+    ============================================================ */
+    const featuredVideoId = "tWn1irrGlaM";
 
     /* ============================================================
        LOVE PATTERN
@@ -998,47 +1165,20 @@
     generateLovePattern();
 
     /* ============================================================
+       VIDEO PLACEHOLDER → IFRAME LAZY LOAD
+    ============================================================ */
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    const videoIframe = document.getElementById('videoIframe');
+
+    videoPlaceholder.addEventListener('click', function () {
+      videoIframe.src = `https://www.youtube.com/embed/${featuredVideoId}?autoplay=1&rel=0`;
+      this.style.display = 'none';
+    });
+
+    /* ============================================================
        GENERATE UI
     ============================================================ */
     const contentArea = document.getElementById('contentArea');
-
-    function generateUI() {
-      contentArea.innerHTML = '';
-
-      collectionData.forEach(section => {
-        const sectionEl = document.createElement('div');
-        sectionEl.className = 'section';
-
-        const visibleItems = section.items.slice(0, 3);
-        const hiddenItems = section.items.slice(3);
-        const hasMore = hiddenItems.length > 0;
-
-        let itemsHtml = visibleItems.map(item => createLinkItem(item)).join('');
-
-        if (hasMore) {
-          const hiddenItemsHtml = hiddenItems.map(item =>
-            `<a href="${item.url}" class="link-item hidden-item" style="display: none;" target="_blank" rel="noopener noreferrer">
-              ${createLinkItemInner(item)}
-            </a>`
-          ).join('');
-
-          itemsHtml += hiddenItemsHtml;
-        }
-
-        sectionEl.innerHTML = `
-          <div class="section-header">
-            <div class="section-title">${section.title}</div>
-            <div class="section-count">${section.items.length} resources</div>
-          </div>
-          <div class="links-list">
-            ${itemsHtml}
-            ${hasMore ? `<button class="show-more-btn" onclick="toggleItems(this)">Show ${hiddenItems.length} more</button>` : ''}
-          </div>
-        `;
-
-        contentArea.appendChild(sectionEl);
-      });
-    }
 
     function createLinkItemInner(item) {
       const imgContent = item.img
@@ -1052,10 +1192,20 @@
       const tagClass = item.tagClass || 'tag-website';
       const tagHtml = item.tag ? `<span class="link-tag ${tagClass}">${item.tag}</span>` : '';
 
+      const favoriteHtml = item.favorite
+        ? `<span class="favorite-star">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+             <span class="favorite-star-label">Team Pick</span>
+           </span>`
+        : '';
+
       return `
         <div class="link-img">${imgContent}</div>
         <div class="link-content">
-          <div class="link-name">${item.name}</div>
+          <div class="link-name">
+            <span class="link-name-text">${item.name}</span>
+            ${favoriteHtml}
+          </div>
           <div class="link-desc">${item.desc}</div>
         </div>
         ${tagHtml}
@@ -1065,18 +1215,58 @@
       `;
     }
 
-    function createLinkItem(item) {
-      return `
-        <a href="${item.url}" class="link-item" target="_blank" rel="noopener noreferrer">
-          ${createLinkItemInner(item)}
-        </a>
-      `;
+    function generateUI() {
+      contentArea.innerHTML = '';
+
+      collectionData.forEach(section => {
+        const sectionEl = document.createElement('div');
+        sectionEl.className = 'section';
+
+        const visibleItems = section.items.slice(0, 3);
+        const hiddenItems = section.items.slice(3);
+        const hasMore = hiddenItems.length > 0;
+
+        let itemsHtml = visibleItems.map(item => {
+          const favClass = item.favorite ? ' is-favorite' : '';
+          return `<a href="${item.url}" class="link-item${favClass}" target="_blank" rel="noopener noreferrer">${createLinkItemInner(item)}</a>`;
+        }).join('');
+
+        if (hasMore) {
+          const hiddenItemsHtml = hiddenItems.map(item =>
+            `<a href="${item.url}" class="link-item hidden-item" style="display: none;" target="_blank" rel="noopener noreferrer">
+              ${createLinkItemInner(item)}
+            </a>`
+          ).join('');
+          itemsHtml += hiddenItemsHtml;
+        }
+
+        const exploreHtml = section.exploreLink
+          ? `<a href="${section.exploreLink.url}" class="section-explore-link" target="_blank" rel="noopener noreferrer">
+               ${section.exploreLink.text}
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+             </a>`
+          : '';
+
+        sectionEl.innerHTML = `
+          <div class="section-header">
+            <div class="section-title">${section.title}</div>
+            <div class="section-count">${section.items.length} resources</div>
+          </div>
+          <div class="links-list">
+            ${itemsHtml}
+            ${hasMore ? `<button class="show-more-btn" onclick="toggleItems(this)">Show ${hiddenItems.length} more</button>` : ''}
+            ${exploreHtml}
+          </div>
+        `;
+
+        contentArea.appendChild(sectionEl);
+      });
     }
 
     function toggleItems(btn) {
       const section = btn.parentElement;
       const hiddenItems = section.querySelectorAll('.hidden-item');
-      const isVisible = hiddenItems[0].style.display !== 'none';
+      const isVisible = hiddenItems[0] && hiddenItems[0].style.display !== 'none';
 
       hiddenItems.forEach(item => {
         item.style.display = isVisible ? 'none' : 'flex';
@@ -1088,40 +1278,6 @@
     }
 
     generateUI();
-
-    /* ============================================================
-       CUSTOM VIDEO PLAYER — iframe injected on click only
-    ============================================================ */
-    const videoWrapper = document.getElementById('videoWrapper');
-    const videoPlaceholder = document.getElementById('videoPlaceholder');
-
-    // --- Ajout de la thumbnail + bouton ---
-    function setCustomThumbnail() {
-      const img = document.createElement('img');
-      img.src = '/creators/img/nataliethumbnail.jpg';
-      img.alt = 'Video thumbnail';
-
-      const playBtn = document.createElement('div');
-      playBtn.className = 'custom-play-btn';
-
-      videoPlaceholder.appendChild(img);
-      videoPlaceholder.appendChild(playBtn);
-    }
-
-    setCustomThumbnail();
-
-    // --- Injection de l'iframe au clic ---
-    videoPlaceholder.addEventListener('click', function () {
-      const iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube.com/embed/lEgxtmKld0I?autoplay=1&rel=0';
-      iframe.title = 'YouTube video player';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      iframe.allowFullscreen = true;
-
-      videoWrapper.appendChild(iframe);
-      videoPlaceholder.remove();
-    });
   </script>
 </body>
 </html>
